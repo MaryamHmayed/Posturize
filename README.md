@@ -5,8 +5,6 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A Smart system for sitting posture detection based on force sensors and mobile application, helping employees maintaining good sitting posture for a long period of time.
->
 > Posturize targets employees sitting on the chair for a long period of time and suffering from spine pain caused by poor sitting posture and helps them maintain a good one by monitoring it, providing a user-friendly platform that notifies user when a poor sitting posture is detected.
 
 ### User Stories
