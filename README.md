@@ -8,12 +8,11 @@
 > Posturize targets employees sitting on the chair for a long period of time and suffering from spine pain caused by poor sitting posture and helps them maintain a good one by monitoring it, providing a user-friendly platform that notifies user when a poor sitting posture is detected.
 
 ### User Stories
-User Stories
 - As an employee, I want to receive notifications on my mobile device when my sitting posture is incorrect, so that I can adjust my posture and prevent spine pain caused by prolonged sitting.
 - As an employee, I want the system to provide guidance on how to correct my sitting posture when it detects that it's incorrect, so that I can improve my posture over time.
 - As an employee with a history of spine pain due to poor sitting posture, I want the system to track my sitting habits over time and provide insights and recommendations for improving my posture, so that I can prevent future health problems.
-<br>
-Physiotherapist Stories
+
+### Physiotherapist Stories 
 - As a physiotherapist, I want to access data about my patients' sitting habits and posture over time, so that I can provide personalized recommendations for improving their posture and reducing back pain.
 - As a physiotherapist, I want to receive real-time notifications when my patients exhibit poor sitting posture, so that I can intervene promptly and provide immediate feedback or guidance to help them correct their position.
 - As a physiotherapist, I want to track the effectiveness of posture correction interventions prescribed to my patients, so that I can make informed adjustments to their treatment plans and optimize their rehabilitation outcomes.
