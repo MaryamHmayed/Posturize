@@ -66,4 +66,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Role::class);
     }
 
+    public function chatsSent()
+    {
+        return $this->hasMany(Chat::class, 'sender');
+    }
+
+    public function chatsReceived()
+    {
+        return $this->hasMany(Chat::class, 'receiver');
+    }
+
 }
