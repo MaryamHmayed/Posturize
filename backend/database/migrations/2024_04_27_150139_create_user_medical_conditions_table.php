@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('medical_condition_id');
             $table->foreign("user_id")->references("id")->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign("medical_condition_id")->references("id")->on('medical_conditions')->cascadeOnDelete()->cascadeOnUpdate();
-
+            
             $table->timestamps();
         });
     }
