@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('chairs', function (Blueprint $table) {
             $table->id();
             $table->string('chair_name');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign("user_id")->references("id")->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
