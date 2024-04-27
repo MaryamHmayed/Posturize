@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Session extends Model
+class Sensors_Data extends Model
 {
     use HasFactory;
-    protected $fillable =["chair_id","start_time","end_time"];
-    public function chair()
-    {
-        return $this->belongsTo(Chair::class);
-    }
-    public function posture_data()
+   
+    protected $fillable = ['posture_data_id', 'pressure_value'];
+
+    public function postureData()
     {
         return $this->belongsTo(Posture_Data::class);
     }
 }
-

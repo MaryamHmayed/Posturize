@@ -81,4 +81,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Chair::class);
     }
 
+
+    public function medicalConditions()
+    {
+        return $this->belongsToMany(Medical_Condition::class);
+    }
+
 }
