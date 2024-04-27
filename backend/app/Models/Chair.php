@@ -19,6 +19,11 @@ class Chair extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
 }
 
 
