@@ -17,8 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger("posture_data_id");
             $table->timestamps();
             $table->foreign('posture_data_id')->references('id')->on('posture_data');
-
-
         });
     }
 

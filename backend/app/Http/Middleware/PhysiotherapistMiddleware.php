@@ -39,7 +39,6 @@ class PhysiotherapistMiddleware
             ], 401);
         }
     
-        // If the user is authenticated and is a physiotherapist, allow the request to continue
         return $next($request);
     }
 }

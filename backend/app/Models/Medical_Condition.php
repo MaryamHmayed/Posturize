@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Medical_Condition extends Model
 {
     use HasFactory;
+    protected $fillable = ['condition'];
 
     public function users()
     {
