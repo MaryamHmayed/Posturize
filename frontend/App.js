@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import SplashScreen from './app/splashScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Welcome to Posturize!</Text>
+      <SplashScreen/>
       <StatusBar style="auto" />
     </View>
   );
@@ -14,9 +15,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"blue",
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    backgroundColor:"#3D3A3A",
   },
+  
 });
