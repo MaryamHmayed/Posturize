@@ -14,24 +14,24 @@ export default splashScreen = () =>{
 
 const styles = StyleSheet.create({
  text_Style: {
-    color: '#05A37E',
+    color: '#ffff',
     fontWeight: 'bold',
-    paddingTop: 110,
+    paddingTop: 120,
     paddingLeft: 50,
     paddingRight: 50,
     paddingBottom: 10,
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 23,
  }, 
  caption: {
-    color:"#FE9120",
+    color:"#ffff",
     fontSize: 23,
     textAlign: "center",
 
 
  },
  chair:{
-    marginLeft:30,
+    marginLeft:10,
    
  }
 })
