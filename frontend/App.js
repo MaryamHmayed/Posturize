@@ -3,14 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import SplashScreen from './app/splashScreen';
 import LoginScreen from './app/login';
 import SignUpScreen from './app/register';
+import BottomNavigationBar from './app/Components/bottomNav';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <SplashScreen/> */}
-      <LoginScreen/>
+      {/* <LoginScreen/> */}
       {/* <SignUpScreen/> */}
+      <BottomNavigationBar/>
       <StatusBar style="auto" />
     </View>
   );

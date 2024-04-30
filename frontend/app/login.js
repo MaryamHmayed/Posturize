@@ -36,7 +36,7 @@ const LoginScreen = () => {
       
       <View style={styles.signupContainer}>
         <Text style={styles.signupText}>Don't have an account? </Text>
-        <Pressable onPress={() => { /* navigate to register screen */ }}>
+        <Pressable onPress={() => {  }}>
           <Text style={styles.signupLink}>Sign up</Text>
         </Pressable>
       </View>
@@ -65,10 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     
   },
-  logo: {
-
-   
-  },
+ 
   title: {
     fontSize: 28,
     fontWeight: 'bold',
