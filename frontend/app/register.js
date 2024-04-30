@@ -26,7 +26,7 @@ const handleSignUp = async () => {
             username: user.username,
             password: user.password
             });
-            await AsyncStorage.setItem('userToken', data.authorisation.token);  
+            await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
             console.log('Registration successful:', data);
             setErrors({});  
     } catch (error) {

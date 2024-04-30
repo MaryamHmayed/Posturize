@@ -1,18 +1,16 @@
 import axios from 'axios';
 
 const registerUser = async (userData) => {
+    console.log("check")
     try {
-        const response = await axios.post('http://localhost:8000/api/register', userData);
-        
+        const response = await axios.post('http://192.168.1.109:8000/api/register', userData);
+        console.log(response);
         return response.data; 
+    
     } catch (error) {
-        if (error.response) {
-            throw error.response.data;
-        } else {
+        console.error(error);
             
-            throw { general: "Network error or server not reachable" };
-        }
-    }
+    }           
 };
 
 
