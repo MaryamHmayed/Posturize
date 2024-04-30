@@ -5,13 +5,16 @@ import TopLeftCorner from '../assets/Vector.png';
 import TopRightCorner from '../assets/Vector-1.png';
 import BottomLeftCorner from '../assets/Vector-2.png';
 import BottomRightCorner from '../assets/Vector-3.png';
+import { Checkbox } from 'react-native-paper';
 
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('user'); // 'user' or 'physiotherapist'
+  const [isUser, setIsUser] = useState(false);
+  const [isPhysiotherapist, setIsPhysiotherapist] = useState(false);
+
 
   const handleSignUp = () => {
     
@@ -55,20 +58,33 @@ const SignUpScreen = () => {
         placeholderTextColor="#aaa"
         secureTextEntry
       />
-      
-      <View style={styles.checkboxContainer}>
-        <Pressable style={styles.checkbox} onPress={() => setUserType('user')}>
-          <Text style={[styles.checkboxLabel, userType === 'user' && styles.checkboxSelected]}>
-            User
-          </Text>
-        </Pressable>
-        
-        <Pressable style={styles.checkbox} onPress={() => setUserType('physiotherapist')}>
-          <Text style={[styles.checkboxLabel, userType === 'physiotherapist' && styles.checkboxSelected]}>
-            Physiotherapist
-          </Text>
-        </Pressable>
+
+    <View style={styles.checkboxContainer}>
+        <View style={styles.checkboxLabelContainer}>
+          <Checkbox
+            status={isUser ? 'checked' : 'unchecked'}
+            onPress={() => {
+              setIsUser(!isUser);
+              setIsPhysiotherapist(false); // 
+            }}
+            color={'#FFF'} 
+          />
+          <Text style={styles.checkboxLabel}>User</Text>
+        </View>
+        <View style={styles.checkboxLabelContainer}>
+          <Checkbox
+            status={isPhysiotherapist ? 'checked' : 'unchecked'}
+            onPress={() => {
+              setIsPhysiotherapist(!isPhysiotherapist);
+              setIsUser(false); 
+            }}
+            color={'#FFF'} 
+          />
+          <Text style={styles.checkboxLabel}>Physiotherapist</Text>
+        </View>
       </View>
+      
+      
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
@@ -78,7 +94,7 @@ const SignUpScreen = () => {
         <Pressable onPress={() => { /* navigate to login screen */ }}>
           <Text style={styles.loginLink}>Log In</Text>
         </Pressable>
-</View>
+      </View>
         <Text style={styles.or}>Or</Text>
       <View style={styles.socialButtons}>
         <TouchableOpacity style={styles.socialButton}>
@@ -103,19 +119,18 @@ const styles = StyleSheet.create({
  
   checkboxContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 20,
+    gap:6,
+    
+    marginVertical: 10,
   },
-  checkbox: {
-    padding: 10,
+  checkboxLabelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf:"flex-start"
   },
   checkboxLabel: {
-    color: '#FFF', 
-  },
-  checkboxSelected: {
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-  
+    color: '#FFF',
+    
   },
   
   logoContainer: {
@@ -152,9 +167,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     paddingVertical: 10,
+    marginBottom:10
   },
   button: {
-    marginTop:30,
+    marginTop:10,
     backgroundColor: '#ff9500',
     borderRadius: 25,
     width: '80%',
