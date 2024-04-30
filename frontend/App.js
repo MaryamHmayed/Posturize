@@ -3,22 +3,30 @@ import { StyleSheet, Text, View } from 'react-native';
 import SplashScreen from './app/splashScreen';
 import LoginScreen from './app/login';
 import SignUpScreen from './app/register';
-import BottomNavigationBar from './app/Components/bottomNav';
-import { UserProvider } from './app/userContext';
+// import BottomNavigationBar from './app/Components/bottomNav';
+import { UserProvider } from './app/userContext'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginScreen from './screens/LoginScreen';
+import SignUpScreen from './screens/SignUpScreen';;
 
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     
     <View style={styles.container}>
       <UserProvider>
-            <SignUpScreen />
-            
-        </UserProvider>
-      {/* <SplashScreen/> */}
-      {/* <LoginScreen/> */}
-      {/* <SignUpScreen/> */}
-      {/* <BottomNavigationBar/> */}
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="splashScreen">
+            <Stack.Screen name="splashScreen" component={SplashScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="signup" component={SignUpScreen} options={{ headerShown: false }} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </UserProvider>
+  
       <StatusBar style="auto" />
     </View>
   );

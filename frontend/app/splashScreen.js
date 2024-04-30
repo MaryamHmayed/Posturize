@@ -1,7 +1,22 @@
 import {Pressable, View, StyleSheet, Image,Text, TouchableOpacity} from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 
 
 const splashScreen = () =>{
+   const navigation = useNavigation();
+
+   useEffect(() => {
+       const timer = setTimeout(() => {
+           navigation.navigate('Login');
+       }, 6000); // Wait for 3 seconds
+
+       return () => clearTimeout(timer); // Clean up the timer
+   }, [navigation]);
+
+
+
+
     return(
      <View>
         <Text style={styles.text_Style} >Ready to start improving your posture?</Text>

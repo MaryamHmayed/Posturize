@@ -137,7 +137,7 @@ const handleSignUp = async () => {
       
     <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Already have an account? </Text>
-        <Pressable onPress={() => { () => navigation.navigate('./login.js') }}>
+        <Pressable onPress={() => { () => navigation.navigate('login') }}>
           <Text style={styles.loginLink}>Log In</Text>
         </Pressable>
     </View>
