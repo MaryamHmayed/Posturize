@@ -1,7 +1,7 @@
 import {Pressable, View, StyleSheet, Image,Text, TouchableOpacity} from "react-native";
 
 
-export default splashScreen = () =>{
+const splashScreen = () =>{
     return(
      <View>
         <Text style={styles.text_Style} >Ready to start improving your posture?</Text>
@@ -35,3 +35,4 @@ const styles = StyleSheet.create({
    
  }
 })
+export default splashScreen;

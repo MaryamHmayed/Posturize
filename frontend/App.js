@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import SplashScreen from './app/splashScreen';
 import LoginScreen from './app/login';
 
+
 export default function App() {
   return (
     <View style={styles.container}>
@@ -21,3 +22,5 @@ const styles = StyleSheet.create({
   },
   
 });
+
+

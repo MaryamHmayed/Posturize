@@ -10,7 +10,7 @@ import BottomRightCorner from '../assets/Vector-3.png';
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
-         <Image source={TopLeftCorner} style={[styles.cornerImage, styles.topLeft]} />
+      <Image source={TopLeftCorner} style={[styles.cornerImage, styles.topLeft]} />
       <Image source={TopRightCorner} style={[styles.cornerImage, styles.topRight]} />
       <Image source={BottomLeftCorner} style={[styles.cornerImage, styles.bottomLeft]} />
       <Image source={BottomRightCorner} style={[styles.cornerImage, styles.bottomRight]} />
