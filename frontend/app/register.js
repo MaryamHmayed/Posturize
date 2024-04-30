@@ -9,10 +9,11 @@ import { Checkbox } from 'react-native-paper';
 import registerUser from './api';
 import { useUser } from './userContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { useNavigation } from '@react-navigation/native';
 
 
 const SignUpScreen = () => {
+  const navigation = useNavigation();
     const { user, updateUser } = useUser();
     const [errors, setErrors] = useState({});
     const [isPhysiotherapist, setIsPhysiotherapist] = useState(false);
@@ -35,12 +36,6 @@ const handleSignUp = async () => {
         }
 };
  
-
-
-
-
-
-
 
 
 
@@ -137,11 +132,13 @@ const handleSignUp = async () => {
       
     <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Already have an account? </Text>
-        <Pressable onPress={() => { () => navigation.navigate('login') }}>
-          <Text style={styles.loginLink}>Log In</Text>
-        </Pressable>
+        <Pressable onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.loginLink}>Log In</Text>
+    </Pressable>
     </View>
+
     <Text style={styles.or}>Or</Text>
+
     <View style={styles.socialButtons}>
         <TouchableOpacity style={styles.socialButton}>
           <AntDesign name="google" size={24} color="white" />
@@ -166,6 +163,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 0,
+    backgroundColor:"#3D3A3A"
   },
  
   checkboxContainer: {

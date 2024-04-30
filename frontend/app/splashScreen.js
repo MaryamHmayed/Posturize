@@ -3,22 +3,20 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 
 
-const splashScreen = () =>{
+const SplashScreen = () =>{
    const navigation = useNavigation();
 
    useEffect(() => {
        const timer = setTimeout(() => {
            navigation.navigate('Login');
-       }, 6000); // Wait for 3 seconds
+       }, 6000); 
 
-       return () => clearTimeout(timer); // Clean up the timer
+       return () => clearTimeout(timer); 
    }, [navigation]);
 
 
-
-
     return(
-     <View>
+     <View style={styles.container}>
         <Text style={styles.text_Style} >Ready to start improving your posture?</Text>
         <Text style={styles.caption} >We got your BACK!</Text>
         <Image  style={styles.chair} source={require("../assets/logolarge.png")}/>
@@ -28,6 +26,12 @@ const splashScreen = () =>{
 
 
 const styles = StyleSheet.create({
+   container:{
+      backgroundColor:"#3D3A3A",
+      flex:1,
+
+   },
+
  text_Style: {
     color: '#ffff',
     fontWeight: 'bold',
@@ -50,4 +54,4 @@ const styles = StyleSheet.create({
    
  }
 })
-export default splashScreen;
+export default SplashScreen;

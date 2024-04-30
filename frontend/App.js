@@ -8,8 +8,7 @@ import { UserProvider } from './app/userContext'
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './screens/LoginScreen';
-import SignUpScreen from './screens/SignUpScreen';;
+
 
 const Stack = createNativeStackNavigator();
 
@@ -20,9 +19,9 @@ export default function App() {
       <UserProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="splashScreen">
-            <Stack.Screen name="splashScreen" component={SplashScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="signup" component={SignUpScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Signup" component={SignUpScreen} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>

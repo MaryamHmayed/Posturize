@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity,Pressable } from 'react-native';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import TopLeftCorner from '../assets/Vector.png';
 import TopRightCorner from '../assets/Vector-1.png';
 import BottomLeftCorner from '../assets/Vector-2.png';
 import BottomRightCorner from '../assets/Vector-3.png';
-import SignUpScreen from './register';
+import { useNavigation } from '@react-navigation/native';
+
 
 const LoginScreen = () => {
+
+    const navigation = useNavigation();
     const [credentials, setCredentials] = useState({
         username: '',
         password: ''
@@ -80,7 +83,7 @@ const LoginScreen = () => {
       
       <View style={styles.signupContainer}>
         <Text style={styles.signupText}>Don't have an account? </Text>
-        <Pressable onPress={() => {  () => navigation.navigate('signup')}}>
+        <Pressable onPress={() => { navigation.navigate('Signup')}}>
           <Text style={styles.signupLink}>Sign up</Text>
         </Pressable>
       </View>
@@ -106,6 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap:10,
+    backgroundColor:"#3D3A3A"
   },
   logoContainer: {
     marginBottom: 20,
