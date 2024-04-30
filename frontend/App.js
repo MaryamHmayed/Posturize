@@ -8,11 +8,16 @@ import BottomNavigationBar from './app/Components/bottomNav';
 
 export default function App() {
   return (
+    
     <View style={styles.container}>
+      <UserProvider>
+            <SignUpScreen />
+            
+        </UserProvider>
       {/* <SplashScreen/> */}
       {/* <LoginScreen/> */}
       {/* <SignUpScreen/> */}
-      <BottomNavigationBar/>
+      {/* <BottomNavigationBar/> */}
       <StatusBar style="auto" />
     </View>
   );

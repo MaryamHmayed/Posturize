@@ -1,33 +1,56 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity,Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Pressable } from 'react-native';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import TopLeftCorner from '../assets/Vector.png';
 import TopRightCorner from '../assets/Vector-1.png';
 import BottomLeftCorner from '../assets/Vector-2.png';
 import BottomRightCorner from '../assets/Vector-3.png';
 import { Checkbox } from 'react-native-paper';
-
+import registerUser from './api';
 
 const SignUpScreen = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [isUser, setIsUser] = useState(false);
-  const [isPhysiotherapist, setIsPhysiotherapist] = useState(false);
+    const { user, updateUser } = useUser();
+    const [errors, setErrors] = useState({});
+    const [isPhysiotherapist, setIsPhysiotherapist] = useState(false);
+
+    const handleSignUp = async () => {
+        try {
+            const data = await registerUser({
+                email: user.email,
+                username: user.username,
+                password: user.password
+            });
+            await AsyncStorage.setItem('userToken', data.token);  
+            console.log('Registration successful:', data);
+            
+            setErrors({});  
+        } catch (error) {
+            console.error('Registration failed:', error);
+            setErrors(error); 
+        }
+    };
+ 
 
 
-  const handleSignUp = () => {
-    
 
-  };
 
-  const handleGoogleSignUp = () => {
-    
-  };
 
-  const handleFacebookSignUp = () => {
-   
-  };
+
+
+
+
+
+
+
+
+//   const handleSignUp = () => {
+//   };
+
+//   const handleGoogleSignUp = () => {
+//   };
+
+//   const handleFacebookSignUp = () => {
+//   };
 
   return (
     <View style={styles.container}>
@@ -45,12 +68,21 @@ const SignUpScreen = () => {
         style={styles.input}
         placeholder="Email"
         placeholderTextColor="#aaa"
+        value={user.email}
+        onChangeText={(text) => updateUser({ email: text })}
+        onBlur={() => {
+            if (!user.email.includes('@')) setErrors({...errors, email: 'Invalid email format'});
+        }}
+        
       />
+        {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+
     
         <TextInput
         style={styles.input}
         placeholder="Username"
         placeholderTextColor="#aaa"
+        
         />
         <TextInput
         style={styles.input}
@@ -108,6 +140,11 @@ const SignUpScreen = () => {
     
   );
 };
+
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
