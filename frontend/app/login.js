@@ -5,7 +5,7 @@ import TopLeftCorner from '../assets/Vector.png';
 import TopRightCorner from '../assets/Vector-1.png';
 import BottomLeftCorner from '../assets/Vector-2.png';
 import BottomRightCorner from '../assets/Vector-3.png';
-
+import SignUpScreen from './register';
 
 const LoginScreen = () => {
     const [credentials, setCredentials] = useState({
@@ -69,7 +69,7 @@ const LoginScreen = () => {
       
       <View style={styles.signupContainer}>
         <Text style={styles.signupText}>Don't have an account? </Text>
-        <Pressable onPress={() => {  }}>
+        <Pressable onPress={() => {  () => navigation.navigate('SignUpScreen')}}>
           <Text style={styles.signupLink}>Sign up</Text>
         </Pressable>
       </View>
