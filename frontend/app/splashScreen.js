@@ -19,7 +19,7 @@ const SplashScreen = () =>{
      <View style={styles.container}>
         <Text style={styles.text_Style} >Ready to start improving your posture?</Text>
         <Text style={styles.caption} >We got your BACK!</Text>
-        <Image  style={styles.chair} source={require("../assets/logolarge.png")}/>
+        <Image  style={styles.chair} source={require("../assets/image.png")}/>
     </View> 
     )
 }
@@ -50,7 +50,11 @@ const styles = StyleSheet.create({
 
  },
  chair:{
-    marginLeft:10,
+    marginLeft:30,
+    marginTop:20,
+    
+
+   
    
  }
 })

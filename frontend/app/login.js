@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity,Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Pressable } from 'react-native';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import TopLeftCorner from '../assets/Vector.png';
 import TopRightCorner from '../assets/Vector-1.png';
 import BottomLeftCorner from '../assets/Vector-2.png';
 import BottomRightCorner from '../assets/Vector-3.png';
 import { useNavigation } from '@react-navigation/native';
-
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
 

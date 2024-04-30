@@ -15,7 +15,7 @@ class AuthController extends Controller
     {
         $request->validate([
     
-            'email' => 'required|string|email',
+            'email' => 'required|string|usernaame',
             'password' => 'required|string',
         ]);
         $credentials = $request->only('email', 'password');

@@ -12,4 +12,3 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('chair','addChair');
 
 });
-// Route::post('/login', [AuthController::class, 'login']);
