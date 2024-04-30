@@ -4,6 +4,7 @@ import SplashScreen from './app/splashScreen';
 import LoginScreen from './app/login';
 import SignUpScreen from './app/register';
 import BottomNavigationBar from './app/Components/bottomNav';
+import { UserProvider } from './app/userContext';
 
 
 export default function App() {

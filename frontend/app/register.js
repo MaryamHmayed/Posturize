@@ -7,11 +7,15 @@ import BottomLeftCorner from '../assets/Vector-2.png';
 import BottomRightCorner from '../assets/Vector-3.png';
 import { Checkbox } from 'react-native-paper';
 import registerUser from './api';
+import { useUser } from './userContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignUpScreen = () => {
     const { user, updateUser } = useUser();
     const [errors, setErrors] = useState({});
     const [isPhysiotherapist, setIsPhysiotherapist] = useState(false);
+    const [isUser, setIsUser] = useState(false);
+
 
     const handleSignUp = async () => {
         try {
@@ -43,8 +47,6 @@ const SignUpScreen = () => {
 
 
 
-//   const handleSignUp = () => {
-//   };
 
 //   const handleGoogleSignUp = () => {
 //   };
@@ -82,14 +84,25 @@ const SignUpScreen = () => {
         style={styles.input}
         placeholder="Username"
         placeholderTextColor="#aaa"
-        
+        onChangeText={(text) => updateUser({ username: text })}
+        onBlur={() => {
+        if (user.username.length < 4) setErrors({...errors, username: 'Username must be at least 4 characters'});
+        }}
         />
+        {errors.username && <Text style={styles.errorText}>{errors.username}</Text>}
+        
         <TextInput
         style={styles.input}
         placeholder="Password"
         placeholderTextColor="#aaa"
         secureTextEntry
-      />
+        value={user.password}
+        onChangeText={(text) => updateUser({ password: text })}
+        onBlur={() => {
+            if (user.password.length < 8) setErrors({...errors, password: 'Password must be at least 8 characters'});
+            }}
+        />
+        {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
 
     <View style={styles.checkboxContainer}>
         <View style={styles.checkboxLabelContainer}>
