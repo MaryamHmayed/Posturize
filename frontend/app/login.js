@@ -1,10 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity,Pressable } from 'react-native';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import TopLeftCorner from '../assets/Vector.png';
+import TopRightCorner from '../assets/Vector-1.png';
+import BottomLeftCorner from '../assets/Vector-2.png';
+import BottomRightCorner from '../assets/Vector-3.png';
+
 
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
+         <Image source={TopLeftCorner} style={[styles.cornerImage, styles.topLeft]} />
+      <Image source={TopRightCorner} style={[styles.cornerImage, styles.topRight]} />
+      <Image source={BottomLeftCorner} style={[styles.cornerImage, styles.bottomLeft]} />
+      <Image source={BottomRightCorner} style={[styles.cornerImage, styles.bottomRight]} />
       <View style={styles.logoContainer}>
         <Image source={require("../assets/logo-posturize.png")}/>
       
@@ -24,9 +33,12 @@ const LoginScreen = () => {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.signupText}>Don't have an account? Sign up</Text>
-      </TouchableOpacity>
+      <Text style={styles.signupText}>
+        Don't have an account?{' '}
+        <Pressable >
+          <Text style={styles.signupbutton}>Sign Up</Text>
+        </Pressable>
+      </Text>
       <Text style={styles.or}>Or</Text>
       <View style={styles.socialButtons}>
         <TouchableOpacity style={styles.socialButton}>
@@ -49,10 +61,11 @@ const styles = StyleSheet.create({
     gap:10,
   },
   logoContainer: {
-    marginBottom: 30,
+    marginBottom: 20,
     
   },
   logo: {
+
    
   },
   title: {
@@ -74,7 +87,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop:30,
     backgroundColor: '#ff9500',
-    borderRadius: 30,
+    borderRadius: 25,
     width: '80%',
     height: 32,
     alignItems: 'center',
@@ -97,18 +110,56 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '80%',
     justifyContent: 'space-around',
-    marginBottom: 20,
+    marginBottom: 0,
+    
    
   },
   socialButton: {
     padding: 10,
     borderRadius: 5,
     borderColor: "#ffff",
-    borderWidth: 1
+    borderWidth: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 38,
+    borderRadius: 5,
+    marginBottom: 20,
   },
   signupText: {
-    color: '#ff9500',
+    color: '#ffff',
+  },
+  signupbutton: {
+    color: '#ffff',
+   textDecorationLine: "underline",
+
+  },
+
+  cornerImage: {
+    position: 'absolute',
+    width: 100,
+    height: 100,
+    resizeMode: 'contain', 
+  },
+ topLeft: {
+    top: 0,
+    left: 10,
+   
+  },
+  topRight: {
+    top: 37,
+    right: 300,
+
+  },
+  bottomLeft: {
+    bottom: -10,
+    left: 290,
+   
+  },
+  bottomRight: {
+    bottom: -32,
+    right:0,
+    
   },
 });
+
 
 export default LoginScreen;

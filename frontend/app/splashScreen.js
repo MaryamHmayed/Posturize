@@ -6,7 +6,7 @@ export default splashScreen = () =>{
      <View>
         <Text style={styles.text_Style} >Ready to start improving your posture?</Text>
         <Text style={styles.caption} >We got your BACK!</Text>
-        <Image  style={styles.chair} source={require("../assets/2024-03-30-removebg-preview 1 (1).png")}/>
+        <Image  style={styles.chair} source={require("../assets/logolarge.png")}/>
     </View> 
     )
 }
