@@ -33,12 +33,13 @@ const LoginScreen = () => {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
-      <Text style={styles.signupText}>
-        Don't have an account?{' '}
-        <Pressable >
-          <Text style={styles.signupbutton}>Sign Up</Text>
+      
+      <View style={styles.signupContainer}>
+        <Text style={styles.signupText}>Don't have an account? </Text>
+        <Pressable onPress={() => { /* navigate to register screen */ }}>
+          <Text style={styles.signupLink}>Sign up</Text>
         </Pressable>
-      </Text>
+      </View>
       <Text style={styles.or}>Or</Text>
       <View style={styles.socialButtons}>
         <TouchableOpacity style={styles.socialButton}>
@@ -124,13 +125,17 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
   },
-  signupText: {
-    color: '#ffff',
+  
+  signupContainer: {
+    flexDirection: 'row',
   },
-  signupbutton: {
-    color: '#ffff',
-   textDecorationLine: "underline",
+  signupText: {
+    color: '#FFF',
+  },
 
+  signupLink: {
+    color: '#FFA500',
+    textDecorationLine: 'underline',
   },
 
   cornerImage: {

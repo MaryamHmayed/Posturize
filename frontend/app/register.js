@@ -82,29 +82,29 @@ const SignUpScreen = () => {
           />
           <Text style={styles.checkboxLabel}>Physiotherapist</Text>
         </View>
-      </View>
+    </View>
       
       
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       
-      <View style={styles.loginContainer}>
+    <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Already have an account? </Text>
         <Pressable onPress={() => { /* navigate to login screen */ }}>
           <Text style={styles.loginLink}>Log In</Text>
         </Pressable>
-      </View>
-        <Text style={styles.or}>Or</Text>
-      <View style={styles.socialButtons}>
+    </View>
+    <Text style={styles.or}>Or</Text>
+    <View style={styles.socialButtons}>
         <TouchableOpacity style={styles.socialButton}>
           <AntDesign name="google" size={24} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.socialButton}>
           <FontAwesome name="facebook" size={24} color="white" />
         </TouchableOpacity>
-      </View>
-      </View>
+    </View>
+    </View>
     
   );
 };
@@ -133,10 +133,6 @@ const styles = StyleSheet.create({
     
   },
   
-  logoContainer: {
-    marginBottom: 20,
-    
-  },
   loginContainer: {
     flexDirection: 'row',
     marginTop: 20,
