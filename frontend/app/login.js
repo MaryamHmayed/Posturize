@@ -8,6 +8,39 @@ import BottomRightCorner from '../assets/Vector-3.png';
 
 
 const LoginScreen = () => {
+    const [credentials, setCredentials] = useState({
+        username: '',
+        password: ''
+    });
+    const [loginError, setLoginError] = useState('');
+
+
+    const loginUser = async (username, password) => {
+        try {
+            const response = await axios.post('http://localhost:8000/api/login', {
+                username,
+                password
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response) {
+                
+                throw error.response.data;
+            } else {
+                
+                throw { general: "Unable to connect to the server. Please try again later." };
+            }
+        }
+    };
+
+
+
+
+
+
+
+
+
   return (
     <View style={styles.container}>
       <Image source={TopLeftCorner} style={[styles.cornerImage, styles.topLeft]} />

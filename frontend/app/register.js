@@ -10,6 +10,8 @@ import registerUser from './api';
 import { useUser } from './userContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+
 const SignUpScreen = () => {
     const { user, updateUser } = useUser();
     const [errors, setErrors] = useState({});
@@ -17,22 +19,21 @@ const SignUpScreen = () => {
     const [isUser, setIsUser] = useState(false);
 
 
-    const handleSignUp = async () => {
-        try {
-            const data = await registerUser({
-                email: user.email,
-                username: user.username,
-                password: user.password
+const handleSignUp = async () => {
+    try {
+        const data = await registerUser({
+            email: user.email,
+            username: user.username,
+            password: user.password
             });
-            await AsyncStorage.setItem('userToken', data.token);  
+            await AsyncStorage.setItem('userToken', data.authorisation.token);  
             console.log('Registration successful:', data);
-            
             setErrors({});  
-        } catch (error) {
-            console.error('Registration failed:', error);
-            setErrors(error); 
+    } catch (error) {
+        console.error('Registration failed:', error);
+        setErrors(error); 
         }
-    };
+};
  
 
 
@@ -61,7 +62,7 @@ const SignUpScreen = () => {
       <Image source={TopRightCorner} style={[styles.cornerImage, styles.topRight]} />
       <Image source={BottomLeftCorner} style={[styles.cornerImage, styles.bottomLeft]} />
       <Image source={BottomRightCorner} style={[styles.cornerImage, styles.bottomRight]} />
-      <View style={styles.logoContainer}>
+      <View >
         <Image source={require("../assets/logo-posturize.png")}/>
         </View>
 
@@ -110,7 +111,7 @@ const SignUpScreen = () => {
             status={isUser ? 'checked' : 'unchecked'}
             onPress={() => {
               setIsUser(!isUser);
-              setIsPhysiotherapist(false); // 
+              setIsPhysiotherapist(false); 
             }}
             color={'#FFF'} 
           />
@@ -130,8 +131,8 @@ const SignUpScreen = () => {
     </View>
       
       
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+        <Text style={styles.buttonText} >Sign Up</Text>
       </TouchableOpacity>
       
     <View style={styles.loginContainer}>
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
   },
 
   loginLink: {
-    color: '#FFA500', // Replace with your link color
+    color: '#FFA500', 
     textDecorationLine: 'underline',
   },
 
@@ -290,6 +291,10 @@ const styles = StyleSheet.create({
     right:0,
     
   },
+  errorText: {
+    color: 'red',
+    marginBottom: 10
+}
 });
 
 export default SignUpScreen;
