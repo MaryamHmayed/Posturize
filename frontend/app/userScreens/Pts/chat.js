@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ChatScreen = () => {
@@ -29,12 +30,19 @@ const ChatScreen = () => {
     );
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Icon name="arrow-left" size={24} color="white" />
+                </TouchableOpacity>
+                <Text style={styles.headerTitle}>Physiotherapist's Name</Text>
+                <View style={styles.headerRight}></View> 
+            </View>
             <FlatList
                 data={messages}
                 renderItem={renderMessageItem}
                 keyExtractor={item => item.id}
-                inverted
+                
             />
             <View style={styles.inputContainer}>
                 <TextInput
@@ -48,7 +56,7 @@ const ChatScreen = () => {
                     <Icon name="send" size={28} color="#FFA500" />
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -65,11 +73,11 @@ const styles = StyleSheet.create({
     },
     sentMessage: {
         alignSelf: 'flex-end',
-        backgroundColor: '#333',
+        backgroundColor: '#1A1A1A',
     },
     receivedMessage: {
         alignSelf: 'flex-start',
-        backgroundColor: '#444',
+        backgroundColor: '#1A1A1A',
     },
     messageText: {
         color: 'white',
@@ -89,7 +97,23 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         paddingHorizontal: 15,
         marginRight: 10,
-    }
+    },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 12,
+        
+    },
+    headerTitle: {
+        flex: 1,
+        marginLeft:10,
+        color: 'white',
+        fontSize: 18,
+        fontWeight: '400',
+    },
+    headerRight: {
+        width: 0, 
+    },
 });
 
 export default ChatScreen;
