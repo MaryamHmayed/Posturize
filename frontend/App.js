@@ -8,6 +8,8 @@ import { UserProvider } from './app/userContext'
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SetupScreen from './app/screenTabs/setup';
+import ProfileScreen from './app/screenTabs/profile';
 
 
 const Stack = createNativeStackNavigator();
@@ -16,7 +18,7 @@ export default function App() {
   return (
     
     <View style={styles.container}>
-      <UserProvider>
+      {/* <UserProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="splashScreen">
             <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
@@ -25,7 +27,9 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>
-  
+   */}
+   {/* <SetupScreen/> */}
+   <ProfileScreen/>
       <StatusBar style="auto" />
     </View>
   );

@@ -13,16 +13,17 @@ const LoginScreen = () => {
 
     const navigation = useNavigation();
     const [credentials, setCredentials] = useState({
-        username: '',
+        email: '',
         password: ''
     });
     const [loginError, setLoginError] = useState('');
 
 
-    const loginUser = async (username, password) => {
+
+    const loginUser = async (email, password) => {
         try {
             const response = await axios.post('http://192.168.1.109:8000/api/login', {
-                username,
+                email,
                 password
             });
             return response.data;
@@ -37,13 +38,13 @@ const LoginScreen = () => {
 
     const handleLogin = async () => {
         try {
-            const data = await loginUser(credentials.username, credentials.password);
+            const data = await loginUser(credentials.email, credentials.password);
             await AsyncStorage.setItem('userToken', data.token);  
             console.log('Login successful:', data);
-            // Setup
+            
             setLoginError('');
         } catch (error) {
-            setLoginError(error.message || 'Incorrect username or password');
+            setLoginError(error.message || 'Incorrect email or password');
         }
     };
 
@@ -63,10 +64,10 @@ const LoginScreen = () => {
       <Text style={styles.title}>Log In</Text>
       <TextInput
         style={styles.input}
-        placeholder="Username"
+        placeholder="Email"
         placeholderTextColor="#aaa"
-        value={credentials.username}
-        onChangeText={(text) => setCredentials({ ...credentials, username: text })}
+        value={credentials.email}
+        onChangeText={(text) => setCredentials({ ...credentials, email: text })}
         />
       <TextInput
         style={styles.input}
