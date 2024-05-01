@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomNavigationBar from './tabScreens/bottomNav';
 // import HomeScreen from './screens/HomeScreen';
 // import PTsScreen from './screens/PTsScreen';
-import SetupScreen from './screenTabs/setup';
+import SetupScreen from './userScreens/setup';
 
 
 
@@ -18,7 +18,7 @@ function SetupStackScreens() {
   return (
     <SetupStack.Navigator>
       <SetupStack.Screen name="Setup" component={SetupScreen} />
-      // Add more Home stack screens if needed
+      
     </SetupStack.Navigator>
   );
 }

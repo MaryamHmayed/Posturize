@@ -8,6 +8,8 @@ const ProfileScreen = () => {
   
     return (
       <ScrollView style={styles.container}>
+        
+        <View  style={styles.imageContainer}>
         <View style={styles.headerContainer}>
           <TouchableOpacity>
             <Icon name="arrow-back" size={24} color="white" />
@@ -17,11 +19,11 @@ const ProfileScreen = () => {
             <Icon name="edit" size={24} color="white" />
           </TouchableOpacity>
         </View>
-  
         <Image
           source={require('../../assets/logo-posturize.png')}
           style={styles.profileImage}
         />
+        </View>
         <Text style={styles.profileName}>Amanda</Text>
   
         <TouchableOpacity style={[styles.button, styles.specialButton]}>
@@ -31,7 +33,13 @@ const ProfileScreen = () => {
         <TouchableOpacity style={[styles.button, styles.specialButton]}>
           <Text style={styles.buttonText}>Notifications</Text>
         </TouchableOpacity>
-  
+
+        <Text style={styles.connectTitle}>Connect with a physiotherapist?</Text>
+        <TouchableOpacity style={[styles.button, styles.connectButton]}>
+        <Text style={styles.buttonText}>Connect Now</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.connectTitle}>Medical conditions</Text>
         <View style={styles.pickerContainer}>
           <RNPickerSelect
             onValueChange={(value) => setMedicalCondition(value)}
@@ -63,7 +71,7 @@ const ProfileScreen = () => {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: 30,
+      padding: 40,
     },
     headerTitle: {
       fontSize: 20,
@@ -72,33 +80,66 @@ const ProfileScreen = () => {
     },
     profileImage: {
       width: 100,
-      height: 100,
+      height: 130,
+      position:"absolute",
       borderRadius: 50,
       alignSelf: 'center',
-      marginTop: 20,
+      marginTop:80
+      
     },
     profileName: {
-      fontSize: 18,
+      fontSize: 20,
       color: 'white',
+      fontWeight:"500",
       textAlign: 'center',
-      marginVertical: 10,
+      paddingBottom:10,
+      paddingTop:90
     },
     button: {
       backgroundColor: '#FFA500', 
       borderRadius: 8,
-      paddingVertical: 10,
+      paddingVertical: 9,
       paddingHorizontal: 20,
-      marginHorizontal: 28,
-      marginTop: 30,
+      marginHorizontal: 30,
+      marginTop: 15,
       alignItems: 'center',
+    },
+    buttonText:{
+      color: "#fff",
+      fontWeight:"500",
+
+
+    },
+    connectButton:{
+      backgroundColor:"transparent",
+      borderStyle:"solid",
+      borderColor:"#fff",
+      borderWidth:1,
+
     },
     specialButton: {
       backgroundColor: '#05A37E', 
     },
     pickerContainer: {
       paddingHorizontal: 30,
-      marginVertical: 20,
+      marginVertical: 15,
+    
     },
+    connectTitle: {
+      color: 'white',
+      fontSize: 14,
+      textAlign: 'left',
+      marginTop: 20,
+      paddingLeft:30,
+    },
+
+    imageContainer: {
+      backgroundColor: '#000', 
+      paddingTop: 0,
+      paddingBottom: 0,
+      height:160
+      
+    }
   });
   
   const pickerSelectStyles = StyleSheet.create({

@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
  }, 
  caption: {
     color:"#ffff",
-    fontSize: 23,
+    fontSize: 21,
     textAlign: "center",
 
 
  },
  chair:{
-    marginLeft:30,
+    
     marginTop:20,
     
 
