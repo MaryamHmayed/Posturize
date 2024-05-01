@@ -8,21 +8,21 @@ const PhysiotherapistsScreen = () => {
             name: 'Physiotherapist’s name',
             location: 'Location',
             bio: 'Bio',
-            image: require('../../assets/logolarge.png'),
+            image: require('../../../assets/logolarge.png'),
         },
         {
             id: '2',
             name: 'Physiotherapist’s name',
             location: 'Location',
             bio: 'Bio',
-            image: require('../../assets/logolarge.png'),
+            image: require('../../../assets/logolarge.png'),
         },
         {
             id: '3',
             name: 'Physiotherapist’s name',
             location: 'Location',
             bio: 'Bio',
-            image: require('../../assets/logolarge.png'),
+            image: require('../../../assets/logolarge.png'),
         },
         
     ];

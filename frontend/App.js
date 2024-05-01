@@ -10,7 +10,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SetupScreen from './app/userScreens/setup';
 import ProfileScreen from './app/userScreens/profile';
-import PhysiotherapistsScreen from './app/userScreens/pts';
+import PhysiotherapistsScreen from './app/userScreens/Pts/pts';
+import ChatScreen from './app/userScreens/Pts/chat';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,7 +32,8 @@ export default function App() {
   
    {/* <SetupScreen/> */}
    {/* <ProfileScreen/> */}
-   <PhysiotherapistsScreen/>
+   {/* <PhysiotherapistsScreen/> */}
+   <ChatScreen/>
       <StatusBar style="auto" />
     </View>
   );
