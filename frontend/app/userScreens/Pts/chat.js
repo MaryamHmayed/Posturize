@@ -45,7 +45,7 @@ const ChatScreen = () => {
                     placeholderTextColor="#ccc"
                 />
                 <TouchableOpacity onPress={sendMessage}>
-                    <Icon name="send"  />
+                    <Icon name="send" size={28} color="#FFA500" />
                 </TouchableOpacity>
             </View>
         </View>
