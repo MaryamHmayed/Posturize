@@ -24,6 +24,7 @@ const PhysiotherapistsScreen = () => {
             bio: 'Bio',
             image: require('../../assets/logolarge.png'),
         },
+        
     ];
 
     const renderItem = ({ item }) => (
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: '#FFA500',
         padding: 5,
-        borderRadius: 8,
+        borderRadius: 3,
     },
     buttonText: {
         color: 'white',
