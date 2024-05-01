@@ -12,6 +12,7 @@ import SetupScreen from './app/userScreens/setup';
 import ProfileScreen from './app/userScreens/profile';
 import PhysiotherapistsScreen from './app/userScreens/Pts/pts';
 import ChatScreen from './app/userScreens/Pts/chat';
+import ProgressScreen from './app/userScreens/progress';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,7 +34,8 @@ export default function App() {
    {/* <SetupScreen/> */}
    {/* <ProfileScreen/> */}
    {/* <PhysiotherapistsScreen/> */}
-   <ChatScreen/>
+   {/* <ChatScreen/> */}
+   <ProgressScreen/>
       <StatusBar style="auto" />
     </View>
   );
