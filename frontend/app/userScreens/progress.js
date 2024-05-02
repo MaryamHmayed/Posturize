@@ -118,7 +118,7 @@ const ProgressScreen = () => {
             marginVertical: 0,
         },
         dataContainer:{
-            backgroundColor:"#585656",
+            backgroundColor:"#4A4949",
             width:"80%",
             borderRadius:7,
             alignItems:"center",

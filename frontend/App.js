@@ -21,7 +21,7 @@ export default function App() {
   return (
     
     <View style={styles.container}>
-      {/* <UserProvider>
+      <UserProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="splashScreen">
             <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
@@ -29,13 +29,13 @@ export default function App() {
             <Stack.Screen name="Signup" component={SignUpScreen} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
-      </UserProvider> */}
+      </UserProvider>
   
    {/* <SetupScreen/> */}
    {/* <ProfileScreen/> */}
    {/* <PhysiotherapistsScreen/> */}
    {/* <ChatScreen/> */}
-   <ProgressScreen/>
+   {/* <ProgressScreen/> */}
       <StatusBar style="auto" />
     </View>
   );
