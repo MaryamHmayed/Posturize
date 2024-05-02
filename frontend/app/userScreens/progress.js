@@ -33,13 +33,30 @@ const ProgressScreen = () => {
                     textMonthFontSize: 16,
                     textDayHeaderFontSize: 16
                 }}
-                
-                
-                
                 />
+                </ScrollView>
 
-
-            </ScrollView>
+            <View style={styles.statsContainer}>
+                <View style={styles.totalHours}>
+                <Text style={styles.hrTitle}>08:35</Text>
+                <Text style={styles.statSubTitle}>Hours tracked</Text>
+                </View >
+                <View style={styles.dataContainer}>
+                <Text style={[styles.statTitle, { color: '#05A37E' }]}>64%</Text>
+                <Text style={styles.statSubTitle}>Good posture </Text>
+                <Text style={styles.statSubTitle}>05:35 hours</Text>
+                </View>
+                <View style={styles.dataContainer} >
+                <Text style={[styles.statTitle, { color: '#FE9120' }]}>19%</Text>
+                <Text style={styles.statSubTitle}>Bad posture</Text>
+                <Text style={styles.statSubTitle}>01:50 hours</Text>
+                </View>
+                <View style={styles.dataContainer}>
+                <Text style={[styles.statTitle, { color: '#01627D' }]}>17%</Text>
+                <Text style={styles.statSubTitle}>Break time</Text>
+                <Text style={styles.statSubTitle}>01:10 hours</Text>
+                </View>
+            </View>
 
         </ScrollView>
     )}
@@ -60,7 +77,7 @@ const ProgressScreen = () => {
             color: 'white',
             fontSize: 20,
             fontWeight: 'bold',
-            paddingTop:50,
+            paddingTop:40,
             paddingVertical:20
         },
         calendarContainer: {
@@ -69,6 +86,48 @@ const ProgressScreen = () => {
             
 
         },
-    })
+        statsContainer: {
+            padding: 10,
+            alignItems: 'center',
+            
+        },
+        statTitle: {
+            color: 'white',
+            fontSize: 26,
+            fontWeight: 'bold',
+            
+        },
+        statSubTitle: {
+            color: '#fff',
+            fontSize: 16,
+            
+        },
+        totalHours:{
+            backgroundColor:"black",
+            width:"80%",
+            borderRadius:7,
+            height:70,
+            alignItems:"center",
+            marginBottom:20,
+            
+        },
+        hrTitle:{
+            fontSize:32,
+            color:"#fff",
+            fontWeight: 'bold',
+            marginVertical: 0,
+        },
+        dataContainer:{
+            backgroundColor:"#585656",
+            width:"80%",
+            borderRadius:7,
+            alignItems:"center",
+            color:"#fff",
+            height:80,
+            marginBottom:10,
+        }
+
+    });
+    
 
     export default ProgressScreen;
