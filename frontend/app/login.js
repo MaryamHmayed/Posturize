@@ -41,9 +41,11 @@ const LoginScreen = () => {
         try {
             const data = await loginUser(credentials.email, credentials.password);
             await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
-            console.log('Login successful:', data);
-            
-            setLoginError('');
+            // console.log('Login successful:', data);
+            console.log('Navigating to Setup screen');
+
+            // setLoginError('');
+            navigation.navigate('Main', { screen: 'Setup' });
         } catch (error) {
             setLoginError(error.message || 'Incorrect email or password');
         }
