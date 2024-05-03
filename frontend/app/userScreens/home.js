@@ -1,40 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import {ProgressBar} from '@react-native-community/progress-bar-android';
-const HomeScreen = () => {
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 
-    const [postureData, setPostureData] = useState({
-        sitting: '1:30',
-        goodPosture: 64,
-        badPosture: 19,
-        breakTime: 17,
-      });
+import StatusCard from './homeComponents/statusCard';
+
+const HomeScreen = () => {
+    const statusInfo = {
+        title: "Your current posture is flawless, keep it up!",
+        time: "You've been sitting for 1:30 now"
+    };
 
     return (
         <View style={styles.container}>
-          <Text style={styles.header}>Your current posture is flawless, keep it up!</Text>
-          <View style={styles.card}>
-            <Text>You've been sitting for {postureData.sitting} now</Text>
-            <ProgressBar style={styles.progressBar} styleAttr="Horizontal" color="#00FF00" progress={postureData.goodPosture / 100} />
-            <Text>{postureData.goodPosture}% Good posture</Text>
-            <ProgressBar style={styles.progressBar} styleAttr="Horizontal" color="#FF0000" progress={postureData.badPosture / 100} />
-            <Text>{postureData.badPosture}% Bad posture</Text>
-            <ProgressBar style={styles.progressBar} styleAttr="Horizontal" color="#0000FF" progress={postureData.breakTime / 100} />
-            <Text>{postureData.breakTime}% Break time</Text>
-          </View>
-        </View>
-      );
+            <StatusCard title={statusInfo.title} time={statusInfo.time} />
+            </View>
+    );
+};
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#263238',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'column',
+        padding: 10
+    }
+});
 
-
-
-
-
-
-
-
-
-
-
-
-}
+export default HomeScreen;

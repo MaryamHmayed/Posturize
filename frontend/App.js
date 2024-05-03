@@ -13,6 +13,7 @@ import ProfileScreen from './app/userScreens/profile';
 import PhysiotherapistsScreen from './app/userScreens/Pts/pts';
 import ChatScreen from './app/userScreens/Pts/chat';
 import ProgressScreen from './app/userScreens/progress';
+import HomeScreen from './app/userScreens/home';
 
 
 const Stack = createNativeStackNavigator();
@@ -21,7 +22,7 @@ export default function App() {
   return (
     
     <View style={styles.container}>
-      <UserProvider>
+      {/* <UserProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="splashScreen">
             <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
@@ -30,8 +31,9 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>
-  
+   */}
    {/* <SetupScreen/> */}
+   <HomeScreen/>
    {/* <ProfileScreen/> */}
    {/* <PhysiotherapistsScreen/> */}
    {/* <ChatScreen/> */}
