@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: 360,  
         height: 150, 
-        marginBottom:20,
+        marginBottom:10,
     },
 
     image: {
