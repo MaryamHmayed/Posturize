@@ -1,4 +1,6 @@
 import React from 'react';
+import { Image } from 'react-native';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../userScreens/home';
 import ProgressScreen from '../userScreens/progress';
@@ -10,8 +12,52 @@ import PhysiotherapistsScreen from '../userScreens/Pts/pts';
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
+
   return (
-    <Tab.Navigator>
+
+    
+       <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused }) => {
+          let iconName;
+          const iconSize =  25; 
+
+          switch (route.name) {
+            case 'Home':
+              iconName = require('../../assets/home-icon.png');
+              break;
+            case 'PTs':
+              iconName = require('../../assets/pts-icon.png');
+              break;
+            case 'Setup':
+              iconName = require('../../assets/setup-icon.png');
+              break;
+            case 'Progress':
+              iconName = require('../../assets/progress-icon.png');
+              break;
+            case 'Profile':
+              iconName = require('../../assets/profile-icon.png');
+              break;
+            default:
+              iconName = require('../../assets/pts-icon.png'); 
+          }
+
+          return <Image source={iconName} style={{ width: iconSize, height: iconSize }} resizeMode="contain" />;
+        },
+        tabBarActiveTintColor: '#05A37E',  
+        tabBarInactiveTintColor: 'white', 
+        tabBarStyle: { backgroundColor: '#3D3A3A' },  
+      })}
+    >
+
+
+
+
+
+
+
+
+
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Progress" component={ProgressScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
