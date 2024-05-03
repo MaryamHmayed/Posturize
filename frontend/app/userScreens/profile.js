@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import RNPickerSelect from 'react-native-picker-select'; 
+import { useNavigation } from '@react-navigation/native';
 
 const ProfileScreen = () => {
+    const navigation = useNavigation();
+
     const [medicalCondition, setMedicalCondition] = useState('');
   
     return (
@@ -26,8 +29,8 @@ const ProfileScreen = () => {
         </View>
         <Text style={styles.profileName}>Amanda</Text>
   
-        <TouchableOpacity style={[styles.button, styles.specialButton]}>
-          <Text style={styles.buttonText}>Track your progress</Text>
+        <TouchableOpacity style={[styles.button, styles.specialButton]} onPress={() =>{ navigation.navigate('Main', { screen: 'Progress' });}}>
+          <Text style={styles.buttonText} >Track your progress</Text>
         </TouchableOpacity>
   
         <TouchableOpacity style={[styles.button, styles.specialButton]}>
@@ -35,7 +38,7 @@ const ProfileScreen = () => {
         </TouchableOpacity>
 
         <Text style={styles.connectTitle}>Connect with a physiotherapist?</Text>
-        <TouchableOpacity style={[styles.button, styles.connectButton]}>
+        <TouchableOpacity style={[styles.button, styles.connectButton]} onPress={() =>{ navigation.navigate('Main', { screen: 'PTs' });}}>
         <Text style={styles.buttonText}>Connect Now</Text>
         </TouchableOpacity>
 

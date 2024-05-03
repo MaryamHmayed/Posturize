@@ -18,6 +18,7 @@ const Tabs = () => {
     
        <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerShown: false, 
         tabBarIcon: ({ focused }) => {
           let iconName;
           const iconSize =  25; 
@@ -53,7 +54,7 @@ const Tabs = () => {
 
 
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Pts" component={PhysiotherapistsScreen} />
+      <Tab.Screen name="PTs" component={PhysiotherapistsScreen} />
       <Tab.Screen name="Setup" component={SetupScreen} />
       <Tab.Screen name="Progress" component={ProgressScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />

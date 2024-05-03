@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, View, Text, Image, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const PhysiotherapistsScreen = () => {
     const physiotherapists = [
@@ -28,6 +29,7 @@ const PhysiotherapistsScreen = () => {
     ];
 
     const renderItem = ({ item }) => (
+        
         <View style={styles.card}>
             <Image source={item.image} style={styles.image} />
             <View style={styles.info}>
@@ -48,6 +50,12 @@ const PhysiotherapistsScreen = () => {
 
     return (
         <ScrollView style={styles.container}>
+             <View style={styles.headerContainer}>
+          <TouchableOpacity>
+            <Icon name="arrow-back" size={24} color="white" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Physiotherapists</Text>
+        </View>
             <TextInput 
                 style={styles.searchBar} 
                 placeholder="  Search..." 
@@ -66,9 +74,24 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3D3A3A',
-        paddingTop:70,
+        paddingTop:40,
         paddingHorizontal:20
     },
+    headerContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+        
+
+    },
+    headerTitle: {
+        fontSize: 20,
+        color: 'white',
+        fontWeight: 'bold',
+        marginLeft:20
+        
+      },
+    
     searchBar: {
         backgroundColor: '#FFFFFF',
         borderRadius: 25,

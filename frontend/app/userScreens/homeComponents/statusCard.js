@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
         width: 360,  
         height: 150, 
         marginBottom:10,
+        marginTop:100,
+        
     },
 
     image: {
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
         height:150,
         paddingHorizontal:7,
         justifyContent: 'center',
-        borderRadius:7
+        borderRadius:7,
     }
 });
 

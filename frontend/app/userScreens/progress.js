@@ -66,6 +66,7 @@ const ProgressScreen = () => {
         container: {
             flex: 1,
             backgroundColor: '#2B2B2B',
+            
         },
         header: {
             
@@ -104,7 +105,7 @@ const ProgressScreen = () => {
         },
         totalHours:{
             backgroundColor:"black",
-            width:"80%",
+            width:"85%",
             borderRadius:7,
             height:70,
             alignItems:"center",
@@ -119,7 +120,7 @@ const ProgressScreen = () => {
         },
         dataContainer:{
             backgroundColor:"#4A4949",
-            width:"80%",
+            width:"85%",
             borderRadius:7,
             alignItems:"center",
             color:"#fff",
