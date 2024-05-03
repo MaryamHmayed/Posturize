@@ -21,6 +21,7 @@ const Tabs = () => {
         tabBarIcon: ({ focused }) => {
           let iconName;
           const iconSize =  25; 
+          const tintColor= focused ?'#05A37E':"#ffff"
 
           switch (route.name) {
             case 'Home':
@@ -42,27 +43,22 @@ const Tabs = () => {
               iconName = require('../../assets/pts-icon.png'); 
           }
 
-          return <Image source={iconName} style={{ width: iconSize, height: iconSize }} resizeMode="contain" />;
+          return <Image source={iconName} style={{ width: iconSize, height: iconSize,tintColor: tintColor }} resizeMode="cover" />;
         },
         tabBarActiveTintColor: '#05A37E',  
-        tabBarInactiveTintColor: 'white', 
+        tabBarInactiveTintColor: '#ffff', 
         tabBarStyle: { backgroundColor: '#3D3A3A' },  
       })}
     >
 
 
-
-
-
-
-
-
-
       <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Pts" component={PhysiotherapistsScreen} />
+      <Tab.Screen name="Setup" component={SetupScreen} />
       <Tab.Screen name="Progress" component={ProgressScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Physiotherapists" component={PhysiotherapistsScreen} />
-      <Tab.Screen name="Setup" component={SetupScreen} />
+      
+      
     </Tab.Navigator>
   );
 };
