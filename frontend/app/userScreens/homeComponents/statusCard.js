@@ -26,8 +26,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        width: 350,  
+        width: 360,  
         height: 150, 
+        marginBottom:20,
     },
 
     image: {
