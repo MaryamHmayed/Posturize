@@ -31,12 +31,8 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        
         position: 'absolute',
         right:0,
-        
-        
-    
     },
     title: {
         fontSize: 18,

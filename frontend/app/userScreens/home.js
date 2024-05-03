@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-
+import DataCard from "./homeComponents/dataCard"
 import StatusCard from './homeComponents/statusCard';
 
 const HomeScreen = () => {
@@ -9,6 +9,8 @@ const HomeScreen = () => {
         time: "You've been sitting for 1:30 now",
         imageUri: require('../../assets/home-imgs/sitting-posture-at-desk 1.png')
     };
+
+   
 
     return (
         <View style={styles.container}>
