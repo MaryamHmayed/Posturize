@@ -7,10 +7,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 const StatusCard = ({ title, time, imageUri }) => {
     return (
         <View style={styles.container}>
+            
             <LinearGradient
             colors={['#05A37E', '#04765B', '#04765B']} 
             style={styles.background}>
-            <Image source={{ uri: imageUri }} style={styles.image} />
+            <Image source={imageUri } style={styles.image} />
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.time}>{time}</Text>
             </LinearGradient>
@@ -21,32 +22,39 @@ const StatusCard = ({ title, time, imageUri }) => {
 const styles = StyleSheet.create({
     container: {
         borderRadius: 10,
+        overflow: 'hidden',
         alignItems: 'center',
         justifyContent: 'center',
-        position:"relative"
+        position: 'relative',
+        width: 350,  
+        height: 150, 
     },
 
     image: {
-        width: '100%',
-        height: '100%',
+        
         position: 'absolute',
+        right:0,
+        
+        
+    
     },
     title: {
         fontSize: 18,
         fontWeight: 'bold',
         color: 'white',
-        margin:5
+        
     },
     time: {
         fontSize: 16,
         color: 'white',
-        marginTop: 5
+        marginTop: 10
     },
     background:{
         width: '80%',
         height:150,
-        alignItems: 'center',
+        paddingHorizontal:7,
         justifyContent: 'center',
+        borderRadius:7
     }
 });
 
