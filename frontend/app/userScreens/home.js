@@ -15,9 +15,6 @@ const HomeScreen = () => {
         { title: "Break time", percentage: 17, time: "1:10" },
     ];
 
-    
-
-   
 
     return (
         <View style={styles.container}>

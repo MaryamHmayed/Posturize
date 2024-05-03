@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import SplashScreen from './app/splashScreen';
 import LoginScreen from './app/login';
 import SignUpScreen from './app/register';
-
 import { UserProvider } from './app/userContext'
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,6 +13,7 @@ import PhysiotherapistsScreen from './app/userScreens/Pts/pts';
 import ChatScreen from './app/userScreens/Pts/chat';
 import ProgressScreen from './app/userScreens/progress';
 import HomeScreen from './app/userScreens/home';
+import Tabs from './app/tabs/tabs';
 
 
 const Stack = createNativeStackNavigator();
@@ -22,18 +22,19 @@ export default function App() {
   return (
     
     <View style={styles.container}>
-      {/* <UserProvider>
+      <UserProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="splashScreen">
             <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Signup" component={SignUpScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Main" component={Tabs} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>
-   */}
+  
    {/* <SetupScreen/> */}
-   <HomeScreen/>
+   {/* <HomeScreen/> */}
    {/* <ProfileScreen/> */}
    {/* <PhysiotherapistsScreen/> */}
    {/* <ChatScreen/> */}
