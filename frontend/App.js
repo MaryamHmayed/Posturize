@@ -7,12 +7,6 @@ import { UserProvider } from './app/userContext'
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SetupScreen from './app/userScreens/setup';
-import ProfileScreen from './app/userScreens/profile';
-import PhysiotherapistsScreen from './app/userScreens/Pts/pts';
-import ChatScreen from './app/userScreens/Pts/chat';
-import ProgressScreen from './app/userScreens/progress';
-import HomeScreen from './app/userScreens/home';
 import Tabs from './app/tabs/tabs';
 
 
@@ -39,6 +33,7 @@ export default function App() {
    {/* <PhysiotherapistsScreen/> */}
    {/* <ChatScreen/> */}
    {/* <ProgressScreen/> */}
+   
       <StatusBar style="auto" />
     </View>
   );

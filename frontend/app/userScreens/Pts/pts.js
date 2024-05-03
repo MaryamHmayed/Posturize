@@ -40,7 +40,7 @@ const PhysiotherapistsScreen = () => {
                     <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}>Request</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity >
+                    <TouchableOpacity  >
                         <Text style={styles.chatText}>Chat</Text>
                     </TouchableOpacity>
                 </View>

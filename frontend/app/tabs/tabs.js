@@ -8,6 +8,7 @@ import ProfileScreen from '../userScreens/profile';
 // import PhysiotherapistsStack from '../userScreens/Pts/PhysiotherapistsStack';
 import SetupScreen from '../userScreens/setup';
 import PhysiotherapistsScreen from '../userScreens/Pts/pts';
+import PhysiotherapistsStack from '../userScreens/Pts/ptsStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -54,7 +55,7 @@ const Tabs = () => {
 
 
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="PTs" component={PhysiotherapistsScreen} />
+      <Tab.Screen name="PTs" component={PhysiotherapistsStack} />
       <Tab.Screen name="Setup" component={SetupScreen} />
       <Tab.Screen name="Progress" component={ProgressScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
