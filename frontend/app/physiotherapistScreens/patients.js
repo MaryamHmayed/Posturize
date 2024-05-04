@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Image, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import iconSet from '@expo/vector-icons/build/Fontisto';
 
 const patients = [
   { id: '1', name: 'Patient 1' },
@@ -16,8 +16,22 @@ const PatientsScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image 
+            source={require('../../assets/arrow-back.png')}  
+            style={styles.icon} 
+          />
+        </TouchableOpacity>
+        <View>
       <Text style={styles.header}>Hello John,</Text>
       <Text style={styles.header}>find your patients</Text>
+      </View>
+      <TouchableOpacity>
+          <Image 
+            source={require('../../assets/alert.png')}  
+            // style={styles.icon} 
+          />
+        </TouchableOpacity>
       </View>
       <FlatList
         data={patients}
@@ -39,14 +53,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2B2B2B',
-    paddingTop: 60,
+    paddingTop: 50,
     paddingHorizontal: 20,
   },
   header: {
     color: 'white',
     fontSize: 20,
-    marginHorizontal:9,
-    fontWeight:"500"
+    fontWeight:"500",
+    marginRight:30
   },
   patientItem: {
     flexDirection: 'row',
@@ -70,7 +84,13 @@ const styles = StyleSheet.create({
 
   },
   headerContainer:{
-    margin:30,
+    marginBottom:30,
+    marginHorizontal:12,
+    flexDirection:"row",
+    justifyContent:"space-between"
+  },
+  icon:{
+    marginTop:7
   }
 });
 
