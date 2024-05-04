@@ -1,12 +1,15 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from "react-native";
-import React from "react";
+import React,{useState} from "react";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput } from "react-native-paper";
 
 
 
 const ProfileScreen = ()=>{
-
+    const [bio, setBio] = useState("");
+    const [location, setLocation] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+  
 
 
     return (
@@ -24,9 +27,9 @@ const ProfileScreen = ()=>{
             <View style={styles.infoContainer}>
                 <Text style={styles.name}>John</Text>
                 <TextInput placeholder="Bio"style={styles.bio}
-                    placeholderTextColor="#999"
-                //    value={bio}
-                //    onChangeText={setBio}
+                   placeholderTextColor="#999"
+                   value={bio}
+                   onChangeText={setBio}
                    multiline
                    numberOfLines={3} 
                    underlineColorAndroid="transparent"
@@ -34,18 +37,21 @@ const ProfileScreen = ()=>{
                 </TextInput>
                 <Text style={styles.sectionTitle}>Location</Text>
                 <TextInput 
-                // value={location}
-                // onChangeText={setLocation}
+                value={location}
+                onChangeText={setLocation}
                 style={styles.input}
                 />
                 <Text style={styles.sectionTitle}>Phone number</Text>
                 <TextInput 
-                // value={phoneNumber}
-                // onChangeText={setPhoneNumber}
+                value={phoneNumber}
+                onChangeText={setPhoneNumber}
                 style={styles.input}
                 keyboardType='phone-pad'
                 />
             </View>
+            <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Log out</Text>
+        </TouchableOpacity>
 
 
 
@@ -114,15 +120,15 @@ const styles = StyleSheet.create({
         color:"white",
         borderWidth:1,
         borderColor:"#ffff",
-        width:"85%",
+        width:"83%",
         borderRadius:5,
         textAlignVertical: 'top',
-        marginLeft:27
+        marginLeft:30
      
 
     },
     sectionTitle:{
-        marginLeft:27,
+        marginLeft:30,
         fontSize:16,
         color:"#fff"
      
@@ -134,14 +140,22 @@ const styles = StyleSheet.create({
         color:"white",
         borderWidth:1,
         borderColor:"#ffff",
-        width:"85%",
+        width:"83%",
         borderRadius:5,
         textAlignVertical: 'top',
-        marginLeft:27,
+        marginLeft:30,
         height:40
-     
+    },
+    button: {
+        backgroundColor: '#FFA500', 
+        borderRadius: 8,
+        paddingVertical: 9,
+        paddingHorizontal: 20,
+        marginHorizontal: 30,
+        marginTop: 30,
+        alignItems: 'center',
+      },
 
-    }
 
 
 })
