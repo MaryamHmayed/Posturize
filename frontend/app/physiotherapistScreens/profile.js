@@ -23,9 +23,30 @@ const ProfileScreen = ()=>{
             
             <View style={styles.infoContainer}>
                 <Text style={styles.name}>John</Text>
-                <TextInput style={styles.bio}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras gravida, tortor dapibus ornare.</TextInput>
+                <TextInput placeholder="Bio"style={styles.bio}
+                    placeholderTextColor="#999"
+                //    value={bio}
+                //    onChangeText={setBio}
+                   multiline
+                   numberOfLines={3} 
+                   underlineColorAndroid="transparent"
+                >
+                </TextInput>
+                <Text style={styles.sectionTitle}>Location</Text>
+                <TextInput 
+                // value={location}
+                // onChangeText={setLocation}
+                style={styles.input}
+                />
+                <Text style={styles.sectionTitle}>Phone number</Text>
+                <TextInput 
+                // value={phoneNumber}
+                // onChangeText={setPhoneNumber}
+                style={styles.input}
+                keyboardType='phone-pad'
+                />
             </View>
-            
+
 
 
 
@@ -60,7 +81,8 @@ const styles = StyleSheet.create({
     },
     profileImageContainer:{
       backgroundColor: '#000', 
-      height:60
+      height:60,
+      
     },
     profileImage: {
       width: 130,
@@ -71,7 +93,11 @@ const styles = StyleSheet.create({
       
     },
     infoContainer:{
-        padding:20
+        marginTop:80,
+        justifyContent:"space-between",
+        gap:5
+
+        
 
     },
     name:{
@@ -79,14 +105,44 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
         color: 'white',
-
+        alignSelf:"center"
+        
     },
     bio:{
         fontSize: 16,
-        color: 'white',
-        marginBottom: 20,
+        backgroundColor: 'transparent',
+        color:"white",
+        borderWidth:1,
+        borderColor:"#ffff",
+        width:"85%",
+        borderRadius:5,
+        textAlignVertical: 'top',
+        marginLeft:27
+     
+
+    },
+    sectionTitle:{
+        marginLeft:27,
+        fontSize:16,
+        color:"#fff"
+     
+
+    },
+    input:{
+        fontSize: 16,
+        backgroundColor: 'transparent',
+        color:"white",
+        borderWidth:1,
+        borderColor:"#ffff",
+        width:"85%",
+        borderRadius:5,
+        textAlignVertical: 'top',
+        marginLeft:27,
+        height:40
+     
 
     }
+
 
 })
 
