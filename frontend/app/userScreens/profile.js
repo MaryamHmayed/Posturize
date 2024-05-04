@@ -86,7 +86,7 @@ const ProfileScreen = () => {
       height: 130,
       position:"absolute",
       alignSelf: 'center',
-      marginTop:80
+      marginTop:90,
       
     },
     profileName: {
@@ -95,6 +95,7 @@ const ProfileScreen = () => {
       fontWeight:"500",
       textAlign: 'center',
       paddingBottom:10,
+      marginTop:70
     },
     button: {
       backgroundColor: '#FFA500', 
@@ -136,8 +137,7 @@ const ProfileScreen = () => {
 
     imageContainer: {
       backgroundColor: '#000', 
-      paddingTop: 0,
-      paddingBottom: 0,
+    
       height:160
       
     }

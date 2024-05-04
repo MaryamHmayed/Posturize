@@ -6,13 +6,13 @@ import React, { useEffect } from 'react';
 const SplashScreen = () =>{
    const navigation = useNavigation();
 
-   // useEffect(() => {
-   //     const timer = setTimeout(() => {
-   //         navigation.navigate('Login');
-   //     }, 3000); 
+   useEffect(() => {
+       const timer = setTimeout(() => {
+           navigation.navigate('Login');
+       }, 3000); 
 
-   //     return () => clearTimeout(timer); 
-   // }, [navigation]);
+       return () => clearTimeout(timer); 
+   }, [navigation]);
 
 
     return(

@@ -36,12 +36,12 @@ export default function App() {
       <UserProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="splashScreen">
-            {/* <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Signup" component={SignUpScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="Main" component={userType === 'physiotherapist' ? PhysioTabs : Tabs} options={{ headerShown: false }} /> */}
+            <Stack.Screen name="Main" component={userType === 'physiotherapist' ? PhysioTabs : Tabs} options={{ headerShown: false }} />
              {/* <Stack.Screen name="patients" component={PatientsScreen} options={{ headerShown: false }} /> */}
-            <Stack.Screen name="Main" component={ PhysioTabs} options={{ headerShown: false }} /> 
+            {/* <Stack.Screen name="Main" component={ PhysioTabs} options={{ headerShown: false }} />  */}
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>

@@ -1,6 +1,5 @@
-import React from 'react';
 import { Image } from 'react-native';
-
+import React,{useState,useEffect} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../userScreens/home';
 import ProgressScreen from '../userScreens/progress';
@@ -12,6 +11,21 @@ import PhysiotherapistsStack from '../userScreens/Pts/ptsStack';
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardVisible(true);
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
 
   return (
 
@@ -46,9 +60,10 @@ const Tabs = () => {
 
           return <Image source={iconName} style={{ width: iconSize, height: iconSize,tintColor: tintColor }} resizeMode="cover" />;
         },
+        tabBarStyle: { display: keyboardVisible ? 'none' : 'flex', backgroundColor: '#3D3A3A' },
         tabBarActiveTintColor: '#05A37E',  
         tabBarInactiveTintColor: '#ffff', 
-        tabBarStyle: { backgroundColor: '#3D3A3A' },  
+         
       })}
     >
 
