@@ -28,6 +28,7 @@ const handleSignUp = async () => {
             password: user.password
             });
             await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
+            await AsyncStorage.setItem('userType', isPhysiotherapist ? 'physiotherapist' : 'user');
             console.log('Registration successful:', data);
             setErrors({});  
     } catch (error) {
@@ -102,7 +103,7 @@ const handleSignUp = async () => {
 
     <View style={styles.checkboxContainer}>
         <View style={styles.checkboxLabelContainer}>
-          <Checkbox
+          <Checkbox 
             status={isUser ? 'checked' : 'unchecked'}
             onPress={() => {
               setIsUser(!isUser);
