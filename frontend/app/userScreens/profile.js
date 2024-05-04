@@ -23,7 +23,7 @@ const ProfileScreen = () => {
           </TouchableOpacity>
         </View>
         <Image
-          source={require('../../assets/logo-posturize.png')}
+          source={require('../../assets/profileImage.png')}
           style={styles.profileImage}
         />
         </View>
@@ -82,10 +82,9 @@ const ProfileScreen = () => {
       fontWeight: 'bold',
     },
     profileImage: {
-      width: 100,
+      width: 130,
       height: 130,
       position:"absolute",
-      borderRadius: 50,
       alignSelf: 'center',
       marginTop:80
       
