@@ -19,8 +19,6 @@ const LoginScreen = () => {
     });
     const [loginError, setLoginError] = useState('');
 
-
-
     const loginUser = async (email, password) => {
         try {
             const response = await axios.post('http://192.168.1.109:8000/api/login', {
