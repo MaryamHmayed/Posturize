@@ -1,6 +1,6 @@
 import React from 'react';
+import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ChatScreen from '../physiotherapistScreens/chat';
 import PatientsScreen from '../physiotherapistScreens/patients';
 import ProfileScreen from '../userScreens/profile';
@@ -10,29 +10,36 @@ const Tab = createBottomTabNavigator();
 function PhysioTabs() {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+    screenOptions={({ route }) => ({
+      headerShown: false, 
+      tabBarIcon: ({ focused }) => {
+        let iconName;
+        const iconSize =  24; 
+        const tintColor= focused ?'#05A37E':"#ffff"
 
-          if (route.name === 'Chat') {
-            iconName = focused ? 'chat' : 'chat-outline';
-          } else if (route.name === 'Patients') {
-            iconName = focused ? 'account-group' : 'account-group-outline';
-          } else if (route.name === 'Profile') {
-            iconName = focused ? 'account-circle' : 'account-circle-outline';
-          }
+        switch (route.name) {
+          case 'Patients':
+            iconName = require('../../assets/patients.png');
+            break;
+          case 'Chat':
+            iconName = require('../../assets/chats.png');
+            break;
+          case 'Profile':
+            iconName = require('../../assets/profile-icon.png');
+            break;
+          default:
+            iconName = require('../../assets/chat.png'); 
+        }
 
-  
-          return <Icon name={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: '#05A37E',
-        inactiveTintColor: 'white',
-      }}
-    >
-      <Tab.Screen name="Chat" component={ChatScreen} />
+        return <Image source={iconName} style={{ width: iconSize, height: iconSize,tintColor: tintColor }} resizeMode="cover" />;
+      },
+      tabBarActiveTintColor: '#05A37E',  
+      tabBarInactiveTintColor: '#ffff', 
+      tabBarStyle: { backgroundColor: '#3D3A3A' },  
+    })}
+  >
       <Tab.Screen name="Patients" component={PatientsScreen} />
+      <Tab.Screen name="Chat" component={ChatScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
