@@ -95,7 +95,6 @@ const ProfileScreen = () => {
       fontWeight:"500",
       textAlign: 'center',
       paddingBottom:10,
-      paddingTop:70
     },
     button: {
       backgroundColor: '#FFA500', 
