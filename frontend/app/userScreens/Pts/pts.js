@@ -1,8 +1,11 @@
 import React from 'react';
 import { ScrollView, View, Text, Image, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const PhysiotherapistsScreen = () => {
+    const navigation = useNavigation();
     const physiotherapists = [
         {
             id: '1',
@@ -40,7 +43,7 @@ const PhysiotherapistsScreen = () => {
                     <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}>Request</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity  >
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} >
                         <Text style={styles.chatText}>Chat</Text>
                     </TouchableOpacity>
                 </View>
@@ -50,12 +53,12 @@ const PhysiotherapistsScreen = () => {
 
     return (
         <ScrollView style={styles.container}>
-             <View style={styles.headerContainer}>
+             {/* <View style={styles.headerContainer}>
           <TouchableOpacity>
             <Icon name="arrow-back" size={24} color="white" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Physiotherapists</Text>
-        </View>
+        </View> */}
             <TextInput 
                 style={styles.searchBar} 
                 placeholder="  Search..." 

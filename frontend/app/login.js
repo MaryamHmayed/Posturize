@@ -56,6 +56,7 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
+      
       <Image source={TopLeftCorner} style={[styles.cornerImage, styles.topLeft]} />
       <Image source={TopRightCorner} style={[styles.cornerImage, styles.topRight]} />
       <Image source={BottomLeftCorner} style={[styles.cornerImage, styles.bottomLeft]} />
