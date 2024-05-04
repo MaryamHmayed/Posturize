@@ -3,7 +3,7 @@ import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatScreen from '../physiotherapistScreens/chat';
 // import PatientsScreen from '../physiotherapistScreens/patients';
-import ProfileScreen from '../userScreens/profile';
+import ProfileScreen from '../physiotherapistScreens/profile';
 import PatientsStack from "../physiotherapistScreens/patientsStack";
 
 const Tab = createBottomTabNavigator();
