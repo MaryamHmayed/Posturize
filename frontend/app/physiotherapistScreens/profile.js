@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from "react-native";
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput } from "react-native-paper";
 
@@ -9,7 +9,9 @@ const ProfileScreen = ()=>{
     const [bio, setBio] = useState("");
     const [location, setLocation] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+   
   
+   
 
 
     return (
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
         paddingVertical: 9,
         paddingHorizontal: 20,
         marginHorizontal: 30,
-        marginTop: 30,
+        marginTop: 40,
         alignItems: 'center',
       },
 

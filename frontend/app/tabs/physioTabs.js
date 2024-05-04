@@ -1,14 +1,30 @@
-import React from 'react';
-import { Image } from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { Image, Keyboard } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatScreen from '../physiotherapistScreens/chat';
-// import PatientsScreen from '../physiotherapistScreens/patients';
 import ProfileScreen from '../physiotherapistScreens/profile';
 import PatientsStack from "../physiotherapistScreens/patientsStack";
 
 const Tab = createBottomTabNavigator();
 
 function PhysioTabs() {
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardVisible(true);
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
+
   return (
     <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -34,9 +50,10 @@ function PhysioTabs() {
 
         return <Image source={iconName} style={{ width: iconSize, height: iconSize,tintColor: tintColor }} resizeMode="cover" />;
       },
+      tabBarStyle: { display: keyboardVisible ? 'none' : 'flex', backgroundColor: '#3D3A3A' },
       tabBarActiveTintColor: '#05A37E',  
       tabBarInactiveTintColor: '#ffff', 
-      tabBarStyle: { backgroundColor: '#3D3A3A' },  
+      
     })}
   >
       <Tab.Screen name="Patients" component={PatientsStack} />
