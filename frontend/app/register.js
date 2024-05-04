@@ -21,6 +21,13 @@ const SignUpScreen = () => {
 
 
 const handleSignUp = async () => {
+  if (!isUser && !isPhysiotherapist) {
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      userType: 'Please select a user type.'
+    }));
+    return;
+  }
     try {
         const data = await registerUser({
             email: user.email,
@@ -33,7 +40,10 @@ const handleSignUp = async () => {
             setErrors({});  
     } catch (error) {
         console.error('Registration failed:', error);
-        setErrors(error); 
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          apiError: error.message || 'Failed to register. Please try again.'
+        }));
         }
 };
  
@@ -106,9 +116,15 @@ const handleSignUp = async () => {
           <Checkbox 
             status={isUser ? 'checked' : 'unchecked'}
             onPress={() => {
-              setIsUser(!isUser);
-              setIsPhysiotherapist(false); 
-            }}
+                setIsUser(current => {
+                  if (!current && !isPhysiotherapist) return true; 
+                  return !current;
+                });
+                setIsPhysiotherapist(false);
+                setErrors(prevErrors => ({...prevErrors, userType: undefined}));
+
+              }}
+              
             color={'#FFF'} 
           />
           <Text style={styles.checkboxLabel}>User</Text>
@@ -119,11 +135,14 @@ const handleSignUp = async () => {
             onPress={() => {
               setIsPhysiotherapist(!isPhysiotherapist);
               setIsUser(false); 
+              setErrors(prevErrors => ({...prevErrors, userType: undefined}));
+
             }}
             color={'#FFF'} 
           />
           <Text style={styles.checkboxLabel}>Physiotherapist</Text>
         </View>
+        {errors.userType && <Text style={styles.errorText}>{errors.userType}</Text>}
     </View>
       
       

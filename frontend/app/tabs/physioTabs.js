@@ -1,9 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import ChatScreen from './app/physiotherapist/ChatScreen';
-import PatientsScreen from './app/physiotherapist/PatientsScreen';
-import ProfileScreen from './app/physiotherapist/ProfileScreen';
+import ChatScreen from '../physiotherapistScreens/chat';
+import PatientsScreen from '../physiotherapistScreens/patients';
+import ProfileScreen from '../userScreens/profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,8 +27,8 @@ function PhysioTabs() {
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
+        activeTintColor: '#05A37E',
+        inactiveTintColor: 'white',
       }}
     >
       <Tab.Screen name="Chat" component={ChatScreen} />

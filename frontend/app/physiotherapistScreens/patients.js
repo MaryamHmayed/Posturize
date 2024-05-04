@@ -15,7 +15,10 @@ const PatientsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Hello John, find your patients</Text>
+      <View style={styles.headerContainer}>
+      <Text style={styles.header}>Hello John,</Text>
+      <Text style={styles.header}>find your patients</Text>
+      </View>
       <FlatList
         data={patients}
         keyExtractor={item => item.id}
@@ -36,29 +39,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2B2B2B',
-    paddingTop: 50,
+    paddingTop: 60,
     paddingHorizontal: 20,
   },
   header: {
     color: 'white',
-    fontSize: 18,
-    marginBottom: 20,
+    fontSize: 20,
+    marginHorizontal:9,
+    fontWeight:"500"
   },
   patientItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#333',
-    padding: 10,
+    padding: 15,
     marginBottom: 10,
-    borderRadius: 10,
+    borderRadius: 5,
+    marginHorizontal:10
   },
   patientText: {
     color: 'white',
+    fontSize:18,
+    fontWeight:"bold"
   },
   chatButton: {
     color: '#FFA500',
+    textDecorationLine:"underline",
+    
+
   },
+  headerContainer:{
+    margin:30,
+  }
 });
 
 export default PatientsScreen;

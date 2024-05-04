@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../userScreens/home';
 import ProgressScreen from '../userScreens/progress';
 import ProfileScreen from '../userScreens/profile';
-// import PhysiotherapistsStack from '../userScreens/Pts/PhysiotherapistsStack';
 import SetupScreen from '../userScreens/setup';
 import PhysiotherapistsScreen from '../userScreens/Pts/pts';
 import PhysiotherapistsStack from '../userScreens/Pts/ptsStack';
