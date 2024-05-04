@@ -1,14 +1,14 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import PhysiotherapistsScreen from './pts';
-import ChatScreen from './chat';
+import PatientsScreen from '../physiotherapistScreens/patients';
+import ChatScreen from '../physiotherapistScreens/chat';
 
 const Stack = createNativeStackNavigator();
 
 const PatientsStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Patients" component={PatientScreen} />
+      <Stack.Screen name="Patients" component={PatientsScreen} />
       <Stack.Screen name="Chat" component={ChatScreen} />
     </Stack.Navigator>
   );

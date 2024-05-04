@@ -2,8 +2,9 @@ import React from 'react';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatScreen from '../physiotherapistScreens/chat';
-import PatientsScreen from '../physiotherapistScreens/patients';
+// import PatientsScreen from '../physiotherapistScreens/patients';
 import ProfileScreen from '../userScreens/profile';
+import PatientsStack from "../physiotherapistScreens/patientsStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -38,7 +39,7 @@ function PhysioTabs() {
       tabBarStyle: { backgroundColor: '#3D3A3A' },  
     })}
   >
-      <Tab.Screen name="Patients" component={PatientsScreen} />
+      <Tab.Screen name="Patients" component={PatientsStack} />
       <Tab.Screen name="Chat" component={ChatScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
