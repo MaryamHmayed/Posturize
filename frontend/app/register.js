@@ -34,7 +34,7 @@ const handleSignUp = async () => {
             email: user.email,
             username: user.username,
             password: user.password,
-            role_id: role_id
+            role_id: user.role_id
             });
             await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
             await AsyncStorage.setItem('userType', isPhysiotherapist ? 'physiotherapist' : 'user');
@@ -43,7 +43,7 @@ const handleSignUp = async () => {
               email: user.email,
               username: user.username,
               password: user.password,
-              role_id: role_id
+              role_id: user.role_id
           });
             setErrors({});  
 
