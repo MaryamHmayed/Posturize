@@ -18,19 +18,33 @@ export default function App() {
   const [userType, setUserType] = useState(null);
 
   useEffect(() => {
-    const loadUserType = async () => {
-      const type = await AsyncStorage.getItem('userType');
-      setUserType(type);
+    const loadUserRole = async () => {
+      const role = await AsyncStorage.getItem('userRole');
+      setUserType(role);  
     };
-    loadUserType();
+    loadUserRole();
   }, []);
 
 
   if (userType === null) {
-    return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <ActivityIndicator size="large" color="#0000ff" />
-    </View>;
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
+
+  const RenderTabs = () => {
+    switch (userType) {
+      case '1':  
+        return <PhysioTabs />;
+      case '2':  
+        return <Tabs />;
+      default:
+        return <Tabs />;  
+    }
+  };
+
 
   return (
     
@@ -41,7 +55,7 @@ export default function App() {
             <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Signup" component={SignUpScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="Main" component={userType === 'physiotherapist' ? PhysioTabs : Tabs} options={{ headerShown: false }} />
+            <Stack.Screen name="Main" component={RenderTabs} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>

@@ -35,13 +35,9 @@ const handleSignUp = async () => {
             });
             await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
             await AsyncStorage.setItem('userType', userType);
+            
             console.log('Registration successful:', data);
-            console.log({
-              email: user.email,
-              username: user.username,
-              password: user.password,
-              role_id: role_id
-          });
+           
             setErrors({});  
             navigation.navigate('Login');
 

@@ -26,6 +26,7 @@ const LoginScreen = () => {
                 password
             });
             return response.data;
+          
         } catch (error) {
             if (error.response) {
                 throw error.response.data;
@@ -38,12 +39,13 @@ const LoginScreen = () => {
     const handleLogin = async () => {
         try {
             const data = await loginUser(credentials.email, credentials.password);
-            await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
-            // console.log('Login successful:', data);
-            console.log('Navigating to Setup screen');
-
-            // setLoginError('');
-            navigation.navigate('Main', { screen: 'Setup' });
+            await AsyncStorage.setItem('userToken', data?.authorisation?.token);
+            await AsyncStorage.setItem('userRole', data.user.role_id.toString());  
+            console.log('Login successful:', data);
+        
+            setLoginError('');
+            navigation.navigate('Main'); 
+            
         } catch (error) {
             setLoginError(error.message || 'Incorrect email or password');
         }
