@@ -40,16 +40,16 @@ const Tabs = () => {
 
           switch (route.name) {
             case 'Home':
-              iconName = require('../../assets/home-icon.png');
+              iconName = require('../../assets/home.png');
               break;
             case 'PTs':
-              iconName = require('../../assets/pts-icon.png');
+              iconName = require('../../assets/pts.png');
               break;
             case 'Setup':
               iconName = require('../../assets/setup-icon.png');
               break;
             case 'Progress':
-              iconName = require('../../assets/progress-arrow.png');
+              iconName = require('../../assets/progress.png');
               break;
             case 'Profile':
               iconName = require('../../assets/profile-icon.png');
