@@ -16,36 +16,36 @@ const SignUpScreen = () => {
   const navigation = useNavigation();
     const { user, updateUser } = useUser();
     const [errors, setErrors] = useState({});
-    const [isPhysiotherapist, setIsPhysiotherapist] = useState(false);
-    const [isUser, setIsUser] = useState(false);
+    // const [isPhysiotherapist, setIsPhysiotherapist] = useState(false);
+    // const [isUser, setIsUser] = useState(false);
+    const [userType, setUserType] = useState(null); // unified state for user type
+
 
 
 const handleSignUp = async () => {
-  if (!isUser && !isPhysiotherapist) {
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      userType: 'Please select a user type.'
-    }));
+  if (!userType) {
+    setErrors({ ...errors, userType: 'Please select a user type.' });
     return;
   }
-  const role_id = isPhysiotherapist ? 1 : 2;
+  const role_id = userType === 'physiotherapist' ? 1 : 2;
     try {
         const data = await registerUser({
             email: user.email,
             username: user.username,
             password: user.password,
-            role_id: user.role_id
+            role_id: role_id
             });
             await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
-            await AsyncStorage.setItem('userType', isPhysiotherapist ? 'physiotherapist' : 'user');
+            await AsyncStorage.setItem('userType', userType);
             console.log('Registration successful:', data);
             console.log({
               email: user.email,
               username: user.username,
               password: user.password,
-              role_id: user.role_id
+              role_id: role_id
           });
             setErrors({});  
+            navigation.navigate('./login.js');
 
     } catch (error) {
         console.error('Registration failed:', error);
@@ -116,31 +116,17 @@ const handleSignUp = async () => {
     <View style={styles.checkboxContainer}>
         <View style={styles.checkboxLabelContainer}>
           <Checkbox 
-            status={isUser ? 'checked' : 'unchecked'}
-            onPress={() => {
-                setIsUser(current => {
-                  if (!current && !isPhysiotherapist) return true; 
-                  return !current;
-                });
-                setIsPhysiotherapist(false);
-                setErrors(prevErrors => ({...prevErrors, userType: undefined}));
-
-              }}
-              
-            color={'#FFF'} 
+            status={userType === 'user' ? 'checked' : 'unchecked'}
+            onPress={() => setUserType(userType !== 'user' ? 'user' : null)}
+            color={'#FFF'}
           />
           <Text style={styles.checkboxLabel}>User</Text>
         </View>
         <View style={styles.checkboxLabelContainer}>
           <Checkbox
-            status={isPhysiotherapist ? 'checked' : 'unchecked'}
-            onPress={() => {
-              setIsPhysiotherapist(!isPhysiotherapist);
-              setIsUser(false); 
-              setErrors(prevErrors => ({...prevErrors, userType: undefined}));
-
-            }}
-            color={'#FFF'} 
+           status={userType === 'physiotherapist' ? 'checked' : 'unchecked'}
+           onPress={() => setUserType(userType !== 'physiotherapist' ? 'physiotherapist' : null)}
+           color={'#FFF'}
           />
           <Text style={styles.checkboxLabel}>Physiotherapist</Text>
         </View>

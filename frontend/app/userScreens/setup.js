@@ -6,6 +6,8 @@ const SetupScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text  style={styles.header} >Setup</Text>
+      
       <Text style={styles.header}>Let's set your chair</Text>
       <Image
         source={require('../../assets/sideChair.png')} 
