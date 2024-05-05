@@ -1,7 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
- const logoutUser = async (token) => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+
+const logoutUser = async (token) => {
     const navigation = useNavigation();
     try {
  

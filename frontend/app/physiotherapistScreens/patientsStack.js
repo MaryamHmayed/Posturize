@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 const PatientsStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Patients" component={PatientsScreen} />
+      <Stack.Screen name="Patients" component={PatientsScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Chat" component={ChatScreen} />
     </Stack.Navigator>
   );

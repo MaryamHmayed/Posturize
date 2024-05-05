@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     profileImageContainer:{
       backgroundColor: '#000', 
       height:60,
+
       
     },
     profileImage: {
@@ -97,7 +98,8 @@ const styles = StyleSheet.create({
       height: 130,
       position:"absolute",
       alignSelf: 'center',
-      marginTop:0
+      marginBottom:90
+      
       
     },
     infoContainer:{

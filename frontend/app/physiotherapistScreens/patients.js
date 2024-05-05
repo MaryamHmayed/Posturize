@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2B2B2B',
-    paddingTop: 30,
+    paddingTop: 50,
     paddingHorizontal: 20,
   },
   header: {
