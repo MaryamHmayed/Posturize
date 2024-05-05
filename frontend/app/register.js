@@ -28,16 +28,25 @@ const handleSignUp = async () => {
     }));
     return;
   }
+  const role_id = isPhysiotherapist ? 1 : 2;
     try {
         const data = await registerUser({
             email: user.email,
             username: user.username,
-            password: user.password
+            password: user.password,
+            role_id: role_id
             });
             await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
             await AsyncStorage.setItem('userType', isPhysiotherapist ? 'physiotherapist' : 'user');
             console.log('Registration successful:', data);
+            console.log({
+              email: user.email,
+              username: user.username,
+              password: user.password,
+              role_id: role_id
+          });
             setErrors({});  
+
     } catch (error) {
         console.error('Registration failed:', error);
         setErrors(prevErrors => ({
@@ -47,13 +56,6 @@ const handleSignUp = async () => {
         }
 };
  
-
-
-
-
-
-
-
 
 //   const handleGoogleSignUp = () => {
 //   };
