@@ -41,12 +41,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: 'white',
+        marginLeft:10,
+        paddingTop:10,
+        paddingRight:20
         
     },
     time: {
         fontSize: 16,
         color: 'white',
-        marginTop: 10
+        marginTop: 20,
+        marginLeft:10,
+       
     },
     background:{
         width: '80%',
