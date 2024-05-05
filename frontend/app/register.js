@@ -16,9 +16,7 @@ const SignUpScreen = () => {
   const navigation = useNavigation();
     const { user, updateUser } = useUser();
     const [errors, setErrors] = useState({});
-    // const [isPhysiotherapist, setIsPhysiotherapist] = useState(false);
-    // const [isUser, setIsUser] = useState(false);
-    const [userType, setUserType] = useState(null); // unified state for user type
+    const [userType, setUserType] = useState(null); 
 
 
 
