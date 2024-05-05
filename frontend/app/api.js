@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const registerUser = async (userData) => {
-    console.log("check")
+
+
+export const registerUser = async (userData) => {
+    
     try {
         const response = await axios.post('http://192.168.1.109:8000/api/register', userData);
         console.log(response);
@@ -13,6 +15,3 @@ const registerUser = async (userData) => {
     }           
 };
 
-
-
-export default registerUser;

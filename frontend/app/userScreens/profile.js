@@ -3,6 +3,8 @@ import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'rea
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import RNPickerSelect from 'react-native-picker-select'; 
 import { useNavigation } from '@react-navigation/native';
+import  logoutUser  from '../logout';
+
 
 const ProfileScreen = () => {
     const navigation = useNavigation();
@@ -56,7 +58,7 @@ const ProfileScreen = () => {
           />
         </View>
   
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={logoutUser}> 
           <Text style={styles.buttonText}>Log out</Text>
         </TouchableOpacity>
       </ScrollView>
