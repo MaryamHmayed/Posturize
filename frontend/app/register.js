@@ -45,7 +45,7 @@ const handleSignUp = async () => {
               role_id: role_id
           });
             setErrors({});  
-            navigation.navigate('./login.js');
+            navigation.navigate('Login');
 
     } catch (error) {
         console.error('Registration failed:', error);

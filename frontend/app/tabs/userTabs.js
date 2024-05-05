@@ -35,7 +35,7 @@ const Tabs = () => {
         headerShown: false, 
         tabBarIcon: ({ focused }) => {
           let iconName;
-          const iconSize =  25; 
+          const iconSize =  24; 
           const tintColor= focused ?'#05A37E':"#ffff"
 
           switch (route.name) {
@@ -49,7 +49,7 @@ const Tabs = () => {
               iconName = require('../../assets/setup-icon.png');
               break;
             case 'Progress':
-              iconName = require('../../assets/progress-icon.png');
+              iconName = require('../../assets/progress-arrow.png');
               break;
             case 'Profile':
               iconName = require('../../assets/profile-icon.png');
