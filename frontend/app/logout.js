@@ -1,13 +1,12 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
-const logoutUser = async (token) => {
-    const navigation = useNavigation();
+const logoutUser = async ({navigation}) => {
+   
     try {
  
         const token = await AsyncStorage.getItem('userToken');
-        
         const response = await axios.post('http://192.168.1.109:8000/api/logout', {}, {
           headers: {
             'Authorization': `Bearer ${token}`
