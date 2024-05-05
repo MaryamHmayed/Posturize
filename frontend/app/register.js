@@ -14,9 +14,9 @@ import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
-    const { user, updateUser } = useUser();
-    const [errors, setErrors] = useState({});
-    const [userType, setUserType] = useState(null); 
+  const { user, updateUser } = useUser();
+  const [errors, setErrors] = useState({});
+  const [userType, setUserType] = useState(null); 
 
 
 

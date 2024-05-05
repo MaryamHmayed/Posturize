@@ -3,8 +3,13 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const ChatScreen = () => {
+    
+    const navigation = useNavigation();
+
     const [messages, setMessages] = useState([
         { id: '1', text: 'Hello', sent: true },
         { id: '2', text: 'Hello!', sent: false }
@@ -32,7 +37,7 @@ const ChatScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
+                <TouchableOpacity onPress={() => navigation.navigate("Physiotherapists")}>
                     <Icon name="arrow-left" size={24} color="white" />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Physiotherapist's Name</Text>
@@ -102,6 +107,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 12,
+        paddingTop:30
         
     },
     headerTitle: {
