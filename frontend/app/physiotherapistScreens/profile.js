@@ -28,8 +28,8 @@ const ProfileScreen = ()=>{
             
             <View style={styles.infoContainer}>
                 <Text style={styles.name}>John</Text>
-                <TextInput placeholder="Bio"style={styles.bio}
-                   placeholderTextColor="#999"
+                <Text style={styles.sectionTitle}>Bio</Text>
+                <TextInput style={styles.bio}
                    value={bio}
                    onChangeText={setBio}
                    multiline
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         color:"white",
         borderWidth:1,
-        borderColor:"#ffff",
+        borderColor:"#999",
         width:"83%",
         borderRadius:5,
         textAlignVertical: 'top',
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         color:"white",
         borderWidth:1,
-        borderColor:"#ffff",
+        borderColor:"#999",
         width:"83%",
         borderRadius:5,
         textAlignVertical: 'top',
@@ -158,7 +158,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 30,
         marginTop: 40,
         alignItems: 'center',
+        
       },
+    buttonText:{
+      color:"#fff",
+      fontWeight:"bold"
+    }
 
 
 
