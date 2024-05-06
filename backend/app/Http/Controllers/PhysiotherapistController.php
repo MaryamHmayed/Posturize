@@ -29,24 +29,29 @@ class PhysiotherapistController extends Controller
 
 
     public function updateImage(Request $req)
-    {
-        $req->validate([
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+{
+    $req->validate([
+        'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
 
-        $user = User::find(Auth::id());
-
-        if ($req->hasFile('profile_image')) {
-            $file = $req->file('profile_image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('profile_images', $filename, 'public');
-
-            $user->profile_image = $path;
-            $user->save();
+    $user = User::find(Auth::id());
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
     }
+
+    if ($req->hasFile('profile_image')) {
+        $file = $req->file('profile_image');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('profile_images', $filename, 'public');
+
+        $user->profile_image = $path;
+        $user->save();
 
         return response()->json(['message' => 'Image uploaded successfully', 'path' => $path]);
     }
+
+    return response()->json(['error' => 'No valid image provided'], 400);
+}
 
 
     
