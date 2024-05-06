@@ -7,7 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PhysiotherapistController extends Controller
 {
-    
+    public function getProfile()
+    {
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        return response()->json([
+            "success" => true,
+            "user" => $user
+        ]);
+    }
     public function updateProfile(Request $req){
         $req->validate([
             'bio' => 'nullable|string',
