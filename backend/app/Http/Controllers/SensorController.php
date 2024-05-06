@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Sensors_Data;
 use Illuminate\Http\Request;
-
+use App\Models\Posture_Data;
 class SensorsController extends Controller
 {
     public function store(Request $request)
@@ -32,4 +32,29 @@ class SensorsController extends Controller
 
     return response()->json(['message' => 'Data uploaded successfully']);
 }
+
+    private function evaluatePosture($sensorData, $session)
+    {
+        
+        $threshold = 500; 
+        $postureStatus = ($sensorData->sensor_value > $threshold) ? 'bad' : 'good';
+
+        Posture_Data::create([
+            'session_id' => $session->id, 
+            'posture_status' => $postureStatus,
+            
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
