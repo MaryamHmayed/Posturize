@@ -18,5 +18,6 @@ Route::prefix('pt')->middleware(['api', 'auth:api', PhysiotherapistMiddleware::c
     ->group(function () {
         Route::post('update_profile', [PhysiotherapistController::class, 'updateProfile']);
         Route::post('update_image', [PhysiotherapistController::class, 'updateImage']);
+        Route::post('profile', [PhysiotherapistController::class, 'getProfile']);
 
     });
