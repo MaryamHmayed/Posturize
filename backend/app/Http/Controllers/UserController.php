@@ -34,7 +34,27 @@ class UserController extends Controller
             'chair' => $chair
         ], 201); 
 
-}
+    }
+
+
+
+    public function getChair()
+    {
+    $user = User::find(Auth::id());
+
+    $chair = $user->chair;
+
+    if ($chair) {
+        return response()->json([
+            'message' => 'Chair retrieved successfully',
+            'chair' => $chair
+        ], 200);
+    } else {
+        return response()->json([
+            'message' => 'No chair assigned to this user'
+        ], 404); 
+        }
+    }
 
 }
 
