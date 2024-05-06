@@ -17,4 +17,5 @@ Route::controller(AuthController::class)->group(function () {
 Route::prefix('pt')->middleware(['api', 'auth:api', PhysiotherapistMiddleware::class])
     ->group(function () {
         Route::post('update_profile', [PhysiotherapistController::class, 'updateProfile']);
+        
     });
