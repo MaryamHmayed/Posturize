@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('profile_image_url')->nullable();
             $table->string('location')->nullable();
             $table->string('bio')->nullable();
+            $table->string("phone_number")->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->rememberToken();
             $table->timestamps();

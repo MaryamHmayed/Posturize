@@ -1,4 +1,3 @@
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
@@ -7,6 +6,11 @@ const logoutUser = async ({navigation}) => {
     try {
  
         const token = await AsyncStorage.getItem('userToken');
+        if (!token) {
+          console.log('Retrieved token:', token);
+          console.error("No token found, cannot logout.");
+          return;
+        }
         const response = await axios.post('http://192.168.1.109:8000/api/logout', {}, {
           headers: {
             'Authorization': `Bearer ${token}`
