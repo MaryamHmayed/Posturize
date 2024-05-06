@@ -43,18 +43,25 @@ const ProgressScreen = () => {
                 </View >
                 <View style={styles.dataContainer}>
                 <Text style={[styles.statTitle, { color: '#05A37E' }]}>64%</Text>
+                <View style={styles.statusContainer}>
                 <Text style={styles.statSubTitle}>Good posture </Text>
                 <Text style={styles.statSubTitle}>05:35 hours</Text>
                 </View>
+                </View>
+
                 <View style={styles.dataContainer} >
                 <Text style={[styles.statTitle, { color: '#FE9120' }]}>19%</Text>
+                <View style={styles.statusContainer}>
                 <Text style={styles.statSubTitle}>Bad posture</Text>
                 <Text style={styles.statSubTitle}>01:50 hours</Text>
                 </View>
+                </View>
                 <View style={styles.dataContainer}>
                 <Text style={[styles.statTitle, { color: '#01627D' }]}>17%</Text>
+                <View style={styles.statusContainer}>
                 <Text style={styles.statSubTitle}>Break time</Text>
                 <Text style={styles.statSubTitle}>01:10 hours</Text>
+                </View>
                 </View>
             </View>
 
@@ -90,11 +97,13 @@ const ProgressScreen = () => {
         statsContainer: {
             padding: 10,
             alignItems: 'center',
+            marginVertical:10
+            
             
         },
         statTitle: {
             color: 'white',
-            fontSize: 26,
+            fontSize: 35,
             fontWeight: 'bold',
             
         },
@@ -124,8 +133,15 @@ const ProgressScreen = () => {
             borderRadius:7,
             alignItems:"center",
             color:"#fff",
-            height:80,
+            height:70,
             marginBottom:10,
+            flexDirection:"row",
+            justifyContent:"space-evenly",
+            
+            
+        },
+        statusContainer:{
+            flexDirection:"column"
         }
 
     });

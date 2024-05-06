@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     card: {
         borderRadius: 5,
         alignItems: 'center',
-        justifyContent: 'center', 
+        justifyContent: 'space-evenly', 
         width: "80%", 
         height: 70, 
         backgroundColor:"#504B4B",
         flexDirection:"row",
-        gap:10
+        
     },
     data:{
         flexDirection:"column"
