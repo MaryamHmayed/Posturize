@@ -16,13 +16,7 @@ const ProfileScreen = () => {
         
         <View  style={styles.imageContainer}>
         <View style={styles.headerContainer}>
-          <TouchableOpacity>
-            <Icon name="arrow-back" size={24} color="white" />
-          </TouchableOpacity>
           <Text style={styles.headerTitle}>Profile</Text>
-          <TouchableOpacity>
-            <Icon name="edit" size={24} color="white" />
-          </TouchableOpacity>
         </View>
         <Image
           source={require('../../assets/profileImage.png')}
@@ -75,7 +69,7 @@ const ProfileScreen = () => {
     headerContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      
       padding: 40,
     },
     headerTitle: {

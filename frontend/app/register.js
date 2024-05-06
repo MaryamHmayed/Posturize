@@ -68,7 +68,7 @@ const handleSignUp = async () => {
         <Image source={require("../assets/logo-posturize.png")}/>
         </View>
 
-      <Text style={styles.title}>Sign Up</Text>
+      <Text style={styles.title}>Sign up</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -129,13 +129,13 @@ const handleSignUp = async () => {
       
       
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-        <Text style={styles.buttonText} >Sign Up</Text>
+        <Text style={styles.buttonText} >Sign up</Text>
       </TouchableOpacity>
       
     <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Already have an account? </Text>
         <Pressable onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.loginLink}>Log In</Text>
+        <Text style={styles.loginLink}>Login</Text>
     </Pressable>
     </View>
 

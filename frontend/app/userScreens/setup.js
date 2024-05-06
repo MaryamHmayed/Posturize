@@ -6,7 +6,7 @@ const SetupScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text  style={styles.header} >Setup</Text>
+      
       
       <Text style={styles.header}>Let's set your chair</Text>
       <Image
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     borderRadius: 25,
-    marginTop:10,
+    marginTop:30,
     display:"flex",
     justifyContent:"center",
     alignContent: "center"

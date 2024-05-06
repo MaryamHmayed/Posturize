@@ -65,7 +65,7 @@ const LoginScreen = () => {
         <Image source={require("../assets/logo-posturize.png")}/>
       
       </View>
-      <Text style={styles.title}>Log In</Text>
+      <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -83,7 +83,7 @@ const LoginScreen = () => {
                 
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Log In</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       {loginError && <Text style={styles.errorText}>{loginError}</Text>}
       
