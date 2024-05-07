@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from "rea
 import React,{useState, useEffect} from "react";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput } from "react-native-paper";
+import  useLogout from '../logout';
 
 
 
@@ -9,10 +10,7 @@ const ProfileScreen = ()=>{
     const [bio, setBio] = useState("");
     const [location, setLocation] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-   
-  
-   
-
+    const { logoutUser } = useLogout();
 
     return (
         <View style={styles.container}>
@@ -51,7 +49,7 @@ const ProfileScreen = ()=>{
                 keyboardType='phone-pad'
                 />
             </View>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button}  onPress={logoutUser}>
           <Text style={styles.buttonText}>Log out</Text>
         </TouchableOpacity>
 
