@@ -14,102 +14,99 @@ import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
-  const { user, updateUser } = useUser();
+
+  const [formData, setFormData] = useState({
+    email: '',
+    username: '',
+    password: '',
+  });
   const [errors, setErrors] = useState({});
-  const [userType, setUserType] = useState(null); 
+  const [userType, setUserType] = useState(null);
 
+  const handleInputChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+  };
 
+  const handleSignUp = async () => {
+    if (!userType) {
+      setErrors({ ...errors, userType: 'Please select a user type.' });
+      return;
+    }
+    const role_id = userType === 'physiotherapist' ? 1 : 2;
 
-const handleSignUp = async () => {
-  if (!userType) {
-    setErrors({ ...errors, userType: 'Please select a user type.' });
-    return;
-  }
-  const role_id = userType === 'physiotherapist' ? 1 : 2;
     try {
-        const data = await registerUser({
-            email: user.email,
-            username: user.username,
-            password: user.password,
-            role_id: role_id
-            });
-            await AsyncStorage.setItem('userToken', data?.authorisation?.token);  
-            await AsyncStorage.setItem('userType', userType);
-            
-            console.log('Registration successful:', data);
-           
-            setErrors({});  
-            navigation.navigate('Login');
+      const data = await registerUser({
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
+        role_id: role_id,
+      });
 
+     
+      await AsyncStorage.setItem('userToken', data?.authorisation?.token);
+      await AsyncStorage.setItem('userRole', role_id.toString());
+
+      setErrors({});
+      navigation.navigate('Login');
     } catch (error) {
-        console.error('Registration failed:', error);
-        setErrors(prevErrors => ({
-          ...prevErrors,
-          apiError: error.message || 'Failed to register. Please try again.'
-        }));
-        }
-};
- 
-
-//   const handleGoogleSignUp = () => {
-//   };
-
-//   const handleFacebookSignUp = () => {
-//   };
+      console.error('Registration failed:', error);
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        apiError: error.message || 'Failed to register. Please try again.',
+      }));
+    }
+  };
 
   return (
     <View style={styles.container}>
-
       <Image source={TopLeftCorner} style={[styles.cornerImage, styles.topLeft]} />
       <Image source={TopRightCorner} style={[styles.cornerImage, styles.topRight]} />
       <Image source={BottomLeftCorner} style={[styles.cornerImage, styles.bottomLeft]} />
       <Image source={BottomRightCorner} style={[styles.cornerImage, styles.bottomRight]} />
-      <View >
-        <Image source={require("../assets/logo-posturize.png")}/>
-        </View>
+      <View>
+        <Image source={require("../assets/logo-posturize.png")} />
+      </View>
 
-      <Text style={styles.title}>Sign up</Text>
+      <Text style={styles.title}>Sign Up</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
         placeholderTextColor="#aaa"
-        value={user.email}
-        onChangeText={(text) => updateUser({ email: text })}
+        value={formData.email}
+        onChangeText={(text) => handleInputChange('email', text)}
         onBlur={() => {
-            if (!user.email.includes('@')) setErrors({...errors, email: 'Invalid email format'});
+          if (!formData.email.includes('@')) setErrors({ ...errors, email: 'Invalid email format' });
         }}
-        
       />
-        {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+      {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
 
-    
-        <TextInput
+      <TextInput
         style={styles.input}
         placeholder="Username"
         placeholderTextColor="#aaa"
-        onChangeText={(text) => updateUser({ username: text })}
+        onChangeText={(text) => handleInputChange('username', text)}
         onBlur={() => {
-        if (user.username.length < 4) setErrors({...errors, username: 'Username must be at least 4 characters'});
+          if (formData.username.length < 4) setErrors({ ...errors, username: 'Username must be at least 4 characters' });
         }}
-        />
-        {errors.username && <Text style={styles.errorText}>{errors.username}</Text>}
-        
-        <TextInput
+      />
+      {errors.username && <Text style={styles.errorText}>{errors.username}</Text>}
+
+      <TextInput
         style={styles.input}
         placeholder="Password"
         placeholderTextColor="#aaa"
         secureTextEntry
-        value={user.password}
-        onChangeText={(text) => updateUser({ password: text })}
+        value={formData.password}
+        onChangeText={(text) => handleInputChange('password', text)}
         onBlur={() => {
-            if (user.password.length < 8) setErrors({...errors, password: 'Password must be at least 8 characters'});
-            }}
-        />
-        {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
+          if (formData.password.length < 8) setErrors({ ...errors, password: 'Password must be at least 8 characters' });
+        }}
+      />
+      {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
 
-    <View style={styles.checkboxContainer}>
+      <View style={styles.checkboxContainer}>
         <View style={styles.checkboxLabelContainer}>
-          <Checkbox 
+          <Checkbox
             status={userType === 'user' ? 'checked' : 'unchecked'}
             onPress={() => setUserType(userType !== 'user' ? 'user' : null)}
             color={'#FFF'}
@@ -118,39 +115,37 @@ const handleSignUp = async () => {
         </View>
         <View style={styles.checkboxLabelContainer}>
           <Checkbox
-           status={userType === 'physiotherapist' ? 'checked' : 'unchecked'}
-           onPress={() => setUserType(userType !== 'physiotherapist' ? 'physiotherapist' : null)}
-           color={'#FFF'}
+            status={userType === 'physiotherapist' ? 'checked' : 'unchecked'}
+            onPress={() => setUserType(userType !== 'physiotherapist' ? 'physiotherapist' : null)}
+            color={'#FFF'}
           />
           <Text style={styles.checkboxLabel}>Physiotherapist</Text>
         </View>
         {errors.userType && <Text style={styles.errorText}>{errors.userType}</Text>}
-    </View>
-      
-      
+      </View>
+
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-        <Text style={styles.buttonText} >Sign up</Text>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
-      
-    <View style={styles.loginContainer}>
+
+      <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Already have an account? </Text>
         <Pressable onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.loginLink}>Login</Text>
-    </Pressable>
-    </View>
+          <Text style={styles.loginLink}>Login</Text>
+        </Pressable>
+      </View>
 
-    <Text style={styles.or}>Or</Text>
+      <Text style={styles.or}>Or</Text>
 
-    <View style={styles.socialButtons}>
+      <View style={styles.socialButtons}>
         <TouchableOpacity style={styles.socialButton}>
           <AntDesign name="google" size={24} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.socialButton}>
           <FontAwesome name="facebook" size={24} color="white" />
         </TouchableOpacity>
+      </View>
     </View>
-    </View>
-    
   );
 };
 

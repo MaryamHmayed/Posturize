@@ -47,7 +47,7 @@ const LoginScreen = () => {
               role_id: data.user.role_id.toString(),
               error: '',  
             });
-            // console.log(data.user.role_id)
+            console.log(data)
             navigation.navigate ( 'Main' )
             
       
