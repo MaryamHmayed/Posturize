@@ -8,6 +8,7 @@ import BottomRightCorner from '../assets/Vector-3.png';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useUser } from './userContext';
 
 
 const LoginScreen = () => {
@@ -17,39 +18,52 @@ const LoginScreen = () => {
         email: '',
         password: ''
     });
-    const [loginError, setLoginError] = useState('');
+    const { user, updateUser } = useUser();
+    
+    
 
     const loginUser = async (email, password) => {
-        try {
-            const response = await axios.post('http://192.168.1.109:8000/api/login', {
-                email,
-                password
-            });
-            return response.data;
-          
-        } catch (error) {
-            if (error.response) {
-                throw error.response.data;
-            } else {
-                throw { general: "Unable to connect to the server. Please try again later." };
-            }
+      try {
+        const response = await axios.post('http://192.168.1.109:8000/api/login', { email, password });
+        return response.data;
+      } catch (error) {
+        if (error.response) {
+          throw error.response.data;
+        } else {
+          throw { general: "Unable to connect to the server. Please try again later." };
         }
+      }
     };
+    
 
     const handleLogin = async () => {
         try {
             const data = await loginUser(credentials.email, credentials.password);
-            await AsyncStorage.setItem('userToken', data?.authorisation?.token);
-            await AsyncStorage.setItem('userRole', data.user.role_id.toString());  
-            console.log('Login successful:', data);
-            console.log(data.user.role_id)
-            setLoginError('');
-            navigation.navigate('Main'); 
-            
-        } catch (error) {
-            setLoginError(error.message || 'Incorrect email or password');
-        }
-    };
+            // await AsyncStorage.setItem('userToken', data?.authorisation?.token);
+            // await AsyncStorage.setItem('userRole', data.user.role_id.toString());  
+            // console.log('Login successful:', data);
+            // console.log(data.user.role_id)
+            // setLoginError('');
+            updateUser({
+              email: data.user.email,
+              username: data.user.username,
+              token: data.authorisation?.token,
+              role_id: data.user.role_id.toString(),
+              error: '',  // Clear any previous errors
+            });
+      
+            // Navigate to Main and clear navigation stack
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'Main' }],
+            });
+      
+          } catch (error) {
+            // Update user context with error message
+            updateUser({ error: error.message || 'Incorrect email or password' });
+          }
+        };
+      
 
 
 
@@ -82,10 +96,11 @@ const LoginScreen = () => {
         onChangeText={(text) => setCredentials({ ...credentials, password: text })}
                 
       />
+      {user.error ? <Text style={styles.error}>{user.error}</Text> : null}
+
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      {loginError && <Text style={styles.errorText}>{loginError}</Text>}
       
       <View style={styles.signupContainer}>
         <Text style={styles.signupText}>Don't have an account? </Text>
