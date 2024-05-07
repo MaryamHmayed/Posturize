@@ -19,4 +19,6 @@ Route::prefix('pt')->middleware(['api', 'auth:api', PhysiotherapistMiddleware::c
         Route::post('update_profile', [PhysiotherapistController::class, 'updateProfile']);
         Route::post('update_image', [PhysiotherapistController::class, 'updateImage']);
         Route::get('profile', [PhysiotherapistController::class, 'getProfile']);
+        Route::get('PTs', [PhysiotherapistController::class, 'getAllPhysiotherapists']);
+
     });
