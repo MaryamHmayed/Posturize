@@ -39,27 +39,19 @@ const LoginScreen = () => {
     const handleLogin = async () => {
         try {
             const data = await loginUser(credentials.email, credentials.password);
-            // await AsyncStorage.setItem('userToken', data?.authorisation?.token);
-            // await AsyncStorage.setItem('userRole', data.user.role_id.toString());  
-            // console.log('Login successful:', data);
-            // console.log(data.user.role_id)
-            // setLoginError('');
+            
             updateUser({
               email: data.user.email,
               username: data.user.username,
               token: data.authorisation?.token,
               role_id: data.user.role_id.toString(),
-              error: '',  // Clear any previous errors
+              error: '',  
             });
-      
-            // Navigate to Main and clear navigation stack
-            navigation.reset({
-              index: 0,
-              routes: [{ name: 'Main' }],
-            });
+            // console.log(data.user.role_id)
+            navigation.navigate ( 'Main' )
+            
       
           } catch (error) {
-            // Update user context with error message
             updateUser({ error: error.message || 'Incorrect email or password' });
           }
         };
@@ -232,7 +224,7 @@ const styles = StyleSheet.create({
     right:0,
     
   },
-  errorText: {
+  error: {
     color: 'red',
     marginBottom: 10
 }
