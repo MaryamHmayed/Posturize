@@ -15,18 +15,18 @@ import PhysioTabs from './app/tabs/physioTabs';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [userType, setUserType] = useState(null);
+  const [userRole, setUserRole] = useState(null);
+
 
   useEffect(() => {
     const loadUserRole = async () => {
       const role = await AsyncStorage.getItem('userRole');
-      setUserType(role);  
+      setUserRole(role);  
     };
     loadUserRole();
   }, []);
 
-
-  if (userType === null) {
+  if (userRole === null) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -35,7 +35,7 @@ export default function App() {
   }
 
   const RenderTabs = () => {
-    switch (userType) {
+    switch (userRole) {
       case '1':  
         return <PhysioTabs />;
       case '2':  

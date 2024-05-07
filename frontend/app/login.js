@@ -42,7 +42,7 @@ const LoginScreen = () => {
             await AsyncStorage.setItem('userToken', data?.authorisation?.token);
             await AsyncStorage.setItem('userRole', data.user.role_id.toString());  
             console.log('Login successful:', data);
-        
+            console.log(data.user.role_id)
             setLoginError('');
             navigation.navigate('Main'); 
             

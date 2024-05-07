@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'r
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
 const ChatScreen = () => {
     const [messages, setMessages] = useState([
         { id: '1', text: 'Hello', sent: true },
@@ -31,9 +32,6 @@ const ChatScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Icon name="arrow-left" size={24} color="white" />
-                </TouchableOpacity>
                 <Text style={styles.headerTitle}>Patient's Name</Text>
                 <View style={styles.headerRight}></View> 
             </View>
@@ -100,7 +98,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 12,
+      
         
     },
     headerTitle: {

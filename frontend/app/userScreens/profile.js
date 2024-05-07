@@ -3,10 +3,12 @@ import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'rea
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import RNPickerSelect from 'react-native-picker-select'; 
 import { useNavigation } from '@react-navigation/native';
-import  logoutUser  from '../logout';
+import  useLogout from '../logout';
 
 
 const ProfileScreen = () => {
+    const { logoutUser } = useLogout();
+
     const navigation = useNavigation();
 
     const [medicalCondition, setMedicalCondition] = useState('');
