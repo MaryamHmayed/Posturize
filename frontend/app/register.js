@@ -67,7 +67,7 @@ const SignUpScreen = () => {
         <Image source={require("../assets/logo-posturize.png")} />
       </View>
 
-      <Text style={styles.title}>Sign Up</Text>
+      <Text style={styles.title}>Sign up</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"

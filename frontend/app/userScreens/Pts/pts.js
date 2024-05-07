@@ -53,12 +53,7 @@ const PhysiotherapistsScreen = () => {
 
     return (
         <ScrollView style={styles.container}>
-             {/* <View style={styles.headerContainer}>
-          <TouchableOpacity>
-            <Icon name="arrow-back" size={24} color="white" />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Physiotherapists</Text>
-        </View> */}
+   
             <TextInput 
                 style={styles.searchBar} 
                 placeholder="  Search..." 
