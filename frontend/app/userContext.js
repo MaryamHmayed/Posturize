@@ -8,6 +8,8 @@ export const UserProvider = ({ children }) => {
         username: '',
         password: '',
         token: null,
+        role_id: null,  
+        error: '',      
     });
 
     const updateUser = (updates) => {
