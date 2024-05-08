@@ -64,17 +64,4 @@ class PhysiotherapistController extends Controller
     }
 
 
-    public function getAllPhysiotherapists()
-    {
-
-        $physiotherapists = User::whereHas('role', function ($query) {
-            $query->where('type', 'physiotherapist');
-        })->get();
-
-        return response()->json(['data' => $physiotherapists]);
-    }
-
-
-
-
 }

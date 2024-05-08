@@ -56,5 +56,16 @@ class UserController extends Controller
         }
     }
 
-}
 
+
+    public function getAllPhysiotherapists()
+    {
+
+        $physiotherapists = User::where('role_id', 1)->get();
+
+        return response()->json(['data' => $physiotherapists]);
+
+
+    }
+
+}
