@@ -16,7 +16,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-Route::middleware(['auth:api'])
+Route::middleware(['auth:api']) 
     ->get('PTs', [UserController::class, 'getAllPhysiotherapists']);
 
 
