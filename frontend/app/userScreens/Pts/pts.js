@@ -1,49 +1,57 @@
-import React from 'react';
-import { ScrollView, View, Text, Image, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, View, Text, Image, TextInput, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useUser } from '../../userContext';
 
 const PhysiotherapistsScreen = () => {
     const navigation = useNavigation();
-    const physiotherapists = [
-        {
-            id: '1',
-            name: 'Physiotherapist’s name',
-            location: 'Location',
-            bio: 'Bio',
-            image: require('../../../assets/logolarge.png'),
-        },
-        {
-            id: '2',
-            name: 'Physiotherapist’s name',
-            location: 'Location',
-            bio: 'Bio',
-            image: require('../../../assets/logolarge.png'),
-        },
-        {
-            id: '3',
-            name: 'Physiotherapist’s name',
-            location: 'Location',
-            bio: 'Bio',
-            image: require('../../../assets/logolarge.png'),
-        },
-        
-    ];
+    const [physiotherapists, setPhysiotherapists] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const { user } = useUser();
+
+
+    useEffect(() => {
+        const fetchPhysiotherapists = async () => {
+            setLoading(true);
+            try {
+                if (!user.token) {
+                    console.error('No token found!');
+                    return;
+                }
+
+                // Make the API call with the Authorization header
+                const response = await axios.get('http://192.168.1.109:8000/api/PTs', {
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`,
+                    },
+                });
+
+                setPhysiotherapists(response.data.data);
+            } catch (error) {
+                console.error('Error fetching physiotherapists:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPhysiotherapists();
+    }, [user.token]);
 
     const renderItem = ({ item }) => (
-        
         <View style={styles.card}>
-            <Image source={item.image} style={styles.image} />
+            <Image source={item.profile_image ? { uri: `http://192.168.1.109:8000/${item.profile_image}` } : require('../../../assets/logolarge.png')} style={styles.image} />
             <View style={styles.info}>
-                <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.detail}>{item.location}</Text>
-                <Text style={styles.detail}>{item.bio}</Text>
+                <Text style={styles.name}>{item.username}</Text>
+                <Text style={styles.detail}>{item.location || 'Location not specified'}</Text>
+                <Text style={styles.detail}>{item.bio || 'No bio available'}</Text>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}>Request</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} >
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat', { id: item.id })} >
                         <Text style={styles.chatText}>Chat</Text>
                     </TouchableOpacity>
                 </View>
@@ -51,19 +59,28 @@ const PhysiotherapistsScreen = () => {
         </View>
     );
 
+    const filteredPhysiotherapists = physiotherapists.filter(physio => 
+        physio.username.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
-        <ScrollView style={styles.container}>
-   
-            <TextInput 
-                style={styles.searchBar} 
-                placeholder="  Search..." 
+        <View style={styles.container}>
+            <TextInput
+                style={styles.searchBar}
+                placeholder="  Search..."
+                value={searchTerm}
+                onChangeText={setSearchTerm}
             />
-            <FlatList
-                data={physiotherapists}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
-        </ScrollView>
+            {loading ? (
+                <ActivityIndicator size="large" color="#FFA500" />
+            ) : (
+                <FlatList
+                    data={filteredPhysiotherapists}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id.toString()}
+                />
+            )}
+        </View>
     );
 };
 
