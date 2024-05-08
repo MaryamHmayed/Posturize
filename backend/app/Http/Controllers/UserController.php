@@ -55,9 +55,6 @@ class UserController extends Controller
         ], 404); 
         }
     }
-
-
-
     public function getAllPhysiotherapists()
     {
 
@@ -65,7 +62,10 @@ class UserController extends Controller
 
         return response()->json(['data' => $physiotherapists]);
 
+ 
+}   
 
-    }
+
 
 }
+    
