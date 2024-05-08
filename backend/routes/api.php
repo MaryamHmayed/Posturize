@@ -15,8 +15,9 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
-Route::get('PTs', [UserController::class, 'getAllPhysiotherapists']);
 
+Route::middleware(['auth:api'])
+    ->get('PTs', [UserController::class, 'getAllPhysiotherapists']);
 
 
 Route::prefix('pt')->middleware(['api', 'auth:api', PhysiotherapistMiddleware::class])
