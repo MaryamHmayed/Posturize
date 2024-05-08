@@ -21,14 +21,12 @@ const PhysiotherapistsScreen = () => {
                     console.error('No token found!');
                     return;
                 }
-
-                // Make the API call with the Authorization header
                 const response = await axios.get('http://192.168.1.109:8000/api/PTs', {
                     headers: {
                         'Authorization': `Bearer ${user.token}`,
                     },
                 });
-
+                
                 setPhysiotherapists(response.data.data);
             } catch (error) {
                 console.error('Error fetching physiotherapists:', error);
@@ -42,7 +40,7 @@ const PhysiotherapistsScreen = () => {
 
     const renderItem = ({ item }) => (
         <View style={styles.card}>
-            <Image source={item.profile_image ? { uri: `http://192.168.1.109:8000/${item.profile_image}` } : require('../../../assets/logolarge.png')} style={styles.image} />
+            <Image source={item.profile_image ? { uri: `http://192.168.1.109:8000/storage/${item.profile_image}` } : require('../../../assets/logolarge.png')} style={styles.image} />
             <View style={styles.info}>
                 <Text style={styles.name}>{item.username}</Text>
                 <Text style={styles.detail}>{item.location || 'Location not specified'}</Text>
