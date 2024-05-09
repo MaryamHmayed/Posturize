@@ -37,15 +37,16 @@ const PhysiotherapistsScreen = () => {
     }, [user.token]);
 
     // Generates a chat room ID using both the user and physiotherapist IDs
-    const generateChatRoomId = (currentUserId, physioId) => {
-        return `${currentUserId}_${physioId}`;
+    const generateChatRoomId = (user1Id, user2Id) => {
+        const sortedUsers = [user1Id, user2Id].sort(); // Sort to ensure a consistent ID
+        return `${sortedUsers[0]}_${sortedUsers[1]}`;
     };
 
     const navigateToChat = (physio) => {
-        const chatRoomId = generateChatRoomId(user.id, physio.id);
-        navigation.navigate('Chat', { 
-            chatRoomId: chatRoomId, 
-            recipientName: physio.username 
+        const chatRoomId = generateChatRoomId(user.id, physio.id); // Same ID generation logic
+        navigation.navigate('Chat', {
+            chatRoomId: chatRoomId,
+            recipientName: physio.username,
         });
     };
 

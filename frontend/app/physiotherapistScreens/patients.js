@@ -25,12 +25,26 @@ const PatientsScreen = () => {
     };
 
     fetchPatients(); 
-  }, [user.token]); 
+  }, [user.token]);
+
+  const generateChatRoomId = (user1Id, user2Id) => {
+    const sortedUsers = [user1Id, user2Id].sort(); 
+    return `${sortedUsers[0]}_${sortedUsers[1]}`;
+};
+
+  const navigateToChat = (patient) => {
+    const chatRoomId = generateChatRoomId(user.id, patient.id); 
+    navigation.navigate('Chat', {
+        chatRoomId: chatRoomId,
+        recipientName: patient.username,
+    });
+};
+
 
   const renderItem = ({ item }) => (
     <View style={styles.patientItem}>
       <Text style={styles.patientText}>{item.username}</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
+      <TouchableOpacity onPress={() => navigateToChat(item)}>
         <Text style={styles.chatButton}>Chat</Text>
       </TouchableOpacity>
     </View>
@@ -43,7 +57,7 @@ const PatientsScreen = () => {
           <Image source={require('../../assets/arrow-back.png')} style={styles.icon} />
         </TouchableOpacity>
         <View>
-          <Text style={styles.header}>Hello {user.username} ,</Text>
+          <Text style={styles.header}>Hello {user.username},</Text>
           <Text style={styles.header}>Find your patients</Text>
         </View>
         <TouchableOpacity>
@@ -60,7 +74,6 @@ const PatientsScreen = () => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -71,8 +84,8 @@ const styles = StyleSheet.create({
   header: {
     color: 'white',
     fontSize: 20,
-    fontWeight:"500",
-    marginRight:30
+    fontWeight: "500",
+    marginRight: 30,
   },
   patientItem: {
     flexDirection: 'row',
@@ -82,27 +95,25 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 10,
     borderRadius: 5,
-    marginHorizontal:10
+    marginHorizontal: 10,
   },
   patientText: {
     color: 'white',
-    fontSize:18,
-    fontWeight:"bold"
+    fontSize: 18,
+    fontWeight: "bold",
   },
   chatButton: {
     color: '#FFA500',
-    textDecorationLine:"underline",
-    
-
+    textDecorationLine: "underline",
   },
-  headerContainer:{
-    marginBottom:30,
-    marginHorizontal:12,
-    flexDirection:"row",
-    justifyContent:"space-between"
+  headerContainer: {
+    marginBottom: 30,
+    marginHorizontal: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  icon:{
-    marginTop:7
+  icon: {
+    marginTop: 7,
   }
 });
 

@@ -38,6 +38,8 @@ const ChatScreen = () => {
                 id: doc.id,
                 ...doc.data(),
             }));
+
+            console.log('Fetched Messages:', fetchedMessages);
             setMessages(fetchedMessages);
         });
 
@@ -100,6 +102,9 @@ const ChatScreen = () => {
         </SafeAreaView>
     );
 };
+
+
+
 
 const styles = StyleSheet.create({
     container: {

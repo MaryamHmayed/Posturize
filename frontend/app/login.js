@@ -26,6 +26,7 @@ const LoginScreen = () => {
       try {
         const response = await axios.post('http://192.168.1.109:8000/api/login', { email, password });
         return response.data;
+
       } catch (error) {
         if (error.response) {
           throw error.response.data;
