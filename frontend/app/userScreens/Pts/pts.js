@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, Image, TextInput, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, Image, TextInput, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../userContext';
 
 const PhysiotherapistsScreen = () => {
@@ -11,7 +10,6 @@ const PhysiotherapistsScreen = () => {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const { user } = useUser();
-
 
     useEffect(() => {
         const fetchPhysiotherapists = async () => {
@@ -26,7 +24,7 @@ const PhysiotherapistsScreen = () => {
                         'Authorization': `Bearer ${user.token}`,
                     },
                 });
-                
+
                 setPhysiotherapists(response.data.data);
             } catch (error) {
                 console.error('Error fetching physiotherapists:', error);
@@ -38,9 +36,25 @@ const PhysiotherapistsScreen = () => {
         fetchPhysiotherapists();
     }, [user.token]);
 
+    // Generates a chat room ID using both the user and physiotherapist IDs
+    const generateChatRoomId = (currentUserId, physioId) => {
+        return `${currentUserId}_${physioId}`;
+    };
+
+    const navigateToChat = (physio) => {
+        const chatRoomId = generateChatRoomId(user.id, physio.id);
+        navigation.navigate('Chat', { 
+            chatRoomId: chatRoomId, 
+            recipientName: physio.username 
+        });
+    };
+
     const renderItem = ({ item }) => (
         <View style={styles.card}>
-            <Image source={item.profile_image ? { uri: `http://192.168.1.109:8000/storage/${item.profile_image}` } : require('../../../assets/logolarge.png')} style={styles.image} />
+            <Image 
+                source={item.profile_image ? { uri: `http://192.168.1.109:8000/storage/${item.profile_image}` } : require('../../../assets/logolarge.png')} 
+                style={styles.image} 
+            />
             <View style={styles.info}>
                 <Text style={styles.name}>{item.username}</Text>
                 <Text style={styles.detail}>{item.location || 'Location not specified'}</Text>
@@ -49,7 +63,7 @@ const PhysiotherapistsScreen = () => {
                     <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}>Request</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Chat', { id: item.id })} >
+                    <TouchableOpacity onPress={() => navigateToChat(item)}>
                         <Text style={styles.chatText}>Chat</Text>
                     </TouchableOpacity>
                 </View>
@@ -57,7 +71,7 @@ const PhysiotherapistsScreen = () => {
         </View>
     );
 
-    const filteredPhysiotherapists = physiotherapists.filter(physio => 
+    const filteredPhysiotherapists = physiotherapists.filter((physio) => 
         physio.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -65,7 +79,7 @@ const PhysiotherapistsScreen = () => {
         <View style={styles.container}>
             <TextInput
                 style={styles.searchBar}
-                placeholder="  Search..."
+                placeholder="Search..."
                 value={searchTerm}
                 onChangeText={setSearchTerm}
             />
@@ -75,36 +89,20 @@ const PhysiotherapistsScreen = () => {
                 <FlatList
                     data={filteredPhysiotherapists}
                     renderItem={renderItem}
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={(item) => item.id.toString()}
                 />
             )}
         </View>
     );
 };
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3D3A3A',
-        paddingTop:60,
-        paddingHorizontal:20
+        paddingTop: 60,
+        paddingHorizontal: 20,
     },
-    headerContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-        
-
-    },
-    headerTitle: {
-        fontSize: 20,
-        color: 'white',
-        fontWeight: 'bold',
-        marginLeft:20
-        
-      },
-    
     searchBar: {
         backgroundColor: '#FFFFFF',
         borderRadius: 25,
@@ -119,7 +117,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#2B2B2B',
         borderRadius: 10,
         marginHorizontal: 10,
-        
     },
     image: {
         width: 70,
@@ -130,7 +127,7 @@ const styles = StyleSheet.create({
     info: {
         flex: 2,
         justifyContent: 'center',
-        gap:6
+        gap: 6,
     },
     name: {
         fontSize: 14,
@@ -155,15 +152,14 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 12,
         paddingHorizontal: 10,
-        fontWeight:"500"
+        fontWeight: '500',
     },
-    chatText:{
-        color:"#fff",
-        padding:5,
-        textDecorationLine:"underline",
-        fontWeight:"300"
-
-    }
+    chatText: {
+        color: '#fff',
+        padding: 5,
+        textDecorationLine: 'underline',
+        fontWeight: '300',
+    },
 });
 
 export default PhysiotherapistsScreen;
