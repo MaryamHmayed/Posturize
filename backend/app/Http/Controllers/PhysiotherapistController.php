@@ -66,13 +66,10 @@ class PhysiotherapistController extends Controller
 
     public function getPatients()
     {
-
         $patients = User::where('role_id', 2)->get();
 
         return response()->json(['data' => $patients]);
-
- 
-}   
+    }   
 
 
  
