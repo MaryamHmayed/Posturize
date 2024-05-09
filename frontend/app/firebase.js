@@ -2,12 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDvLL1QLVIZ84HroYkXnG2zIirkAddVnH8",
+  authDomain: "posturize-ff73a.firebaseapp.com",
+  projectId: "posturize-ff73a",
+  storageBucket: "posturize-ff73a.appspot.com",
+  messagingSenderId: "690220820681",
+  appId: "1:690220820681:web:37bc586f4c81fbbaa20518",
+  measurementId: "G-NTSSRZZQ0F"
 };
 
 // Initialize Firebase

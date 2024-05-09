@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../../firebase';
 import { useUser } from '../../userContext';
-import { collection, addDoc, query, orderBy ,onSnapshot, doc } from 'firebase/firestore';
+import { collection, addDoc,getDocs, query, orderBy ,onSnapshot, doc } from 'firebase/firestore';
 
 
 
@@ -15,7 +15,20 @@ const ROLE_MAP = {
     2: 'user'
   };
 
- 
+  console.log('Firestore Instance:', db);
+
+  const testFirestoreConnection = async () => {
+    try {
+      const chatsRef = collection(db, 'Chats');
+      const snapshot = await getDocs(chatsRef);
+      console.log('Test Connection:', snapshot.docs.map(doc => doc.data()));
+    } catch (error) {
+      console.error('Firestore Connection Error:', error);
+    }
+  };
+  
+  testFirestoreConnection();
+
   
 const ChatScreen = ({ chatRoomId = 'defaultRoomId' }) => {
   const navigation = useNavigation();
@@ -25,9 +38,13 @@ const ChatScreen = ({ chatRoomId = 'defaultRoomId' }) => {
 
   const currentRole = ROLE_MAP[currentUser?.role_id] || 'unknown';
 
-  // Check if chatRoomId is valid
   console.log('Chat Room ID:', chatRoomId);
 
+  // db.collection('Chats').get()
+  // .then(snapshot => {
+  //   console.log('Test connection:', snapshot.docs.map(doc => doc.data()));
+  // })
+  // .catch(error => console.error('Firestore connection error:', error));
 
   useEffect(() => {
     if (!chatRoomId) {
@@ -35,7 +52,7 @@ const ChatScreen = ({ chatRoomId = 'defaultRoomId' }) => {
       return;
     }
 
-    const chatRoomRef = doc(db, 'chats', chatRoomId);
+    const chatRoomRef = doc(db, 'Chats', chatRoomId);
     const messagesRef = collection(chatRoomRef, 'messages');
     const q = query(messagesRef, orderBy('createdAt'));
 
@@ -44,6 +61,7 @@ const ChatScreen = ({ chatRoomId = 'defaultRoomId' }) => {
         id: doc.id,
         ...doc.data()
       }));
+      console.log('Fetched Messages:', fetchedMessages);
       setMessages(fetchedMessages);
     });
 
@@ -52,7 +70,7 @@ const ChatScreen = ({ chatRoomId = 'defaultRoomId' }) => {
 
   const sendMessage = async () => {
     if (inputText.trim()) {
-      const chatRoomRef = doc(db, 'chats', chatRoomId);
+      const chatRoomRef = doc(db, 'Chats', chatRoomId);
       const messagesRef = collection(chatRoomRef, 'messages');
       await addDoc(messagesRef, {
         text: inputText,
@@ -60,6 +78,7 @@ const ChatScreen = ({ chatRoomId = 'defaultRoomId' }) => {
         userType: currentRole,
         createdAt: new Date()
       });
+      
       setInputText('');
     }
   };
