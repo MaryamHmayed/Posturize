@@ -43,7 +43,7 @@ const PatientsScreen = () => {
           <Image source={require('../../assets/arrow-back.png')} style={styles.icon} />
         </TouchableOpacity>
         <View>
-          <Text style={styles.header}>Hello {user.username}</Text>
+          <Text style={styles.header}>Hello {user.username} ,</Text>
           <Text style={styles.header}>Find your patients</Text>
         </View>
         <TouchableOpacity>
