@@ -1,53 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import iconSet from '@expo/vector-icons/build/Fontisto';
-
-const patients = [
-  { id: '1', name: 'Patient 1' },
-  { id: '2', name: 'Patient 2' },
-  { id: '3', name: 'Patient 3' },
-
-];
+import axios from 'axios';
+import { useUser } from '../userContext';
 
 const PatientsScreen = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
+  const { user } = useUser(); 
+  const [patients, setPatients] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchPatients = async () => {
+      try {
+        const response = await axios.get('http://192.168.1.109:8000/api/pt/patients', {
+          headers: {
+            'Authorization': `Bearer ${user.token}`
+          }
+        });
+        setPatients(response.data.data); 
+      } catch (err) {
+        setError('Error fetching patients');
+      }
+    };
+
+    fetchPatients(); 
+  }, [user.token]); 
+
+  const renderItem = ({ item }) => (
+    <View style={styles.patientItem}>
+      <Text style={styles.patientText}>{item.username}</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
+        <Text style={styles.chatButton}>Chat</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image 
-            source={require('../../assets/arrow-back.png')}  
-            style={styles.icon} 
-          />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={require('../../assets/arrow-back.png')} style={styles.icon} />
         </TouchableOpacity>
         <View>
-      <Text style={styles.header}>Hello John,</Text>
-      <Text style={styles.header}>find your patients</Text>
-      </View>
-      <TouchableOpacity>
-          <Image 
-            source={require('../../assets/alert.png')}  
-            // style={styles.icon} 
-          />
+          <Text style={styles.header}>Hello {user.username}</Text>
+          <Text style={styles.header}>Find your patients</Text>
+        </View>
+        <TouchableOpacity>
+          <Image source={require('../../assets/alert.png')} />
         </TouchableOpacity>
       </View>
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
       <FlatList
         data={patients}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.patientItem}>
-            <Text style={styles.patientText}>{item.name}</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
-              <Text style={styles.chatButton}>Chat</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
       />
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
