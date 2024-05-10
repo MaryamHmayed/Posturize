@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { TextInput } from "react-native-paper";
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -12,8 +12,34 @@ const ProfileScreen = () => {
   const [location, setLocation] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [profileImage, setProfileImage] = useState(null);
-  const { logoutUser } = useLogout();
+  // const { logoutUser } = useLogout();
   const { user } = useUser();
+
+
+  const fetchProfileData = async () => {
+    try {
+      const response = await axios.get('http://192.168.1.109:8000/api/pt/profile', {
+        headers: {
+          'Authorization': `Bearer ${user.token}`,
+        }
+      });
+      const data = response.data;
+      console.log(data)
+
+
+      setBio(data.user.bio || '');
+      setLocation(data.user.location || '');
+      setPhoneNumber(data.user.phone_number || '');
+      setProfileImage(data.user.profile_image ? `http://192.168.1.109:8000/storage/${data.user.profile_image}` : null);
+    } catch (error) {
+      console.error('Failed to fetch profile data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfileData(); 
+  }, []);
+
 
   const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -37,14 +63,13 @@ const ProfileScreen = () => {
   };
 
   const uploadProfileImage = async (uri) => {
-  
     const formData = new FormData();
     formData.append('profile_image', {
       uri,
-      type: 'image/jpeg/png/gif', 
+      type: 'image/jpeg', // Adjust if needed
       name: 'profile.jpg'
     });
-
+  
     try {
       const response = await axios.post('http://192.168.1.109:8000/api/pt/update_image', formData, {
         headers: {
@@ -52,8 +77,11 @@ const ProfileScreen = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-
+  
       if (response.status === 200) {
+        const updatedProfilePath = `http://192.168.1.109:8000/storage/${response.data.path}`;
+        setProfileImage(updatedProfilePath);
+  
         alert('Profile image uploaded successfully');
       } else {
         alert(`Failed to upload image: Status code ${response.status}`);
@@ -83,7 +111,7 @@ const ProfileScreen = () => {
       </View>
 
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>John</Text>
+        <Text style={styles.name}>{user.username}</Text>
         <Text style={styles.sectionTitle}>Bio</Text>
         <TextInput
           style={styles.bio}
@@ -107,7 +135,7 @@ const ProfileScreen = () => {
           keyboardType='phone-pad'
         />
       </View>
-      <TouchableOpacity style={styles.button} onPress={logoutUser}>
+      <TouchableOpacity style={styles.button} >
         <Text style={styles.buttonText}>Log out</Text>
       </TouchableOpacity>
     </View>
@@ -142,7 +170,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignSelf: 'center',
     marginBottom: 90,
-    borderRadius:70
+    borderRadius:65
   },
   infoContainer: {
     marginTop: 80,
