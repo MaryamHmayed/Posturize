@@ -42,6 +42,7 @@ const LoginScreen = () => {
             const data = await loginUser(credentials.email, credentials.password);
             
             updateUser({
+              id: data.user.id,
               email: data.user.email,
               username: data.user.username,
               token: data.authorisation?.token,
