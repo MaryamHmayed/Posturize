@@ -40,6 +40,8 @@ const LoginScreen = () => {
     const handleLogin = async () => {
         try {
             const data = await loginUser(credentials.email, credentials.password);
+            await AsyncStorage.setItem('userToken', data?.authorisation?.token);
+
             
             updateUser({
               id: data.user.id,

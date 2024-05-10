@@ -12,7 +12,7 @@ const ProfileScreen = () => {
   const [location, setLocation] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [profileImage, setProfileImage] = useState(null);
-  // const { logoutUser } = useLogout();
+  const { logoutUser } = useLogout();
   const { user } = useUser();
 
 
@@ -66,7 +66,7 @@ const ProfileScreen = () => {
     const formData = new FormData();
     formData.append('profile_image', {
       uri,
-      type: 'image/jpeg', // Adjust if needed
+      type: 'image/jpeg/png/gif', // Adjust if needed
       name: 'profile.jpg'
     });
   
@@ -135,7 +135,7 @@ const ProfileScreen = () => {
           keyboardType='phone-pad'
         />
       </View>
-      <TouchableOpacity style={styles.button} >
+      <TouchableOpacity style={styles.button} onPress={logoutUser} >
         <Text style={styles.buttonText}>Log out</Text>
       </TouchableOpacity>
     </View>
