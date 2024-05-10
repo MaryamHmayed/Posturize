@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { Image, Keyboard } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ChatScreen from '../physiotherapistScreens/chat';
+import ConversationsScreen from '../physiotherapistScreens/chat';
 import ProfileScreen from '../physiotherapistScreens/profile';
 import PatientsStack from "../physiotherapistScreens/patientsStack";
 
@@ -57,7 +57,7 @@ function PhysioTabs() {
     })}
   >
       <Tab.Screen name="Patients" component={PatientsStack} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
+      <Tab.Screen name="Chat" component={ConversationsScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );

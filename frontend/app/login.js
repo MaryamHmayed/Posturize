@@ -59,10 +59,7 @@ const LoginScreen = () => {
             updateUser({ error: error.message || 'Incorrect email or password' });
           }
         };
-      
-
-
-
+    
 
   return (
     <View style={styles.container}>

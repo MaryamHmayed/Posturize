@@ -1,106 +1,64 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { db } from '../firebase';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useUser } from '../userContext';
-import { collection, addDoc, query, orderBy, onSnapshot, doc } from 'firebase/firestore';
+import { db } from '../firebase';
 
-const ROLE_MAP = {
-    1: 'physiotherapist',
-    2: 'user'
-};
-
-const ChatScreen = () => {
+const ConversationsScreen = () => {
     const navigation = useNavigation();
-    const route = useRoute();
-    const { chatRoomId = 'defaultRoomId', recipientName = 'Recipient' } = route.params || {};
-    const { user: currentUser } = useUser(); 
-    const [messages, setMessages] = useState([]);
-    const [inputText, setInputText] = useState('');
-    const flatListRef = useRef(null);
-
-    const currentRole = ROLE_MAP[currentUser?.role_id] || 'unknown';
-
+    const { user } = useUser();
+    const [conversations, setConversations] = useState([]);
 
     useEffect(() => {
-        if (!chatRoomId) {
-            console.error('Chat Room ID is missing');
-            return;
-        }
+        // Log the user ID to ensure it's being read correctly
+        console.log(`Fetching conversations for user ID: ${user.id}`);
 
-        const chatRoomRef = doc(db, 'Chats', chatRoomId);
-        const messagesRef = collection(chatRoomRef, 'messages');
+        // Query to find chat rooms where the current user is a participant
+        const chatQuery = query(
+            collection(db, 'Chats'),
+            where('participants', 'array-contains', user.id)
+        );
 
-        const q = query(messagesRef, orderBy('createdAt'));
+        // Listen for real-time updates in chat rooms
+        const unsubscribe = onSnapshot(chatQuery, (querySnapshot) => {
+            console.log(`Query snapshot size: ${querySnapshot.size}`);
+            const fetchedConversations = querySnapshot.docs.map((doc) => {
+                const data = doc.data();
+                console.log(`Fetched chat room ID: ${doc.id}, Data: `, data);
 
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const fetchedMessages = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setMessages(fetchedMessages);
+                return {
+                    id: doc.id,
+                    participants: data.participants.join(', '),
+                };
+            });
+
+            setConversations(fetchedConversations);
         });
 
         return unsubscribe;
-    }, [chatRoomId]);
+    }, [user.id]);
 
-    const sendMessage = async () => {
-        if (inputText.trim()) {
-            try {
-                const chatRoomRef = doc(db, 'Chats', chatRoomId);
-                const messagesRef = collection(chatRoomRef, 'messages');
-
-                await addDoc(messagesRef, {
-                    text: inputText,
-                    sentBy: currentUser?.username || 'unknown',
-                    userType: currentRole,
-                    createdAt: new Date(),
-                });
-                setInputText('');
-                flatListRef.current?.scrollToEnd({ animated: true });
-            } catch (error) {
-                console.error('Error sending message:', error);
-            }
-        }
+    const navigateToChat = (chatRoomId) => {
+        navigation.navigate('Chat', { chatRoomId });
     };
 
-    const renderMessageItem = ({ item }) => (
-        <View style={[styles.messageContainer, item.sentBy === currentUser?.username ? styles.sentMessage : styles.receivedMessage]}>
-            <Text style={styles.messageText}>{item.text || 'No message text'}</Text>
-        </View>
+    const renderConversationItem = ({ item }) => (
+        <TouchableOpacity onPress={() => navigateToChat(item.id)}>
+            <View style={styles.conversationItem}>
+                <Text style={styles.participants}>{item.participants}</Text>
+            </View>
+        </TouchableOpacity>
     );
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Icon name="arrow-left" size={24} color="white" />
-                </TouchableOpacity>
-                <Text style={styles.headerTitle}>{recipientName}</Text>
-            </View>
+        <View style={styles.container}>
             <FlatList
-                ref={flatListRef}
-                data={messages}
-                renderItem={renderMessageItem}
+                data={conversations}
                 keyExtractor={(item) => item.id}
-                onContentSizeChange={() => flatListRef.current?.scrollToEnd({ animated: true })}
-                onLayout={() => flatListRef.current?.scrollToEnd({ animated: true })}
+                renderItem={renderConversationItem}
             />
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input}
-                    value={inputText}
-                    onChangeText={setInputText}
-                    placeholder="Type a message"
-                    placeholderTextColor="#ccc"
-                />
-                <TouchableOpacity onPress={sendMessage}>
-                    <Icon name="send" size={28} color="#FFA500" />
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -108,52 +66,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#2B2B2B',
+        padding: 20,
     },
-    messageContainer: {
-        padding: 10,
-        margin: 10,
-        borderRadius: 7,
-    },
-    sentMessage: {
-        alignSelf: 'flex-end',
-        backgroundColor: '#1A1A1A',
-    },
-    receivedMessage: {
-        alignSelf: 'flex-start',
-        backgroundColor: '#1A1A1A',
-    },
-    messageText: {
-        color: 'white',
-        fontSize: 16,
-    },
-    inputContainer: {
-        flexDirection: 'row',
-        padding: 10,
-        alignItems: 'center',
-        backgroundColor: '#1A1A1A',
-    },
-    input: {
-        flex: 1,
-        height: 40,
+    conversationItem: {
         backgroundColor: '#333',
-        color: 'white',
-        borderRadius: 7,
-        paddingHorizontal: 15,
-        marginRight: 10,
+        padding: 15,
+        borderRadius: 5,
+        marginBottom: 10,
     },
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 12,
-        paddingTop: 30,
-    },
-    headerTitle: {
-        flex: 1,
-        marginLeft: 10,
+    participants: {
         color: 'white',
         fontSize: 18,
-        fontWeight: '400',
+        fontWeight: 'bold',
     },
 });
 
-export default ChatScreen;
+export default ConversationsScreen;
