@@ -7,6 +7,7 @@ import { db } from '../../firebase';
 import { useUser } from '../../userContext';
 import { collection, addDoc, query, orderBy, onSnapshot, doc } from 'firebase/firestore';
 
+
 const ROLE_MAP = {
     1: 'physiotherapist',
     2: 'user'
@@ -15,12 +16,15 @@ const ROLE_MAP = {
 const ChatScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
+  
     const { chatRoomId = 'defaultRoomId', recipientName = 'Recipient' } = route.params || {};
     const { user: currentUser } = useUser(); 
     const [messages, setMessages] = useState([]);
     const [inputText, setInputText] = useState('');
     const flatListRef = useRef(null);
 
+
+   
     const currentRole = ROLE_MAP[currentUser?.role_id] || 'unknown';
 
     useEffect(() => {
@@ -29,28 +33,34 @@ const ChatScreen = () => {
             return;
         }
 
+        // Reference to the chat room's document
         const chatRoomRef = doc(db, 'Chats', chatRoomId);
         const messagesRef = collection(chatRoomRef, 'messages');
+
+        // Query for ordering messages by creation time
         const q = query(messagesRef, orderBy('createdAt'));
 
+        // Real-time listener for fetching messages
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const fetchedMessages = snapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
             }));
-
-            console.log('Fetched Messages:', fetchedMessages);
             setMessages(fetchedMessages);
         });
 
+        // Unsubscribe from the listener to prevent memory leaks
         return unsubscribe;
     }, [chatRoomId]);
 
     const sendMessage = async () => {
         if (inputText.trim()) {
             try {
+                // Reference to the messages subcollection
                 const chatRoomRef = doc(db, 'Chats', chatRoomId);
                 const messagesRef = collection(chatRoomRef, 'messages');
+
+                // Add new message to Firestore
                 await addDoc(messagesRef, {
                     text: inputText,
                     sentBy: currentUser?.username || 'unknown',
@@ -102,9 +112,6 @@ const ChatScreen = () => {
         </SafeAreaView>
     );
 };
-
-
-
 
 const styles = StyleSheet.create({
     container: {

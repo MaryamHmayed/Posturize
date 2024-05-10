@@ -23,6 +23,7 @@ const ChatScreen = () => {
 
     const currentRole = ROLE_MAP[currentUser?.role_id] || 'unknown';
 
+
     useEffect(() => {
         if (!chatRoomId) {
             console.error('Chat Room ID is missing');
@@ -31,6 +32,7 @@ const ChatScreen = () => {
 
         const chatRoomRef = doc(db, 'Chats', chatRoomId);
         const messagesRef = collection(chatRoomRef, 'messages');
+
         const q = query(messagesRef, orderBy('createdAt'));
 
         const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -49,6 +51,7 @@ const ChatScreen = () => {
             try {
                 const chatRoomRef = doc(db, 'Chats', chatRoomId);
                 const messagesRef = collection(chatRoomRef, 'messages');
+
                 await addDoc(messagesRef, {
                     text: inputText,
                     sentBy: currentUser?.username || 'unknown',
