@@ -11,31 +11,24 @@ const ConversationsScreen = () => {
     const [conversations, setConversations] = useState([]);
 
     useEffect(() => {
-        // Log the user ID to ensure it's being read correctly
         console.log(`Fetching conversations for user ID: ${user.id}`);
 
-        // Query to find chat rooms where the current user is a participant
         const chatQuery = query(
             collection(db, 'Chats'),
             where('participants', 'array-contains', user.id)
         );
-
-        // Listen for real-time updates in chat rooms
         const unsubscribe = onSnapshot(chatQuery, (querySnapshot) => {
             console.log(`Query snapshot size: ${querySnapshot.size}`);
             const fetchedConversations = querySnapshot.docs.map((doc) => {
                 const data = doc.data();
                 console.log(`Fetched chat room ID: ${doc.id}, Data: `, data);
-
                 return {
                     id: doc.id,
                     participants: data.participants.join(', '),
                 };
             });
-
             setConversations(fetchedConversations);
         });
-
         return unsubscribe;
     }, [user.id]);
 
