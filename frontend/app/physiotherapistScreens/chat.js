@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { db } from '../firebase'; 
+import { collection, query, onSnapshot, orderBy, limit, getDocs } from 'firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useUser } from '../userContext';
-import { db } from '../firebase';
 
 const ConversationsScreen = () => {
     const navigation = useNavigation();
@@ -11,35 +11,55 @@ const ConversationsScreen = () => {
     const [conversations, setConversations] = useState([]);
 
     useEffect(() => {
-        console.log(`Fetching conversations for user ID: ${user.id}`);
+        if (!user?.id) return;
 
-        const chatQuery = query(
-            collection(db, 'Chats'),
-            where('participants', 'array-contains', user.id)
-        );
-        const unsubscribe = onSnapshot(chatQuery, (querySnapshot) => {
-            console.log(`Query snapshot size: ${querySnapshot.size}`);
-            const fetchedConversations = querySnapshot.docs.map((doc) => {
-                const data = doc.data();
-                console.log(`Fetched chat room ID: ${doc.id}, Data: `, data);
+        const chatsRef = collection(db, 'Chats');
+        const q = query(chatsRef);
+
+        const unsubscribe = onSnapshot(q, async (snapshot) => {
+            const conversationsData = await Promise.all(snapshot.docs.map(async (doc) => {
+                const chatRoomData = doc.data();
+
+                const messagesRef = collection(db, `Chats/${doc.id}/messages`);
+                const latestMsgQuery = query(messagesRef, orderBy('createdAt', 'desc'), limit(1));
+                const latestMsgSnapshot = await getDocs(latestMsgQuery);
+
+                let latestMessage = '';
+                if (!latestMsgSnapshot.empty) {
+                    latestMessage = latestMsgSnapshot.docs[0].data().text || '';
+                }
+
+                const recipientId = chatRoomData.participants.find((id) => id !== user.id);
+                let recipientName = 'Unknown';
+                const recipientDoc = await getDocs(collection(db, 'Users'), recipientId);
+                if (!recipientDoc.empty) {
+                    recipientName = recipientDoc.data().username || 'Unknown';
+                }
+
                 return {
                     id: doc.id,
-                    participants: data.participants.join(', '),
+                    recipientName,
+                    latestMessage,
                 };
-            });
-            setConversations(fetchedConversations);
+            }));
+            setConversations(conversationsData);
         });
+
         return unsubscribe;
     }, [user.id]);
 
-    const navigateToChat = (chatRoomId) => {
-        navigation.navigate('Chat', { chatRoomId });
+    const navigateToChat = (conversation) => {
+        navigation.navigate('Chat', {
+            chatRoomId: conversation.id,
+            recipientName: conversation.recipientName,
+        });
     };
 
-    const renderConversationItem = ({ item }) => (
-        <TouchableOpacity onPress={() => navigateToChat(item.id)}>
-            <View style={styles.conversationItem}>
-                <Text style={styles.participants}>{item.participants}</Text>
+    const renderItem = ({ item }) => (
+        <TouchableOpacity onPress={() => navigateToChat(item)} style={styles.card}>
+            <View style={styles.info}>
+                <Text style={styles.name}>{item.recipientName}</Text>
+                <Text style={styles.lastMessage}>{item.latestMessage || 'No messages yet'}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -48,8 +68,8 @@ const ConversationsScreen = () => {
         <View style={styles.container}>
             <FlatList
                 data={conversations}
+                renderItem={renderItem}
                 keyExtractor={(item) => item.id}
-                renderItem={renderConversationItem}
             />
         </View>
     );
@@ -58,19 +78,26 @@ const ConversationsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2B2B2B',
-        padding: 20,
+        backgroundColor: '#3D3A3A',
+        padding: 10,
     },
-    conversationItem: {
-        backgroundColor: '#333',
+    card: {
         padding: 15,
-        borderRadius: 5,
         marginBottom: 10,
+        backgroundColor: '#2B2B2B',
+        borderRadius: 8,
     },
-    participants: {
-        color: 'white',
-        fontSize: 18,
+    info: {
+        flex: 2,
+    },
+    name: {
+        fontSize: 16,
         fontWeight: 'bold',
+        color: 'white',
+    },
+    lastMessage: {
+        fontSize: 14,
+        color: 'grey',
     },
 });
 

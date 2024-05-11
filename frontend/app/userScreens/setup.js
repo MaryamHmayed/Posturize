@@ -22,8 +22,7 @@ const SetupScreen = () => {
       />
       <TouchableOpacity style={styles.button} onPress={() => console.log('Connecting to:', chairName)}>
         <Text style={styles.buttonText}>Connect</Text>
-      </TouchableOpacity>
-      
+      </TouchableOpacity>    
     </View>
   );
 };

@@ -66,7 +66,7 @@ const ProfileScreen = () => {
     const formData = new FormData();
     formData.append('profile_image', {
       uri,
-      type: 'image/jpeg/png/gif', // Adjust if needed
+      type: 'image/jpeg/png/gif', 
       name: 'profile.jpg'
     });
   

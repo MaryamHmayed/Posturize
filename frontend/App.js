@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Tabs from './app/tabs/userTabs';
 import PhysioTabs from './app/tabs/physioTabs';
+import PostureData from './app/postureData';
 
 
 const Stack = createNativeStackNavigator();
@@ -57,7 +58,8 @@ export default function App() {
     <View style={styles.container}>
       <UserProvider>
         <NavigationContainer>
-          <AppNavigator />
+          <PostureData/>
+          {/* <AppNavigator /> */}
         </NavigationContainer>
       </UserProvider>
       <StatusBar style="auto" />
@@ -69,5 +71,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#3D3A3A",
+    paddingVertical:30
   },
 });
