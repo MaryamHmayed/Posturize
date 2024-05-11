@@ -58,8 +58,8 @@ export default function App() {
     <View style={styles.container}>
       <UserProvider>
         <NavigationContainer>
-          <PostureData/>
-          {/* <AppNavigator /> */}
+          {/* <PostureData/> */}
+          <AppNavigator />
         </NavigationContainer>
       </UserProvider>
       <StatusBar style="auto" />
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#3D3A3A",
-    paddingVertical:30
+    // paddingVertical:30
   },
 });

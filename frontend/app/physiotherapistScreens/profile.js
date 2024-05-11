@@ -25,8 +25,6 @@ const ProfileScreen = () => {
       });
       const data = response.data;
       console.log(data)
-
-
       setBio(data.user.bio || '');
       setLocation(data.user.location || '');
       setPhoneNumber(data.user.phone_number || '');

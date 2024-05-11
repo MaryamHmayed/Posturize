@@ -9,23 +9,30 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
-    public function addChair(Request $req){
+public function addChair(Request $req){
+    $user = User::find(Auth::id());
 
-        $user = User::find(Auth::id());
-
-        if ($user->chair) {
-            return response()->json([
-                'message' => 'You already have a chair assigned.'
+    if ($user->chair) {
+        $validated = $req->validate([
+        'chair_name' => 'required|string|max:255'
+            ]);
+        if ($user->chair->chair_name === $validated['chair_name']) {
+        return response()->json([
+            'message' => 'You already have this chair assigned.',
+            'chair' => $user->chair
+        ], 200); 
+        } else {
+        return response()->json([
+            'message' => 'You already have a chair assigned with a different name.'
             ], 409); 
         }
-
+    }
         $validated = $req->validate([
             'chair_name' => 'required|string|max:255' 
         ]);
     
-        
         $chair = new Chair();
-        $chair->chair_name = $validated['chair_name'];; 
+        $chair->chair_name = $validated['chair_name'];
         $chair->user_id = $user->id;
         $chair->save();
     
@@ -33,8 +40,7 @@ class UserController extends Controller
             'message' => 'New chair created successfully',
             'chair' => $chair
         ], 201); 
-
-    }
+}   
 
 
 
