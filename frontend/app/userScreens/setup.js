@@ -21,7 +21,6 @@ const SetupScreen = () => {
           'Authorization': `Bearer ${user.token}`,
         }
       });
-  
       if (response.status === 201 || 200) {
         console.log( response.data);
         navigation.navigate('Main', { screen: 'Home' })
@@ -31,7 +30,7 @@ const SetupScreen = () => {
       Alert.alert("Error", `Failed to add chair: ${error.response.data.message || error.message}`);
     }
   };
-  
+
   const verifyCode = () => {
     if (code === "1234") {  
       console.log('Code verified, adding chair:', chairName);
@@ -64,7 +63,6 @@ const SetupScreen = () => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>

@@ -58,7 +58,6 @@ export default function App() {
     <View style={styles.container}>
       <UserProvider>
         <NavigationContainer>
-          {/* <PostureData/> */}
           <AppNavigator />
         </NavigationContainer>
       </UserProvider>
