@@ -19,7 +19,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware(['auth:api']) 
     -> group(function(){
         Route::get('PTs', [UserController::class, 'getAllPhysiotherapists']);
-      
+        Route::post('add_chair', [UserController::class, 'addChair']);
 
 });
 
