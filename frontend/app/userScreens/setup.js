@@ -11,7 +11,27 @@ const SetupScreen = () => {
   const navigation = useNavigation();
   const { user } = useUser();
 
-
+  const handleAddChair = async () => {
+    try {
+      const response = await axios.post('http://192.168.1.109:8000/api/add_chair', {
+        chair_name: chairName, 
+      }, {
+        headers: {
+          'Authorization': `Bearer ${user.token}`,
+        }
+      });
+  
+      if (response.status === 201 || 200) {
+        console.log( response.data);
+      
+      } else {
+        Alert.alert("Error", `Failed to add chair: ${response.data.message}`);
+      }
+    } catch (error) {
+      console.error('Failed to add chair:', error);
+      Alert.alert("Error", `Failed to add chair: ${error.response.data.message || error.message}`);
+    }
+  };
 
   const verifyCode = () => {
     if (code === "1234") {  
