@@ -1,33 +1,72 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Modal, Alert } from 'react-native';
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import { useUser } from '../userContext';
 
 const SetupScreen = () => {
   const [chairName, setChairName] = useState('');
+  const [code, setCode] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
+  const { user } = useUser();
+
+
+
+  const verifyCode = () => {
+    if (code === "1234") {  
+      console.log('Code verified, adding chair:', chairName);
+      handleAddChair();
+      setModalVisible(false);
+    } else {
+      Alert.alert("Invalid Code", "Please enter the correct code.");
+    }
+  };
 
   return (
     <View style={styles.container}>
-      
-      
       <Text style={styles.header}>Let's set your chair</Text>
       <Image
-        source={require('../../assets/sideChair.png')} 
+        source={require('../../assets/sideChair.png')}
         style={styles.chairImage}
       />
-      <Text style={styles.text}>Add your chair name here</Text>
       <TextInput
         style={styles.input}
         onChangeText={setChairName}
         value={chairName}
-        placeholder="chair name "
+        placeholder="Enter chair name"
       />
-      <TouchableOpacity style={styles.button} onPress={() => console.log('Connecting to:', chairName)}>
+      <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
         <Text style={styles.buttonText}>Connect</Text>
-      </TouchableOpacity>    
+      </TouchableOpacity>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Enter Verification Code:</Text>
+            <TextInput
+              style={styles.modalInput}
+              onChangeText={setCode}
+              value={code}
+              placeholder="Code"
+              keyboardType="numeric"
+            />
+            <TouchableOpacity style={styles.button} onPress={verifyCode}>
+              <Text style={styles.buttonText}>Verify</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -35,17 +74,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#3D3A3A',
-    
   },
   header: {
     fontSize: 22,
     color: 'white',
     marginBottom: 30,
-    fontWeight:"500"
+    fontWeight: "500"
   },
   chairImage: {
-    width: 200, 
-    height: 300, 
+    width: 200,
+    height: 300,
     marginBottom: 20,
   },
   input: {
@@ -55,36 +93,59 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 10,
     borderRadius: 5,
-
-
   },
-  
   button: {
     width: '80%',
     backgroundColor: '#FFA500',
     padding: 10,
     alignItems: 'center',
     borderRadius: 25,
-    marginTop:30,
-    display:"flex",
-    justifyContent:"center",
-    alignContent: "center"
+    marginTop: 30,
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: "bold"
-
   },
-  text:{
+  text: {
     color: 'white',
-    marginRight:125
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  },
+  modalInput: {
+    height: 40,
+    width: '80%',
+    marginBottom: 20,
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 10
   }
 });
 
-
 export default SetupScreen;
-
 
 
 
