@@ -7,7 +7,7 @@ import ProfileScreen from '../userScreens/profile';
 import SetupScreen from '../userScreens/setup';
 import { ConnectionProvider } from '../connectionContext';
 import PhysiotherapistsStack from '../userScreens/Pts/ptsStack';
-import DynamicHome from '../homeStates';
+import DynamicHome from '../userScreens/homeStates';
 
 const Tab = createBottomTabNavigator();
 

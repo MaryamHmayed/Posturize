@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const EmptyHomeScreen = () => {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <View  style={styles.smallerContainer}>
@@ -10,7 +13,7 @@ const EmptyHomeScreen = () => {
                 source={require('../assets/sideChair.png')}
                 style={styles.image}
             />
-            <TouchableOpacity style={styles.button} onPress={() => console.log('Go to Setup')}>
+            <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('Setup')}}>
                 <Text style={styles.buttonText}>Go to Setup</Text>
             </TouchableOpacity>
             </View>
