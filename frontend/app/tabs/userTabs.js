@@ -1,7 +1,6 @@
 import { Image,Keyboard } from 'react-native';
 import React,{useState,useEffect} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../userScreens/home';
 import ProgressScreen from '../userScreens/progress';
 import ProfileScreen from '../userScreens/profile';
 import SetupScreen from '../userScreens/setup';
@@ -11,7 +10,7 @@ import DynamicHome from '../userScreens/homeStates';
 
 const Tab = createBottomTabNavigator();
 
-const Tabs = () => {
+const Tabs = ( Tabs = ({ initialRouteName })) => {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const Tabs = () => {
     
        <Tab.Navigator
 
-
+      initialRouteName="Setup"
       screenOptions={({ route }) => ({
         headerShown: false, 
         tabBarIcon: ({ focused }) => {

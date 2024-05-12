@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import RNPickerSelect from 'react-native-picker-select'; 
 import { useNavigation } from '@react-navigation/native';
 import useLogout from '../logout';
+import { useUser } from '../userContext';
 
 const ProfileScreen = () => {
     const { logoutUser } = useLogout();
-
+    const { user } = useUser();
     const navigation = useNavigation();
 
     const [medicalCondition, setMedicalCondition] = useState('');
@@ -24,7 +24,7 @@ const ProfileScreen = () => {
           style={styles.profileImage}
         />
         </View>
-        <Text style={styles.profileName}>Amanda</Text>
+        <Text style={styles.profileName}>{user.username}</Text>
   
         <TouchableOpacity style={[styles.button, styles.specialButton]} onPress={() =>{ navigation.navigate('Main', { screen: 'Progress' });}}>
           <Text style={styles.buttonText} >Track your progress</Text>
