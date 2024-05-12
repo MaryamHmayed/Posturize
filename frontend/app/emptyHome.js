@@ -24,9 +24,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
         backgroundColor: '#3D3A3A', 
+        paddingTop:40
     },
     headerText: {
-        fontSize: 22,
+        fontSize: 20,
         color: '#fff',
         marginBottom: 30,
         textAlign:"center",
@@ -41,18 +42,18 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: '#FFA500',
         padding: 7,
-        borderRadius: 5,
+        borderRadius: 25,
         width:150,
         alignSelf:"center"
     },
     buttonText: {
         color: '#fff',
-        fontSize: 18,
+        fontSize: 16,
         textAlign:"center",
         fontWeight:"bold"
     },
     smallerContainer:{
-        backgroundColor:"#504B4B",
+        backgroundColor:"#282626",
         width:290,
         height:590,
         paddingTop:20

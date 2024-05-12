@@ -5,8 +5,9 @@ import HomeScreen from '../userScreens/home';
 import ProgressScreen from '../userScreens/progress';
 import ProfileScreen from '../userScreens/profile';
 import SetupScreen from '../userScreens/setup';
-import PhysiotherapistsScreen from '../userScreens/Pts/pts';
+import { ConnectionProvider } from '../connectionContext';
 import PhysiotherapistsStack from '../userScreens/Pts/ptsStack';
+import DynamicHome from '../homeStates';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,9 +29,11 @@ const Tabs = () => {
   }, []);
 
   return (
-
+    <ConnectionProvider>
     
        <Tab.Navigator
+
+
       screenOptions={({ route }) => ({
         headerShown: false, 
         tabBarIcon: ({ focused }) => {
@@ -65,17 +68,20 @@ const Tabs = () => {
         tabBarInactiveTintColor: '#ffff', 
          
       })}
-    >
+    >       
+   
 
 
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Home" component={DynamicHome} />
       <Tab.Screen name="PTs" component={PhysiotherapistsStack} />
       <Tab.Screen name="Setup" component={SetupScreen} />
       <Tab.Screen name="Progress" component={ProgressScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
       
-      
+
+
     </Tab.Navigator>
+    </ConnectionProvider>
   );
 };
 

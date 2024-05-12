@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Modal, Aler
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { useUser } from '../userContext';
+import { useConnection } from '../connectionContext';
 
 const SetupScreen = () => {
   const [chairName, setChairName] = useState('');
@@ -10,6 +11,7 @@ const SetupScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const { user } = useUser();
+  const { setConnectionStatus } = useConnection();
 
 
   const handleAddChair = async () => {
@@ -23,6 +25,7 @@ const SetupScreen = () => {
       });
       if (response.status === 201 || 200) {
         console.log( response.data);
+        setConnectionStatus(true);
         navigation.navigate('Main', { screen: 'Home' })
       }
     } catch (error) {
@@ -30,7 +33,8 @@ const SetupScreen = () => {
       Alert.alert("Error", `Failed to add chair: ${error.response.data.message || error.message}`);
     }
   };
-
+  
+  //I have to a make here the code from the backend
   const verifyCode = () => {
     if (code === "1234") {  
       console.log('Code verified, adding chair:', chairName);

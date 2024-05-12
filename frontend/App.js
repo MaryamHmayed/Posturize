@@ -10,8 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Tabs from './app/tabs/userTabs';
 import PhysioTabs from './app/tabs/physioTabs';
-import PostureData from './app/postureData';
-import EmptyHomeScreen from './app/emptyHome';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -59,8 +58,8 @@ export default function App() {
     <View style={styles.container}>
       <UserProvider>
         <NavigationContainer>
-          {/* <AppNavigator /> */}
-          <EmptyHomeScreen/>
+          <AppNavigator />
+          
         </NavigationContainer>
       </UserProvider>
       <StatusBar style="auto" />
