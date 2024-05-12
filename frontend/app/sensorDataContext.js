@@ -54,7 +54,22 @@ export const SensorDataProvider = ({ children }) => {
         return () => clearInterval(interval);
     }, []);
 
-   
+    const updatePostureData = (last_value, updated_at) => {
+        const values = last_value.split(', ').reduce((acc, current) => {
+            const [key, value] = current.split(': ');
+            acc[key.trim()] = parseInt(value, 10);
+            return acc;
+        }, {});
+        setSensorData({
+            ...values,
+            lastUpdatedDate: new Date(updated_at).toLocaleDateString('en-US'),
+            lastUpdatedTime: new Date(updated_at).toLocaleTimeString('en-US')
+        });
+        const newStatus = determinePosture(values);
+        if (newStatus !== postureStatus) {
+            setPostureStatus(newStatus);
+        }
+    };
 
     const determinePosture = (values) => {
         const sensors = [values.S0, values.S1, values.S2];
