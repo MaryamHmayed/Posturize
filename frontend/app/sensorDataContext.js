@@ -78,6 +78,11 @@ export const SensorDataProvider = ({ children }) => {
         return 'good';
     };
 
+    const formattedPostureTimes = {
+        good: formatElapsedTime(postureDurations.good),
+        bad: formatElapsedTime(postureDurations.bad),
+        break: formatElapsedTime(postureDurations.break)
+    };
     const posturePercentages = {
         good: (postureDurations.good / totalTimeTracked) * 100,
         bad: (postureDurations.bad / totalTimeTracked) * 100,
@@ -88,6 +93,7 @@ export const SensorDataProvider = ({ children }) => {
         <SensorDataContext.Provider value={{
             sensorData,
             postureStatus,
+            postureDurations: formattedPostureTimes,
             posturePercentages,
             elapsedTime: formatElapsedTime(totalTimeTracked),
             loading
@@ -100,7 +106,8 @@ export const SensorDataProvider = ({ children }) => {
 const formatElapsedTime = (seconds) => {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    const secs = Math.floor(seconds % 60);
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
 export default SensorDataContext;
