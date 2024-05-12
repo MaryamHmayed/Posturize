@@ -13,7 +13,7 @@ export const SensorDataProvider = ({ children }) => {
     });
     const [postureStatus, setPostureStatus] = useState('Normal');
     const [postureDurations, setPostureDurations] = useState({ good: 0, bad: 0, break: 0 });
-
+    const [totalTimeTracked, setTotalTimeTracked] = useState(0);
     const [loading, setLoading] = useState(true);
 
     const lastUpdateRef = useRef(Date.now());
@@ -22,7 +22,7 @@ export const SensorDataProvider = ({ children }) => {
         const timer = setInterval(() => {
             const now = Date.now();
             const elapsed = (now - lastUpdateRef.current) / 1000; // Time in seconds
-      
+            setTotalTimeTracked(prev => prev + elapsed);
             setPostureDurations(prev => ({
                 ...prev,
                 [postureStatus]: prev[postureStatus] + elapsed
