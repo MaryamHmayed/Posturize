@@ -30,8 +30,7 @@ const Tabs = ( Tabs = ({ initialRouteName })) => {
   return (
     <ConnectionProvider>
     
-       <Tab.Navigator
-
+    <Tab.Navigator
       initialRouteName="Setup"
       screenOptions={({ route }) => ({
         headerShown: false, 
@@ -68,17 +67,12 @@ const Tabs = ( Tabs = ({ initialRouteName })) => {
          
       })}
     >       
-   
-
-
       <Tab.Screen name="Home" component={DynamicHome} />
       <Tab.Screen name="PTs" component={PhysiotherapistsStack} />
       <Tab.Screen name="Setup" component={SetupScreen} />
       <Tab.Screen name="Progress" component={ProgressScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
       
-
-
     </Tab.Navigator>
     </ConnectionProvider>
   );

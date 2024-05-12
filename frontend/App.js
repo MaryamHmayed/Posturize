@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Tabs from './app/tabs/userTabs';
 import PhysioTabs from './app/tabs/physioTabs';
+import { SensorDataProvider } from './app/sensorDataContext';
 
 
 
@@ -57,10 +58,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       <UserProvider>
+        <SensorDataProvider>
         <NavigationContainer>
           <AppNavigator />
-          
         </NavigationContainer>
+        </SensorDataProvider>
       </UserProvider>
       <StatusBar style="auto" />
     </View>
