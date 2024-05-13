@@ -6,7 +6,7 @@ import TopRightCorner from '../assets/Vector-1.png';
 import BottomLeftCorner from '../assets/Vector-2.png';
 import BottomRightCorner from '../assets/Vector-3.png';
 import { Checkbox } from 'react-native-paper';
-import {registerUser} from './api';
+import {registerUser} from './registerAPI';
 import { useUser } from './userContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
