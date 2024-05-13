@@ -70,9 +70,16 @@ export const SensorDataProvider = ({ children }) => {
         return acc;
     }, {});
 
-    
+    const determinePosture = (values) => {
+        const sensors = [values.S0, values.S1, values.S2];
+        if (sensors.every(val => val < 20)) return 'break';
+        else if (sensors.some(val => val < 50 || val > 800)) return 'bad';
+        return 'good';
+    };
 
-  
+    const calculatePercentage = (duration, total) => {
+        return total > 0 ? ((duration / total * 100).toFixed(1)) : "0.0";
+    };
 
     const formatElapsedTime = (seconds) => {
         const hours = Math.floor(seconds / 3600);
