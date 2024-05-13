@@ -124,16 +124,17 @@ const styles = StyleSheet.create({
     
     card: {
         flexDirection: 'row',
-        marginVertical: 5,
+        marginVertical: 10,
         backgroundColor: '#2B2B2B',
         borderRadius: 10,
-        marginHorizontal: 10,
-        height:140
+        marginHorizontal: 12,
+        height:130
     },
     image: {
-        width: 120,
-        height: 140,
-        borderRadius: 10,
+        width: "40%",
+        height: "100%",
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius:10,
         marginRight: 15,
     },
     info: {
@@ -157,13 +158,13 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#FFA500',
-        padding: 5,
+        padding: 3,
         borderRadius: 3,
     },
     buttonText: {
         color: 'white',
         fontSize: 12,
-        paddingHorizontal: 12,
+        paddingHorizontal: 10,
         fontWeight: '500',
     },
     chatText: {

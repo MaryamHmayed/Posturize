@@ -70,7 +70,7 @@ const ProfileScreen = () => {
     });
   
     try {
-      const response = await axios.post('http://192.168.1.109:8000/api/pt/update_image', formData, {
+      const response = await apiInstance.post('/pt/update_image', formData, {
         headers: {
           'Authorization': `Bearer ${user.token}`,
           'Content-Type': 'multipart/form-data'
