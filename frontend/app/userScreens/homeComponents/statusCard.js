@@ -4,21 +4,19 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 
 
-const StatusCard = ({ title, time, imageUri }) => {
+const StatusCard = ({ title, time, imageUri, colors }) => {
     return (
         <View style={styles.container}>
-            
             <LinearGradient
-            colors={['#05A37E', '#04765B', '#04765B']} 
-            style={styles.background}>
-            <Image source={imageUri } style={styles.image} />
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.time}>{time}</Text>
+                colors={colors}
+                style={styles.background}>
+                <Image source={imageUri} style={styles.image} />
+                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.time}>{time}</Text>
             </LinearGradient>
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         borderRadius: 10,
