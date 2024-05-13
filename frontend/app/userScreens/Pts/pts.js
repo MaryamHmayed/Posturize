@@ -3,6 +3,7 @@ import { View, Text, Image, TextInput, StyleSheet, FlatList, TouchableOpacity, A
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { useUser } from '../../userContext';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';  
 
 const PhysiotherapistsScreen = () => {
     const navigation = useNavigation();
@@ -80,12 +81,17 @@ const PhysiotherapistsScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TextInput
-                style={styles.searchBar}
-                placeholder="Search..."
-                value={searchTerm}
-                onChangeText={setSearchTerm}
-            />
+             <View style={styles.searchContainer}>
+             <TouchableOpacity>
+                    <Icon name="magnify" size={24} color="grey" />
+                </TouchableOpacity>
+                <TextInput
+                    style={styles.searchBar}
+                    placeholder="Search..."
+                    value={searchTerm}
+                    onChangeText={setSearchTerm}
+                />
+            </View>
             {loading ? (
                 <ActivityIndicator size="large" color="#FFA500" />
             ) : (
@@ -106,26 +112,28 @@ const styles = StyleSheet.create({
         paddingTop: 60,
         paddingHorizontal: 20,
     },
-    searchBar: {
+    searchContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: '#FFFFFF',
         borderRadius: 25,
         padding: 3,
         margin: 10,
-        fontSize: 14,
     },
+    
     card: {
         flexDirection: 'row',
-        padding: 20,
         marginVertical: 5,
         backgroundColor: '#2B2B2B',
         borderRadius: 10,
         marginHorizontal: 10,
+        height:140
     },
     image: {
-        width: 70,
-        height: 70,
+        width: 120,
+        height: 140,
         borderRadius: 10,
-        marginRight: 10,
+        marginRight: 15,
     },
     info: {
         flex: 2,
@@ -154,7 +162,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontSize: 12,
-        paddingHorizontal: 10,
+        paddingHorizontal: 12,
         fontWeight: '500',
     },
     chatText: {
@@ -162,6 +170,7 @@ const styles = StyleSheet.create({
         padding: 5,
         textDecorationLine: 'underline',
         fontWeight: '300',
+        marginRight:5
     },
 });
 
