@@ -63,6 +63,13 @@ export const SensorDataProvider = ({ children }) => {
         });
     };
 
+    const updatePercentages = () => {
+        setPosturePercentages({
+            good: calculatePercentage(postureDurations.good, totalTimeTracked),
+            bad: calculatePercentage(postureDurations.bad, totalTimeTracked),
+            break: calculatePercentage(postureDurations.break, totalTimeTracked),
+        });
+    };
 
     const parseSensorValues = (dataString) => dataString.split(', ').reduce((acc, current) => {
         const [key, value] = current.split(': ');
