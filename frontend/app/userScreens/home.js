@@ -5,7 +5,7 @@ import StatusCard from './homeComponents/statusCard';
 import { useSensorData } from '../sensorDataContext';
 
 const HomeScreen = () => {
-    const { elapsedTime, postureStatus, posturePercentages } = useSensorData();
+    const { elapsedTime, postureStatus, posturePercentages ,postureDurations} = useSensorData();
 
     const statusInfo = {
         title: `Your current posture is ${postureStatus}, keep it up!`,
@@ -14,16 +14,16 @@ const HomeScreen = () => {
     };
 
     const data = [
-        { title: "Good posture", percentage: posturePercentages.good.toFixed(1), time: "Calculated from context" },
-        { title: "Bad posture", percentage: posturePercentages.bad.toFixed(1), time: "Calculated from context" },
-        { title: "Break time", percentage: posturePercentages.break.toFixed(1), time: "Calculated from context" },
+        { title: "Good posture", percentage: posturePercentages.good.toFixed(1), time: postureDurations.good },
+        { title: "Bad posture", percentage: posturePercentages.bad.toFixed(1), time: postureDurations.bad },
+        { title: "Break time", percentage: posturePercentages.break.toFixed(1), time: postureDurations.break },
     ];
 
     return (
         <View style={styles.container}>
             <StatusCard title={statusInfo.title} time={statusInfo.time} imageUri={statusInfo.imageUri} />
             <View>
-                <Text style={styles.session}>Today's Session</Text>
+                <Text style={styles.session}>   Today's Session</Text>
                 <Text style={[styles.trackedHrs, styles.totalHours]}>{elapsedTime}</Text>
                 <Text style={styles.trackedHrs}>hours tracked</Text>
             </View>
