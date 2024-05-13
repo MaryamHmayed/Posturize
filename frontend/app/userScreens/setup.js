@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { useUser } from '../userContext';
 import { useConnection } from '../connectionContext';
+import { apiInstance } from '../route';
 
 const SetupScreen = () => {
   const [chairName, setChairName] = useState('');
@@ -16,7 +17,7 @@ const SetupScreen = () => {
 
   const handleAddChair = async () => {
     try {
-      const response = await axios.post('http://192.168.1.109:8000/api/add_chair', {
+      const response = await apiInstance.post('add_chair', {
         chair_name: chairName, 
       }, {
         headers: {

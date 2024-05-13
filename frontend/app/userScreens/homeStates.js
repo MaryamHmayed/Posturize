@@ -1,7 +1,7 @@
 import React from 'react';
 import { useConnection } from '../connectionContext';
 import HomeScreen from './home';
-import EmptyHomeScreen from '../emptyHome';
+import EmptyHomeScreen from './emptyHome';
 
 
 const DynamicHome = () => {

@@ -23,7 +23,7 @@ const LoginScreen = () => {
 
     const loginUser = async (email, password) => {
       try {
-        const response = apiInstance.post('/login', { email, password });
+        const response = await apiInstance.post('/login', { email, password });
         return response.data;
 
       } catch (error) {

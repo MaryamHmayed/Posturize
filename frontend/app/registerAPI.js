@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-
-
 export const registerUser = async (userData) => {
     
     try {

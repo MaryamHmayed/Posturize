@@ -10,7 +10,7 @@ const EmptyHomeScreen = () => {
             <View  style={styles.smallerContainer}>
             <Text style={styles.headerText}>Connect your chair to start the session</Text>
             <Image 
-                source={require('../assets/sideChair.png')}
+                source={require('../../assets/sideChair.png')}
                 style={styles.image}
             />
             <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('Setup')}}>
