@@ -1,8 +1,3 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import DataCard from "./homeComponents/dataCard"
-import StatusCard from './homeComponents/statusCard';
-import { useSensorData } from '../sensorDataContext';
 
 const HomeScreen = () => {
     const { elapsedTime, postureStatus, posturePercentages ,postureDurations,totalTimeTracked} = useSensorData();
@@ -25,7 +20,6 @@ const HomeScreen = () => {
     };
 
     const { colors, imageUri, title } = postureAttributes[postureStatus] || postureAttributes['good'];
-
 
     const statusInfo = {
         title,
@@ -52,12 +46,16 @@ const HomeScreen = () => {
         },
     ];
   
-
     return (
         <View style={styles.container}>
-            <StatusCard title={statusInfo.title} time={statusInfo.time} imageUri={statusInfo.imageUri} />
+            <StatusCard 
+                title={statusInfo.title} 
+                time={statusInfo.time} 
+                imageUri={statusInfo.imageUri} 
+                colors={colors}
+            />
             <View>
-                <Text style={styles.session}>Today's Session</Text>
+                <Text style={styles.session}> Today's Session</Text>
                 <Text style={[styles.trackedHrs, styles.totalHours]}>{elapsedTime}</Text>
                 <Text style={styles.trackedHrs}>hours tracked</Text>
             </View>
@@ -99,3 +97,4 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
+
