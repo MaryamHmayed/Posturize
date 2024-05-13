@@ -5,25 +5,32 @@ import StatusCard from './homeComponents/statusCard';
 import { useSensorData } from '../sensorDataContext';
 
 const HomeScreen = () => {
-    const { elapsedTime, postureStatus, posturePercentages ,postureDurations} = useSensorData();
-
-    const statusInfo = {
-        title: `Your current posture is ${postureStatus}, keep it up!`,
-        time: `You've been sitting for ${elapsedTime}`,
-        imageUri: require('../../assets/home-imgs/sitting-posture-at-desk_1__2_-removebg-preview.png')
+    const { elapsedTime, postureStatus, posturePercentages ,postureDurations,totalTimeTracked} = useSensorData();
+    const postureAttributes = {
+        good: {
+            colors: ['#05A37E', '#04765B','#04765B'],
+            imageUri: require('../../assets/home-imgs/sitting-posture-at-desk 1.png'),
+            title: 'Your current posture is flawless, keep it up !',
+        },
+        bad: {
+            colors: ['#FE9120', '#985713', ],
+            imageUri: require('../../assets/home-imgs/sitting-posture-at-desk-cropped-removebg-preview (1) 1.png'),
+            title: 'Your back is not liking this :(',
+        },
+        break: {
+            colors: ['#02657C', '#026E87', '#027E9A'],
+            imageUri: require('../../assets/home-imgs/sitting-posture-at-desk 1.png'),
+            title: 'Break time!',
+        },
     };
 
-    const data = [
-        { title: "Good posture", percentage: posturePercentages.good.toFixed(1), time: postureDurations.good },
-        { title: "Bad posture", percentage: posturePercentages.bad.toFixed(1), time: postureDurations.bad },
-        { title: "Break time", percentage: posturePercentages.break.toFixed(1), time: postureDurations.break },
-    ];
+    const { colors, imageUri, title } = postureAttributes[postureStatus] || postureAttributes['good'];
 
     return (
         <View style={styles.container}>
             <StatusCard title={statusInfo.title} time={statusInfo.time} imageUri={statusInfo.imageUri} />
             <View>
-                <Text style={styles.session}>   Today's Session</Text>
+                <Text style={styles.session}>Today's Session</Text>
                 <Text style={[styles.trackedHrs, styles.totalHours]}>{elapsedTime}</Text>
                 <Text style={styles.trackedHrs}>hours tracked</Text>
             </View>
