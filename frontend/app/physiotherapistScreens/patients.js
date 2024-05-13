@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Image, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
 import { useUser } from '../userContext';
+import { apiInstance } from '../route';
 
 const PatientsScreen = () => {
     const navigation = useNavigation();
@@ -14,7 +14,7 @@ const PatientsScreen = () => {
         const fetchPatients = async () => {
             try {
                 console.log(`Fetching patients with user token: ${user.token}`);
-                const response = await axios.get('http://192.168.1.109:8000/api/pt/patients', {
+                const response = await apiInstance.get('/pt/patients', {
                     headers: {
                         'Authorization': `Bearer ${user.token}`,
                     },

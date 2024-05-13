@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { useUser } from '../../userContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';  
+import { apiInstance } from '../../route';
 
 const PhysiotherapistsScreen = () => {
     const navigation = useNavigation();
@@ -20,7 +21,7 @@ const PhysiotherapistsScreen = () => {
                     console.error('No token found!');
                     return;
                 }
-                const response = await axios.get('http://192.168.1.109:8000/api/PTs', {
+                const response = await apiInstance.get('/PTs', {
                     headers: {
                         'Authorization': `Bearer ${user.token}`,
                     },

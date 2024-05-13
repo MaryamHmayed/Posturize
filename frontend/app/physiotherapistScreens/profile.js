@@ -6,6 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
 import useLogout from '../logout';
 import { useUser } from '../userContext';
+import { apiInstance } from '../route';
 
 const ProfileScreen = () => {
   const [bio, setBio] = useState('');
@@ -18,7 +19,7 @@ const ProfileScreen = () => {
 
   const fetchProfileData = async () => {
     try {
-      const response = await axios.get('http://192.168.1.109:8000/api/pt/profile', {
+      const response = await apiInstance.get('/pt/profile', {
         headers: {
           'Authorization': `Bearer ${user.token}`,
         }
