@@ -26,6 +26,33 @@ const HomeScreen = () => {
 
     const { colors, imageUri, title } = postureAttributes[postureStatus] || postureAttributes['good'];
 
+
+    const statusInfo = {
+        title,
+        time: `You've been sitting for ${elapsedTime}`,
+        imageUri,
+    };
+
+
+    const data = [
+        {
+            title: "Good posture",
+            percentage: Number(posturePercentages.good).toFixed(1),
+            time: postureDurations.good
+        },
+        {
+            title: "Bad posture",
+            percentage: Number(posturePercentages.bad).toFixed(1),
+            time: postureDurations.bad
+        },
+        {
+            title: "Break time",
+            percentage: Number(posturePercentages.break).toFixed(1),
+            time: postureDurations.break
+        },
+    ];
+  
+
     return (
         <View style={styles.container}>
             <StatusCard title={statusInfo.title} time={statusInfo.time} imageUri={statusInfo.imageUri} />
