@@ -38,7 +38,17 @@ export const SensorDataProvider = ({ children }) => {
         }
     };
 
-   
+    const updateDurations = () => {
+        const now = Date.now();
+        const elapsed = (now - lastUpdateRef.current) / 1000;
+        setTotalTimeTracked(prev => prev + elapsed);
+        setPostureDurations(prev => ({
+            ...prev,
+            [postureStatus]: (prev[postureStatus] || 0) + elapsed
+        }));
+        lastUpdateRef.current = now;
+        updatePercentages();
+    };
 
     const updatePostureData = (last_value, updated_at) => {
         const values = parseSensorValues(last_value);
