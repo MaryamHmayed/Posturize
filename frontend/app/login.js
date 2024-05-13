@@ -6,10 +6,9 @@ import TopRightCorner from '../assets/Vector-1.png';
 import BottomLeftCorner from '../assets/Vector-2.png';
 import BottomRightCorner from '../assets/Vector-3.png';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from './userContext';
-
+import { apiInstance } from './route';
 
 const LoginScreen = () => {
 
@@ -24,7 +23,7 @@ const LoginScreen = () => {
 
     const loginUser = async (email, password) => {
       try {
-        const response = await axios.post('http://192.168.1.109:8000/api/login', { email, password });
+        const response = apiInstance.post('/login', { email, password });
         return response.data;
 
       } catch (error) {

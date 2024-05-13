@@ -1,3 +1,8 @@
+import React from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import DataCard from "./homeComponents/dataCard"
+import StatusCard from './homeComponents/statusCard';
+import { useSensorData } from '../sensorDataContext';
 
 const HomeScreen = () => {
     const { elapsedTime, postureStatus, posturePercentages ,postureDurations,totalTimeTracked} = useSensorData();
