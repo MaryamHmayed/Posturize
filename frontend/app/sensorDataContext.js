@@ -74,14 +74,22 @@ export const SensorDataProvider = ({ children }) => {
 
   
 
-  
+    const formatElapsedTime = (seconds) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    };
    
     return (
         <SensorDataContext.Provider value={{
             sensorData,
             postureStatus,
-            
-           
+            postureDurations: {
+                good: formatElapsedTime(postureDurations.good),
+                bad: formatElapsedTime(postureDurations.bad),
+                break: formatElapsedTime(postureDurations.break)
+            },
+            posturePercentages,
             elapsedTime: formatElapsedTime(totalTimeTracked),
             
         }}>
