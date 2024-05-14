@@ -3,6 +3,10 @@ import { View, StyleSheet, Text } from 'react-native';
 import DataCard from "./homeComponents/dataCard"
 import StatusCard from './homeComponents/statusCard';
 import { useSensorData } from '../sensorDataContext';
+import * as Notifications from 'expo-notifications';
+import { useState,useEffect } from 'react';
+import { registerForPushNotificationsAsync, sendNotification } from '../notification'
+
 
 const HomeScreen = () => {
     const { elapsedTime, postureStatus, posturePercentages ,postureDurations,totalTimeTracked} = useSensorData();
@@ -28,7 +32,7 @@ const HomeScreen = () => {
 
     const statusInfo = {
         title,
-        time: `You've been sitting for ${elapsedTime}`,
+        time: `You've been sitting for ${elapsedTime} hours`,
         imageUri,
     };
 
