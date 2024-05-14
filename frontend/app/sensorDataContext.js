@@ -40,7 +40,7 @@ export const SensorDataProvider = ({ children }) => {
 
     const updateDurations = () => {
         const now = Date.now();
-        const elapsed = (now - lastUpdateRef.current) / 1000;
+        const elapsed = (now - lastUpdateRef.current) / 1000; 
         setTotalTimeTracked(prev => prev + elapsed);
         setPostureDurations(prev => ({
             ...prev,
@@ -85,7 +85,7 @@ export const SensorDataProvider = ({ children }) => {
     };
 
     const calculatePercentage = (duration, total) => {
-        return total > 0 ? ((duration / total * 100).toFixed(1)) : "0.0";
+        return total > 0 ? ((duration / total) * 100).toFixed(1) : "0.0";
     };
 
     const formatElapsedTime = (seconds) => {
@@ -93,7 +93,7 @@ export const SensorDataProvider = ({ children }) => {
         const minutes = Math.floor((seconds % 3600) / 60);
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
     };
-   
+
     return (
         <SensorDataContext.Provider value={{
             sensorData,
@@ -105,7 +105,6 @@ export const SensorDataProvider = ({ children }) => {
             },
             posturePercentages,
             elapsedTime: formatElapsedTime(totalTimeTracked),
-            
         }}>
             {children}
         </SensorDataContext.Provider>
