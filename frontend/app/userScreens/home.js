@@ -46,7 +46,7 @@ const HomeScreen = () => {
             } else {
                 const now = new Date();
                 const diff = now - badPostureStart;
-                if (diff >= 15 * 60 * 1000) {
+                if (diff >= 1 * 60 * 1000) {
                     sendNotification();
                     setBadPostureStart(null); 
                 }
