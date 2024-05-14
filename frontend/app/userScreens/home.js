@@ -19,6 +19,28 @@ Notifications.setNotificationHandler({
 
 const HomeScreen = () => {
     const { elapsedTime, postureStatus, posturePercentages ,postureDurations,totalTimeTracked} = useSensorData();
+
+    const notificationListener = useRef();
+    const responseListener = useRef();
+    const [notifications, setNotifications] = useState([]);
+    const [badPostureStart, setBadPostureStart] = useState(null)
+
+    useEffect(() => {
+        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+            console.log('Notification received:', notification);
+        });
+
+        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+            console.log('Notification response received:', response);
+        });
+
+        return () => {
+            Notifications.removeNotificationSubscription(notificationListener.current);
+            Notifications.removeNotificationSubscription(responseListener.current);
+        };
+    }, []);
+
+    
     const postureAttributes = {
         good: {
             colors: ['#05A37E', '#04765B','#04765B'],
