@@ -56,7 +56,22 @@ const HomeScreen = () => {
         }
     }, [postureStatus]);
 
-    
+    const sendNotification = async () => {
+        const notificationContent = {
+            title: 'Posture Alert!',
+            body: 'Your posture has been bad for more than 15 minutes. Please adjust!',
+            data: { userId: user.id, timestamp: new Date() },
+        };
+
+        await Notifications.scheduleNotificationAsync({
+            content: notificationContent,
+            trigger: null,
+        });
+
+        addNotification(notificationContent); 
+    };
+
+   
 
     const postureAttributes = {
         good: {
