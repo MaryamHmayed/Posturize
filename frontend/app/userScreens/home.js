@@ -1,10 +1,21 @@
-import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import DataCard from "./homeComponents/dataCard"
 import StatusCard from './homeComponents/statusCard';
 import { useSensorData } from '../sensorDataContext';
+import * as Notifications from 'expo-notifications';
+import * as Permissions from 'expo-permissions';
+import Constants from 'expo-constants';
+import React, { useEffect, useRef, useState, useContext } from 'react';
+import { useUser } from '../userContext';
 
 
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+    }),
+});
 
 const HomeScreen = () => {
     const { elapsedTime, postureStatus, posturePercentages ,postureDurations,totalTimeTracked} = useSensorData();
