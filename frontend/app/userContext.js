@@ -17,8 +17,20 @@ export const UserProvider = ({ children }) => {
         setUser((prevUser) => ({ ...prevUser, ...updates }));
     };
 
+
+    const [notifications, setNotifications] = useState([]);
+
+    const addNotification = (notification) => {
+        setNotifications((prevNotifications) => [...prevNotifications, notification]);
+    };
+
+    const clearNotifications = () => {
+        setNotifications([]);
+    };
+
+
     return (
-        <UserContext.Provider value={{ user, updateUser }}>
+        <UserContext.Provider value={{ user, updateUser, notifications, addNotification, clearNotifications  }}>
             {children}
         </UserContext.Provider>
     );
