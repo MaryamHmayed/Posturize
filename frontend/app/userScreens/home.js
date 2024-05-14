@@ -39,6 +39,25 @@ const HomeScreen = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (postureStatus === 'bad') {
+            if (!badPostureStart) {
+                setBadPostureStart(new Date());
+            } else {
+                const now = new Date();
+                const diff = now - badPostureStart;
+                if (diff >= 15 * 60 * 1000) {
+                    sendNotification();
+                    setBadPostureStart(null); 
+                }
+            }
+        } else {
+            setBadPostureStart(null);
+        }
+    }, [postureStatus]);
+
+    
+
     const postureAttributes = {
         good: {
             colors: ['#05A37E', '#04765B', '#04765B'],
