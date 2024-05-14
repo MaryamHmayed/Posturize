@@ -3,9 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import DataCard from "./homeComponents/dataCard"
 import StatusCard from './homeComponents/statusCard';
 import { useSensorData } from '../sensorDataContext';
-import * as Notifications from 'expo-notifications';
-import { useState,useEffect } from 'react';
-import { registerForPushNotificationsAsync, sendNotification } from '../notification'
+
 
 
 const HomeScreen = () => {
