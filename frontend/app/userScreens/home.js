@@ -45,16 +45,17 @@ const HomeScreen = () => {
                 setBadPostureStart(new Date());
             } else {
                 const now = new Date();
-                const diff = now - badPostureStart;
-                if (diff >= 1 * 60 * 1000) {
+                const diff = now.getTime() - badPostureStart.getTime(); 
+                if (diff >= 60000) { 
                     sendNotification();
                     setBadPostureStart(null); 
+                    
                 }
             }
         } else {
             setBadPostureStart(null);
         }
-    }, [postureStatus]);
+    }, [postureStatus, badPostureStart]);
 
     const sendNotification = async () => {
         const notificationContent = {

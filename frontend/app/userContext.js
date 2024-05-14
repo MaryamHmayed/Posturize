@@ -4,19 +4,18 @@ const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({
-        id : null,
+        id: null,
         email: '',
         username: '',
         password: '',
         token: null,
-        role_id: null,  
-        error: '',      
+        role_id: null,
+        error: '',
     });
 
     const updateUser = (updates) => {
         setUser((prevUser) => ({ ...prevUser, ...updates }));
     };
-
 
     const [notifications, setNotifications] = useState([]);
 
@@ -28,12 +27,13 @@ export const UserProvider = ({ children }) => {
         setNotifications([]);
     };
 
-
     return (
-        <UserContext.Provider value={{ user, updateUser, notifications, addNotification, clearNotifications  }}>
+        <UserContext.Provider value={{ user, updateUser, notifications, addNotification, clearNotifications }}>
             {children}
         </UserContext.Provider>
     );
 };
 
-export const useUser = () => useContext(UserContext);
+export const useUser = () => {
+    return useContext(UserContext);
+};
