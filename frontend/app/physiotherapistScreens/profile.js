@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { TextInput } from "react-native-paper";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as ImagePicker from 'expo-image-picker';
-import axios from 'axios';
 import useLogout from '../logout';
 import { useUser } from '../userContext';
 import { apiInstance } from '../route';
@@ -55,17 +54,16 @@ const ProfileScreen = () => {
     });
 
     if (!result.canceled) {
-      const selectedUri = result.assets[0].uri; 
-      setProfileImage(selectedUri);
-      uploadProfileImage(selectedUri);
+      setProfileImage(result.assets[0].uri);  
+      uploadProfileImage(result.assets[0].uri); 
     }
-  };
+};
 
-  const uploadProfileImage = async (uri) => {
+const uploadProfileImage = async (uri) => {
     const formData = new FormData();
     formData.append('profile_image', {
-      uri,
-      type: 'image/jpeg/png/gif', 
+      uri: Platform.OS === 'android' ? uri : uri.replace('file://', ''),  
+      type: 'image/jpeg/png', 
       name: 'profile.jpg'
     });
   
@@ -73,14 +71,12 @@ const ProfileScreen = () => {
       const response = await apiInstance.post('/pt/update_image', formData, {
         headers: {
           'Authorization': `Bearer ${user.token}`,
-          'Content-Type': 'multipart/form-data'
         }
       });
   
       if (response.status === 200) {
         const updatedProfilePath = `http://192.168.1.109:8000/storage/${response.data.path}`;
         setProfileImage(updatedProfilePath);
-  
         alert('Profile image uploaded successfully');
       } else {
         alert(`Failed to upload image: Status code ${response.status}`);
@@ -89,7 +85,8 @@ const ProfileScreen = () => {
       console.error('Image upload failed:', error);
       alert('Image upload failed. Please try again.');
     }
-  };
+};
+
 
   return (
     <View style={styles.container}>
@@ -139,7 +136,8 @@ const ProfileScreen = () => {
       </TouchableOpacity>
     </View>
   );
-};
+}
+
 
 const styles = StyleSheet.create({
   container: {
