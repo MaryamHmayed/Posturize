@@ -28,7 +28,12 @@ const RecentChatsScreen = () => {
        
     }, []);
 
-
+    return (
+        <View style={styles.container}>
+            <ActivityIndicator size="large" color="#0000ff" />
+            <Text>Loading your most recent chat...</Text>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
