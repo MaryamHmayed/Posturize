@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 50,
     paddingHorizontal: 40,
-    backgroundColor: "black",
+    backgroundColor: "#1D1C1C",
   },
   headerTitle: {
     fontSize: 20,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   profileImageContainer: {
-    backgroundColor: '#000',
+    backgroundColor: '#1D1C1C',
     height: 60,
   },
   profileImage: {
