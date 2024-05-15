@@ -84,7 +84,7 @@ const PhysiotherapistsScreen = () => {
         <View style={styles.container}>
              <View style={styles.searchContainer}>
              <TouchableOpacity>
-                    <Icon name="magnify" size={24} color="grey" />
+                    <Icon name="magnify" size={24}  color="grey" />
                 </TouchableOpacity>
                 <TextInput
                     style={styles.searchBar}

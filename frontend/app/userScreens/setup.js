@@ -34,8 +34,7 @@ const SetupScreen = () => {
       Alert.alert("Error", `Failed to add chair: ${error.response.data.message || error.message}`);
     }
   };
-  
-  //I have to a make here the code from the backend
+  // verification for arduino
   const verifyCode = () => {
     if (code === "1234") {  
       console.log('Code verified, adding chair:', chairName);
