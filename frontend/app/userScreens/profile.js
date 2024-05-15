@@ -133,7 +133,7 @@ const ProfileScreen = () => {
     },
 
     imageContainer: {
-      backgroundColor: '#000', 
+      backgroundColor: '#1D1C1C', 
     
       height:160
       
