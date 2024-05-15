@@ -9,10 +9,12 @@ const RecentChatsScreen = () => {
     useEffect(() => {
         const loadLastAccessedChat = async () => {
             try {
+                console.log('Attempting to load last accessed chat...');
                 const lastChatData = await AsyncStorage.getItem('lastChat');
+                console.log('Last Chat Data:', lastChatData);
                 if (lastChatData !== null) {
                     const { chatRoomId, username } = JSON.parse(lastChatData);
-                    console.log('Loaded last accessed chat:', { chatRoomId, username }); 
+                    console.log('Loaded last accessed chat:', { chatRoomId, username });
                     navigation.navigate('Chat', {
                         chatRoomId: chatRoomId,
                         recipientName: username,
