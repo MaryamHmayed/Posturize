@@ -18,6 +18,11 @@ class Chair extends Model
         
     ];
 
+    protected $casts = [
+        'postureDurations' => 'array',
+        'posturePercentages' => 'array',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
