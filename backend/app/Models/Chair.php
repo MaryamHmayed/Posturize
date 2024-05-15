@@ -12,6 +12,9 @@ class Chair extends Model
 
     protected $fillable = [
         'chair_name',
+        'totalTimeTracked',
+        'postureDurations',
+        'posturePercentages',
         
     ];
 
