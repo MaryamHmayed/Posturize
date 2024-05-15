@@ -99,7 +99,7 @@ const LoginScreen = () => {
       <View style={styles.signupContainer}>
         <Text style={styles.signupText}>Don't have an account? </Text>
         <Pressable onPress={() => { navigation.navigate('Signup')}}>
-          <Text style={styles.signupLink}>Sign up</Text>
+          <Text style={styles.signupLink}>Sign Up</Text>
         </Pressable>
       </View>
 
