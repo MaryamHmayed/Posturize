@@ -35,12 +35,13 @@ const PatientsScreen = () => {
 
 
     const saveLastAccessedChat = async (chatRoomId, username) => {
-    try {
-        await AsyncStorage.setItem('lastChat', JSON.stringify({ chatRoomId, username }));
-    } catch (error) {
-        console.error('Failed to save the last accessed chat', error);
-    }
-};
+        try {
+            await AsyncStorage.setItem('lastChat', JSON.stringify({ chatRoomId, username }));
+            console.log('Saved last accessed chat:', { chatRoomId, username }); 
+        } catch (error) {
+            console.error('Failed to save the last accessed chat', error);
+        }
+    };
 
     const generateChatRoomId = (user1Id, user2Id) => {
   
@@ -63,7 +64,8 @@ const PatientsScreen = () => {
   
       const chatRoomId = generateChatRoomId(user.id, patient.id);
       console.log('Navigating to chat:', { chatRoomId, recipientName: patient.username });
-  
+      saveLastAccessedChat(chatRoomId, patient.username);
+
       navigation.navigate('Chat', {
           chatRoomId: chatRoomId,
           recipientName: patient.username,
