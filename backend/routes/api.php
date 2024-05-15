@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PhysiotherapistController;
+use App\Http\Controllers\SensorsController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\PhysiotherapistMiddleware;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ Route::middleware(['auth:api'])
     -> group(function(){
         Route::get('PTs', [UserController::class, 'getAllPhysiotherapists']);
         Route::post('add_chair', [UserController::class, 'addChair']);
+        Route::post('store_data',[SensorsController::class,'store']);
 
 });
 
