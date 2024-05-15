@@ -18,7 +18,22 @@ class SensorsController extends Controller
         'postureDurations' => 'required|array',
         'posturePercentages' => 'required|array',
     ]);
+    $chair = Chair::where('user_id', $user->id)->first();
+
+    if ($chair) {
+        $chair->update([
+            'date' => $validatedData['date'],
+            'totalTimeTracked' => $validatedData['totalTimeTracked'],
+            'postureDurations' => $validatedData['postureDurations'],
+            'posturePercentages' => $validatedData['posturePercentages'],
+        ]);
+
+        return response()->json($chair, 200);
+    } else {
+        return response()->json(['message' => 'Chair record not found'], 404);
+    }
 }
+
 
 
 
