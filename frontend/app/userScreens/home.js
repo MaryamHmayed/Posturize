@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useUser } from '../userContext';
 import Constants from 'expo-constants';
 
+// Set notification handler
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
         shouldShowAlert: true,
@@ -23,7 +24,9 @@ const HomeScreen = () => {
     const [badPostureStart, setBadPostureStart] = useState(null);
     
     useEffect(() => {
-        registerForPushNotificationsAsync();
+        registerForPushNotificationsAsync().then(token => {
+            console.log("Push notification token:", token);
+        });
 
         notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
             console.log('Notification received:', notification);
@@ -40,25 +43,26 @@ const HomeScreen = () => {
     }, []);
 
     useEffect(() => {
-    if (postureStatus === 'bad') {
-        if (!badPostureStart) {
-            setBadPostureStart(new Date());
-        } else {
-            const now = new Date();
-            const diff = now.getTime() - badPostureStart.getTime(); 
-            if (diff >= 60000) { 
-                sendNotification();
-                setBadPostureStart(null); 
+        if (postureStatus === 'bad') {
+            if (!badPostureStart) {
+                setBadPostureStart(new Date());
+            } else {
+                const now = new Date();
+                const diff = now.getTime() - badPostureStart.getTime();
+                if (diff >= 60000) {  
+                    sendNotification();
+                    setBadPostureStart(null);
+                }
             }
+        } else {
+            setBadPostureStart(null);
         }
-    } else {
-        setBadPostureStart(null);
-    }
-}, [postureStatus, badPostureStart]);
+    }, [postureStatus, badPostureStart]);
+
     const sendNotification = async () => {
         const notificationContent = {
             title: 'Posture Alert!',
-            body: 'Your posture has been bad for more than 15 minutes. Please adjust!',
+            body: 'Your posture has been bad for more than 15 minutes. Please adjust it!',
             data: { userId: user.id, timestamp: new Date() },
         };
 
@@ -67,27 +71,23 @@ const HomeScreen = () => {
             trigger: null,
         });
 
-        addNotification(notificationContent); 
+        addNotification(notificationContent);
     };
 
     const registerForPushNotificationsAsync = async () => {
-        let token;
-        if (Constants.isDevice) {
-            const { status: existingStatus } = await Notifications.getPermissionsAsync();
-            let finalStatus = existingStatus;
-            if (existingStatus !== 'granted') {
-                const { status } = await Notifications.requestPermissionsAsync();
-                finalStatus = status;
-            }
-            if (finalStatus !== 'granted') {
-                Alert.alert('Failed to get push token for push notification!');
-                return;
-            }
-            token = (await Notifications.getExpoPushTokenAsync()).data;
-            console.log('Expo push token:', token);
-        } else {
-            Alert.alert('Must use physical device for Push Notifications');
+        if (!Constants.isDevice) {
+            Alert.alert('Device Requirement', 'Must use physical device for Push Notifications');
+            return null;
         }
+
+        const { status } = await Notifications.requestPermissionsAsync();
+        if (status !== 'granted') {
+            Alert.alert('Notification Permission', 'Failed to get push token for push notification because permission was not granted.');
+            return null;
+        }
+        
+        const token = (await Notifications.getExpoPushTokenAsync()).data;
+        console.log('Expo push token:', token);
 
         if (Platform.OS === 'android') {
             Notifications.setNotificationChannelAsync('default', {
@@ -100,6 +100,7 @@ const HomeScreen = () => {
 
         return token;
     };
+
 
     const postureAttributes = {
         good: {
