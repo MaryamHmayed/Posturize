@@ -25,7 +25,7 @@ const RecentChatsScreen = () => {
             }
         };
     
-       
+        loadLastAccessedChat();
     }, []);
 
     return (
