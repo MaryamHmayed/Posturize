@@ -15,7 +15,7 @@ export const SensorDataProvider = ({ children }) => {
     const lastUpdateRef = useRef(Date.now());
 
     useEffect(() => {
-        interval = setInterval(fetchSensorData, 10000);
+        const  interval = setInterval(fetchSensorData, 10000);
         return () => clearInterval(interval);
     }, []);
 

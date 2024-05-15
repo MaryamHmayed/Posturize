@@ -40,23 +40,21 @@ const HomeScreen = () => {
     }, []);
 
     useEffect(() => {
-        if (postureStatus === 'bad') {
-            if (!badPostureStart) {
-                setBadPostureStart(new Date());
-            } else {
-                const now = new Date();
-                const diff = now.getTime() - badPostureStart.getTime(); 
-                if (diff >= 60000) { 
-                    sendNotification();
-                    setBadPostureStart(null); 
-                    
-                }
-            }
+    if (postureStatus === 'bad') {
+        if (!badPostureStart) {
+            setBadPostureStart(new Date());
         } else {
-            setBadPostureStart(null);
+            const now = new Date();
+            const diff = now.getTime() - badPostureStart.getTime(); 
+            if (diff >= 60000) { 
+                sendNotification();
+                setBadPostureStart(null); 
+            }
         }
-    }, [postureStatus, badPostureStart]);
-
+    } else {
+        setBadPostureStart(null);
+    }
+}, [postureStatus, badPostureStart]);
     const sendNotification = async () => {
         const notificationContent = {
             title: 'Posture Alert!',
