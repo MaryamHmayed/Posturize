@@ -3,6 +3,7 @@ import { Image, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react
 import { useNavigation } from '@react-navigation/native';
 import { useUser } from '../userContext';
 import { apiInstance } from '../route';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PatientsScreen = () => {
     const navigation = useNavigation();
@@ -31,6 +32,15 @@ const PatientsScreen = () => {
             fetchPatients();
         }
     }, [user.token]);
+
+
+    const saveLastAccessedChat = async (chatRoomId, username) => {
+    try {
+        await AsyncStorage.setItem('lastChat', JSON.stringify({ chatRoomId, username }));
+    } catch (error) {
+        console.error('Failed to save the last accessed chat', error);
+    }
+};
 
     const generateChatRoomId = (user1Id, user2Id) => {
   
