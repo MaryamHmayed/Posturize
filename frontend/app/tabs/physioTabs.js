@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ConversationsScreen from '../physiotherapistScreens/chat';
 import ProfileScreen from '../physiotherapistScreens/profile';
 import PatientsStack from "../physiotherapistScreens/patientsStack";
+import RecentChatsScreen from '../physiotherapistScreens/chat';
+import ChatsStack from '../physiotherapistScreens/chatsStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -38,7 +40,7 @@ function PhysioTabs() {
           case 'Patients':
             iconName = require('../../assets/patients.png');
             break;
-          case 'Chat':
+          case 'Chats':
             iconName = require('../../assets/chats.png');
             break;
           case 'Profile':
@@ -57,7 +59,7 @@ function PhysioTabs() {
     })}
   >
       <Tab.Screen name="Patients" component={PatientsStack} />
-      <Tab.Screen name="Chat" component={ConversationsScreen} />
+      <Tab.Screen name="Chats" component={ChatsStack} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
