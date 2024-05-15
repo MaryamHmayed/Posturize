@@ -72,7 +72,7 @@ const SetupScreen = () => {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Enter Verification Code:</Text>
+            <Text style={styles.modalText}>Enter Verification Code</Text>
             <TextInput
               style={styles.modalInput}
               onChangeText={setCode}
@@ -80,7 +80,7 @@ const SetupScreen = () => {
               placeholder="Code"
               keyboardType="numeric"
             />
-            <TouchableOpacity style={styles.button} onPress={verifyCode}>
+            <TouchableOpacity style={styles.verifybutton} onPress={verifyCode}>
               <Text style={styles.buttonText}>Verify</Text>
             </TouchableOpacity>
           </View>
@@ -137,6 +137,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
+  },
+  verifybutton:{
+    backgroundColor: '#FFA500',
+    padding: 10,
+    borderRadius:25
   },
   modalView: {
     margin: 20,
