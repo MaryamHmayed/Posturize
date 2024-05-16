@@ -191,11 +191,6 @@ const HomeScreen = () => {
   
     return (
         <View style={styles.container}>
-             {/* <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.navigate('notifications')}>
-                    <Icon name="bell" size={30} color="white" />
-                </TouchableOpacity>
-            </View> */}
             <StatusCard 
                 title={statusInfo.title} 
                 time={statusInfo.time} 
