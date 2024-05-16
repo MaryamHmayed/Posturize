@@ -22,6 +22,8 @@ Route::middleware(['auth:api'])
         Route::get('PTs', [UserController::class, 'getAllPhysiotherapists']);
         Route::post('add_chair', [UserController::class, 'addChair']);
         Route::post('store_data',[SensorsController::class,'store']);
+        Route::get('get_data',[SensorsController::class,'getPostureData']);
+
 
 });
 
