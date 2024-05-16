@@ -52,7 +52,6 @@ const ProgressScreen = () => {
         if (!data || !selectedDate) {
             return <Text style={styles.noDataText}>Select a date to see posture data</Text>;
         }
-
         const responseDate = data.updated_at.split('T')[0];
 
         if (responseDate !== selectedDate) {
@@ -127,7 +126,7 @@ const ProgressScreen = () => {
                     }}
                 />
             </ScrollView>
-          
+            {renderStats()}
         </ScrollView>
     );
 };
