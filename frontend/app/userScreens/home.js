@@ -22,12 +22,13 @@ const HomeScreen = () => {
     const responseListener = useRef();
     const [badPostureStart, setBadPostureStart] = useState(null);
     const [notificationToken, setNotificationToken] = useState(null);
+    const [notificationSent, setNotificationSent] = useState(false);
+
 
     useEffect(() => {
         const getNotificationToken = async () => {
             const token = await registerForPushNotificationsAsync();
             setNotificationToken(token);
-            console.log("Push notification token:", token);
         };
 
         getNotificationToken();
@@ -46,34 +47,37 @@ const HomeScreen = () => {
         };
     }, []);
 
-    useEffect(() => {
    
-        console.log(`Posture status changed: ${postureStatus}`);
+    useEffect(() => {
+        let interval;
         if (postureStatus === 'bad') {
             if (!badPostureStart) {
                 console.log('Starting bad posture timer');
                 setBadPostureStart(new Date());
-            } else {
+            }
+
+            interval = setInterval(() => {
                 const now = new Date();
                 const diff = now.getTime() - badPostureStart.getTime();
                 console.log(`Bad posture duration: ${diff}ms`);
-                if (diff >= 60000) {  // 1 minute in ms
+                if (diff >= 60000) {  // 1 minute
                     console.log('Sending notification for bad posture');
                     sendNotification();
-                    setBadPostureStart(new Date()); // reset the time after the nofitication
+                    setBadPostureStart(new Date());
                 }
-            }
+            }, 20000);
         } else {
             console.log('Resetting bad posture timer');
             setBadPostureStart(null);
         }
-    }, [postureStatus, notificationToken]);
 
+        return () => clearInterval(interval);  
+    }, [postureStatus, notificationToken, badPostureStart]);
     const sendNotification = async () => {
         try {
             const notificationContent = {
                 title: 'Posture Alert!',
-                body: 'Your posture has been bad for more than 1 minute. Please adjust it!',
+                body: 'Your posture has been bad for more than 15 minute. Please adjust it!',
                 data: { userId: user.id, timestamp: new Date() },
             };
 
@@ -90,11 +94,11 @@ const HomeScreen = () => {
     };
 
     const registerForPushNotificationsAsync = async () => {
-        if (!Constants.isDevice) {
-            Alert.alert('Must use physical device for Push Notifications');
-            console.log('Must use physical device for Push Notifications');
-            return null;
-        }
+        // if (!Constants.isDevice) {
+        //     Alert.alert('Must use physical device for Push Notifications');
+        //     console.log('Must use physical device for Push Notifications');
+        //     return null;
+        // }
 
         try {
             const { status: existingStatus } = await Notifications.getPermissionsAsync();
