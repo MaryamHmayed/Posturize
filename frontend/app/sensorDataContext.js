@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useRef } from 'r
 import axios from 'axios';
 import { apiInstance } from './route';
 
+
+
 const SensorDataContext = createContext();
 
 export const useSensorData = () => useContext(SensorDataContext);
@@ -55,6 +57,13 @@ export const SensorDataProvider = ({ children }) => {
         return () => clearInterval(timer);
     }, [postureStatus]);
 
+
+    useEffect(() => {
+        const sendData = setInterval(sendData, 86400000); 
+        return () => clearInterval(sendData);
+    }, [postureDurations, posturePercentages, totalTimeTracked]);
+
+
     const fetchSensorData = async () => {
         try {
             const response = await axios.get('https://io.adafruit.com/api/v2/strain_project/feeds/data', {
@@ -104,6 +113,7 @@ export const SensorDataProvider = ({ children }) => {
         const minutes = Math.floor((seconds % 3600) / 60);
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
     };
+
 
 
     const sendData = async () => {
