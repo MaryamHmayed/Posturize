@@ -126,7 +126,7 @@ export const SensorDataProvider = ({ children }) => {
                 postureDurations,
                 posturePercentages,
             };
-            const response = await apiInstance.post('/pt/store_data', data, {
+            const response = await apiInstance.post('/store_data', data, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
