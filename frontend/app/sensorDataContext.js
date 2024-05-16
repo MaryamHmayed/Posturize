@@ -108,27 +108,24 @@ export const SensorDataProvider = ({ children }) => {
 
     const sendData = async () => {
         if (!user?.token) return; 
-
         try {
             const data = {
                 totalTimeTracked,
                 postureDurations,
                 posturePercentages,
             };
-
             const response = await apiInstance.post('/pt/store_data', data, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
             });
-
             if (response.status === 200) {
-                console.log('Data sent successfully to Laravel');
+                console.log('Data sent successfully');
             } else {
-                console.error('Failed to send data to Laravel');
+                console.error('Failed to send data');
             }
         } catch (error) {
-            console.error('Error sending data to Laravel:', error);
+            console.error('Error sending data:', error);
         }
     };
 
