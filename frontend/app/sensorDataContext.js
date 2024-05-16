@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { apiInstance } from './route';
 
 const SensorDataContext = createContext();
 
@@ -102,6 +103,31 @@ export const SensorDataProvider = ({ children }) => {
         const hours = Math.floor(seconds / 3600);
         const minutes = Math.floor((seconds % 3600) / 60);
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    };
+
+
+    const sendData = async () => {
+        try {
+            const data = {
+                totalTimeTracked,
+                postureDurations,
+                posturePercentages,
+            };
+
+            const response = await apiInstance.post('/pt/store_data', data, {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            });
+
+            if (response.status === 200) {
+                console.log('Data sent successfully to Laravel');
+            } else {
+                console.error('Failed to send data to Laravel');
+            }
+        } catch (error) {
+            console.error('Error sending data to Laravel:', error);
+        }
     };
 
     return (
