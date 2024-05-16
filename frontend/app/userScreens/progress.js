@@ -7,7 +7,8 @@ import { apiInstance } from '../route';
 const ProgressScreen = () => {
     const { user } = useUser();
     const [data, setData] = useState(null);
-  
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +30,9 @@ const ProgressScreen = () => {
             } catch (error) {
                 Alert.alert('Error', 'An error occurred while fetching data');
                 console.error('Error fetching posture data:', error);
-            } 
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchData();
