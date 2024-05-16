@@ -1,11 +1,13 @@
-import { View, StyleSheet, Text, Platform, Alert } from 'react-native';
+import { View, StyleSheet, Text, Platform, Alert, TouchableOpacity } from 'react-native';
 import DataCard from "./homeComponents/dataCard";
 import StatusCard from './homeComponents/statusCard';
 import { useSensorData } from '../sensorDataContext';
 import * as Notifications from 'expo-notifications';
 import React, { useEffect, useRef, useState } from 'react';
 import { useUser } from '../userContext';
-import Constants from 'expo-constants';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -22,7 +24,7 @@ const HomeScreen = () => {
     const responseListener = useRef();
     const [badPostureStart, setBadPostureStart] = useState(null);
     const [notificationToken, setNotificationToken] = useState(null);
-    const [notificationSent, setNotificationSent] = useState(false);
+    const navigation = useNavigation();
 
 
     useEffect(() => {
@@ -189,6 +191,11 @@ const HomeScreen = () => {
   
     return (
         <View style={styles.container}>
+             {/* <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.navigate('notifications')}>
+                    <Icon name="bell" size={30} color="white" />
+                </TouchableOpacity>
+            </View> */}
             <StatusCard 
                 title={statusInfo.title} 
                 time={statusInfo.time} 
@@ -217,9 +224,17 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#3D3A3A',
         alignItems: 'center',
-        marginTop: 0,
         flexDirection: 'column',
         gap: 10,
+    },
+    header: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        backgroundColor: '#3D3A3A',
+        marginRight:60,
+        paddingTop:30
+
     },
     trackedHrs: {
         color: "#fff",

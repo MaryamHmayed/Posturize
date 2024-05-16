@@ -11,8 +11,6 @@ const NotificationsScreen = ()=>{
             <Text style = {styles.title}>{item.title}</Text>
             <Text style={styles.body}>{item.body}</Text>
             <Text style={styles.timestamp}>{new Date (item.data.timestamp).toLocaleString()}</Text>
-        
-        
         </View>
     )
     return (
@@ -26,14 +24,13 @@ const NotificationsScreen = ()=>{
     );
 };
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3D3A3A',
         padding: 10,
     },
-    notificationContainer: {
+    notificationsContainer: {
         backgroundColor: '#1A1A1A',
         padding: 15,
         marginVertical: 10,
