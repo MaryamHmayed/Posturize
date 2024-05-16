@@ -103,8 +103,8 @@ export const SensorDataProvider = ({ children }) => {
 
     const determinePosture = (values) => {
         const sensors = [values.S0, values.S1, values.S2];
-        if (sensors.every(val => val < 20)) return 'break';
-        else if (sensors.some(val => (val > 20 && val < 70) || val > 800)) return 'bad';
+        if (sensors.every(val => val < 50)) return 'break';
+        else if (sensors.some(val => val < 80) || val > 800) return 'bad';
         return 'good';
     };
 
