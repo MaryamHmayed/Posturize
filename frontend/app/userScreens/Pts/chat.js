@@ -37,7 +37,7 @@ const ChatScreen = () => {
         const chatRoomRef = doc(db, 'Chats', chatRoomId);
         const messagesRef = collection(chatRoomRef, 'messages');
 
-        // Query for ordering messages by creation time
+      
         const q = query(messagesRef, orderBy('createdAt'));
 
         // Real-time listener for fetching messages
