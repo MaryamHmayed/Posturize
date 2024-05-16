@@ -7,11 +7,9 @@ use App\Models\User;
 use App\Models\Chair;
 class SensorsController extends Controller
 {
-    public function store(Request $request)
-{
+    public function store(Request $request){
+
     $user = User::find(Auth::id());
-
-
     $validatedData = $request->validate([
         'date' => 'required|date',
         'totalTimeTracked' => 'required|numeric',
@@ -34,16 +32,16 @@ class SensorsController extends Controller
     }
 }
 
+public function getPostureData(Request $request)
+{
+    $user = User::find(Auth::id());
 
+    $chair = Chair::where('user_id', $user->id)->first();
 
-
-
-
-
-
-
-
-
-
-
+    if ($chair) {
+        return response()->json($chair, 200);
+    } else {
+        return response()->json(['message' => 'Chair record not found'], 404);
+    }
+}
 }
