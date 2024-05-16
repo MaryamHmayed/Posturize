@@ -107,6 +107,8 @@ export const SensorDataProvider = ({ children }) => {
 
 
     const sendData = async () => {
+        if (!user?.token) return; 
+
         try {
             const data = {
                 totalTimeTracked,
