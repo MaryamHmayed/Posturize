@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { apiInstance } from './route';
+import { useUser } from '../userContext';
+
 
 
 
@@ -14,6 +16,7 @@ export const SensorDataProvider = ({ children }) => {
     const [postureDurations, setPostureDurations] = useState({ good: 0, bad: 0, break: 0 });
     const [totalTimeTracked, setTotalTimeTracked] = useState(0);
     const [posturePercentages, setPosturePercentages] = useState({ good: "0.0", bad: "0.0", break: "0.0" });
+    const { user } = useUser();
 
     const lastUpdateRef = useRef(Date.now());
 
@@ -58,10 +61,11 @@ export const SensorDataProvider = ({ children }) => {
     }, [postureStatus]);
 
 
+
     useEffect(() => {
-        const sendData = setInterval(sendData, 86400000); 
-        return () => clearInterval(sendData);
-    }, [postureDurations, posturePercentages, totalTimeTracked]);
+        const sendDataInterval = setInterval(sendData, 86400000); // Send data every 24 hours
+        return () => clearInterval(sendDataInterval);
+    }, [postureDurations, posturePercentages, totalTimeTracked]);;
 
 
     const fetchSensorData = async () => {
@@ -113,8 +117,6 @@ export const SensorDataProvider = ({ children }) => {
         const minutes = Math.floor((seconds % 3600) / 60);
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
     };
-
-
 
     const sendData = async () => {
         if (!user?.token) return; 
