@@ -44,8 +44,9 @@ const ProfileScreen = () => {
           <RNPickerSelect
             onValueChange={(value) => setMedicalCondition(value)}
             items={[
-              { label: 'Condition 1', value: 'condition1' },
-              { label: 'Condition 2', value: 'condition2' },
+              { label: 'Neck Pain', value: 'condition1' },
+              { label: 'Back Pain', value: 'condition2' },
+              { label: 'Fractures', value: 'condition2' },
               
             ]}
             placeholder={{ label: "Select your medical condition", value: null }}
