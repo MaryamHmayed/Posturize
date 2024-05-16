@@ -38,31 +38,32 @@ const ProgressScreen = () => {
   
 
 
+
         return (
             <View style={styles.statsContainer}>
                 <View style={styles.totalHours}>
-                    <Text style={styles.hrTitle}></Text>
+                    <Text style={styles.hrTitle}>{formatElapsedTime(data.totalTimeTracked)}</Text>
                     <Text style={styles.statSubTitle}>Hours tracked</Text>
                 </View>
                 <View style={styles.dataContainer}>
-                    <Text style={[styles.statTitle, { color: '#05A37E' }]}></Text>
+                    <Text style={[styles.statTitle, { color: '#05A37E' }]}>{data.posturePercentages.good}%</Text>
                     <View style={styles.statusContainer}>
                         <Text style={styles.statSubTitle}>Good posture</Text>
-                        <Text style={styles.statSubTitle}></Text>
+                        <Text style={styles.statSubTitle}>{formatElapsedTime(data.postureDurations.good)}</Text>
                     </View>
                 </View>
                 <View style={styles.dataContainer}>
-                    <Text style={[styles.statTitle, { color: '#FE9120' }]}></Text>
+                    <Text style={[styles.statTitle, { color: '#FE9120' }]}>{data.posturePercentages.bad}%</Text>
                     <View style={styles.statusContainer}>
                         <Text style={styles.statSubTitle}>Bad posture</Text>
-                        <Text style={styles.statSubTitle}></Text>
+                        <Text style={styles.statSubTitle}>{formatElapsedTime(data.postureDurations.bad)}</Text>
                     </View>
                 </View>
                 <View style={styles.dataContainer}>
-                    <Text style={[styles.statTitle, { color: '#01627D' }]}></Text>
+                    <Text style={[styles.statTitle, { color: '#01627D' }]}>{data.posturePercentages.break}%</Text>
                     <View style={styles.statusContainer}>
                         <Text style={styles.statSubTitle}>Break time</Text>
-                        <Text style={styles.statSubTitle}></Text>
+                        <Text style={styles.statSubTitle}>{formatElapsedTime(data.postureDurations.break)}</Text>
                     </View>
                 </View>
             </View>
@@ -109,7 +110,7 @@ const ProgressScreen = () => {
           
         </ScrollView>
     );
-
+};
 
 const styles = StyleSheet.create({
     container: {
