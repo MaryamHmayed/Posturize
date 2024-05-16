@@ -155,7 +155,7 @@ const HomeScreen = () => {
         },
         break: {
             colors: ['#02657C', '#026E87', '#027E9A'],
-            imageUri: require('../../assets/home-imgs/sitting-posture-at-desk 1.png'),
+            imageUri: require('../../assets/home-imgs/single-continuous-line-drawing-robot-260nw-2406533933-removebg-preview 1.png'),
             title: 'Break time!',
         },
     };
