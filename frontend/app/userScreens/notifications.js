@@ -15,4 +15,13 @@ const NotificationsScreen = ()=>{
         
         </View>
     )
-}
+    return (
+        <View style={styles.container}>
+            <FlatList
+                data={notifications}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => index.toString()}
+            />
+        </View>
+    );
+};
