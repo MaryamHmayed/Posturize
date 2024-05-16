@@ -35,7 +35,9 @@ const ProgressScreen = () => {
         fetchData();
     }, [user.token]);
 
-  
+    const onDayPress = (day) => {
+        setSelectedDate(day.dateString);
+    };
 
     const formatElapsedTime = (seconds) => {
         const hours = Math.floor(seconds / 3600);
