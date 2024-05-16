@@ -7,7 +7,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useUser } from '../userContext';
 import Constants from 'expo-constants';
 
-// Set notification handler
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
         shouldShowAlert: true,
@@ -22,11 +21,16 @@ const HomeScreen = () => {
     const notificationListener = useRef();
     const responseListener = useRef();
     const [badPostureStart, setBadPostureStart] = useState(null);
-    
+    const [notificationToken, setNotificationToken] = useState(null);
+
     useEffect(() => {
-        registerForPushNotificationsAsync().then(token => {
+        const getNotificationToken = async () => {
+            const token = await registerForPushNotificationsAsync();
+            setNotificationToken(token);
             console.log("Push notification token:", token);
-        });
+        };
+
+        getNotificationToken();
 
         notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
             console.log('Notification received:', notification);
@@ -43,64 +47,96 @@ const HomeScreen = () => {
     }, []);
 
     useEffect(() => {
+   
+        console.log(`Posture status changed: ${postureStatus}`);
         if (postureStatus === 'bad') {
             if (!badPostureStart) {
+                console.log('Starting bad posture timer');
                 setBadPostureStart(new Date());
             } else {
                 const now = new Date();
                 const diff = now.getTime() - badPostureStart.getTime();
-                if (diff >= 60000) {  
+                console.log(`Bad posture duration: ${diff}ms`);
+                if (diff >= 60000) {  // 1 minute in ms
+                    console.log('Sending notification for bad posture');
                     sendNotification();
-                    setBadPostureStart(null);
+                    setBadPostureStart(new Date()); // reset the time after the nofitication
                 }
             }
         } else {
+            console.log('Resetting bad posture timer');
             setBadPostureStart(null);
         }
-    }, [postureStatus, badPostureStart]);
+    }, [postureStatus, notificationToken]);
 
     const sendNotification = async () => {
-        const notificationContent = {
-            title: 'Posture Alert!',
-            body: 'Your posture has been bad for more than 15 minutes. Please adjust it!',
-            data: { userId: user.id, timestamp: new Date() },
-        };
+        try {
+            const notificationContent = {
+                title: 'Posture Alert!',
+                body: 'Your posture has been bad for more than 1 minute. Please adjust it!',
+                data: { userId: user.id, timestamp: new Date() },
+            };
 
-        await Notifications.scheduleNotificationAsync({
-            content: notificationContent,
-            trigger: null,
-        });
+            await Notifications.scheduleNotificationAsync({
+                content: notificationContent,
+                trigger: null,
+            });
 
-        addNotification(notificationContent);
+            addNotification(notificationContent);
+            console.log('Notification scheduled successfully');
+        } catch (error) {
+            console.error('Error scheduling notification:', error);
+        }
     };
 
     const registerForPushNotificationsAsync = async () => {
         if (!Constants.isDevice) {
-            Alert.alert('Device Requirement', 'Must use physical device for Push Notifications');
+            Alert.alert('Must use physical device for Push Notifications');
+            console.log('Must use physical device for Push Notifications');
             return null;
         }
 
-        const { status } = await Notifications.requestPermissionsAsync();
-        if (status !== 'granted') {
-            Alert.alert('Notification Permission', 'Failed to get push token for push notification because permission was not granted.');
+        try {
+            const { status: existingStatus } = await Notifications.getPermissionsAsync();
+            let finalStatus = existingStatus;
+            console.log('Existing notification permission status:', existingStatus);
+
+            if (existingStatus !== 'granted') {
+                const { status } = await Notifications.requestPermissionsAsync();
+                finalStatus = status;
+                console.log('Requested notification permission status:', status);
+            }
+
+            if (finalStatus !== 'granted') {
+                Alert.alert('Notification Permission', 'Failed to get push token for push notification because permission was not granted.');
+                console.log('Failed to get push token for push notification because permission was not granted');
+                return null;
+            }
+
+            const tokenData = await Notifications.getExpoPushTokenAsync();
+            const token = tokenData.data;
+            console.log('Expo push token:', token);
+
+            if (!token) {
+                console.error('Failed to get Expo push token');
+                return null;
+            }
+
+            if (Platform.OS === 'android') {
+                await Notifications.setNotificationChannelAsync('default', {
+                    name: 'default',
+                    importance: Notifications.AndroidImportance.MAX,
+                    vibrationPattern: [0, 250, 250, 250],
+                    lightColor: '#FF231F7C',
+                });
+            }
+
+            return token;
+        } catch (error) {
+            console.error('Error in registerForPushNotificationsAsync:', error);
             return null;
         }
-        
-        const token = (await Notifications.getExpoPushTokenAsync()).data;
-        console.log('Expo push token:', token);
-
-        if (Platform.OS === 'android') {
-            Notifications.setNotificationChannelAsync('default', {
-                name: 'default',
-                importance: Notifications.AndroidImportance.MAX,
-                vibrationPattern: [0, 250, 250, 250],
-                lightColor: '#FF231F7C',
-            });
-        }
-
-        return token;
     };
-
 
     const postureAttributes = {
         good: {
