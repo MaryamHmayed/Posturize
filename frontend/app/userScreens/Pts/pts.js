@@ -84,7 +84,7 @@ const PhysiotherapistsScreen = () => {
         <View style={styles.container}>
              <View style={styles.searchContainer}>
              <TouchableOpacity>
-                    <Icon name="magnify" size={24}  color="grey" />
+                    <Icon name="magnify" size={24} paddingHorizontal={4} color="grey" />
                 </TouchableOpacity>
                 <TextInput
                     style={styles.searchBar}
@@ -158,14 +158,19 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#FFA500',
-        padding: 3,
+        paddingHorizontal: 7,
+        paddingVertical:5,
         borderRadius: 3,
+        alignItems:"center",
+        
     },
     buttonText: {
         color: 'white',
         fontSize: 12,
-        paddingHorizontal: 10,
-        fontWeight: '500',
+        fontWeight: '600',
+        alignSelf: "center",
+        paddingHorizontal:0
+        
     },
     chatText: {
         color: '#fff',
