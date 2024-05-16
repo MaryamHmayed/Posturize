@@ -25,3 +25,37 @@ const NotificationsScreen = ()=>{
         </View>
     );
 };
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#3D3A3A',
+        padding: 10,
+    },
+    notificationContainer: {
+        backgroundColor: '#1A1A1A',
+        padding: 15,
+        marginVertical: 10,
+        borderRadius: 7,
+    },
+    title: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    body: {
+        color: 'white',
+        fontSize: 14,
+        marginVertical: 5,
+    },
+    timestamp: {
+        color: 'gray',
+        fontSize: 12,
+        textAlign: 'right',
+    },
+});
+
+export default NotificationsScreen;
+
+
