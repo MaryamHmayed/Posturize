@@ -116,12 +116,14 @@ const uploadProfileImage = async (uri) => {
           multiline
           numberOfLines={3}
           underlineColorAndroid="transparent"
+          textColor="#F1E7E7"
         />
         <Text style={styles.sectionTitle}>Location</Text>
         <TextInput
           value={location}
           onChangeText={setLocation}
           style={styles.input}
+          textColor="#F1E7E7"
         />
         <Text style={styles.sectionTitle}>Phone number</Text>
         <TextInput
@@ -129,6 +131,7 @@ const uploadProfileImage = async (uri) => {
           onChangeText={setPhoneNumber}
           style={styles.input}
           keyboardType='phone-pad'
+          textColor="#F1E7E7"
         />
       </View>
       <TouchableOpacity style={styles.button} onPress={logoutUser} >
@@ -172,7 +175,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     marginTop: 80,
     justifyContent: "space-between",
-    gap: 5,
+    gap: 6,
   },
   name: {
     fontSize: 24,

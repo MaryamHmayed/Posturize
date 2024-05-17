@@ -2,8 +2,8 @@
 #include <Adafruit_MQTT.h>
 #include <Adafruit_MQTT_Client.h>
 
-#define WIFI_SSID       "Amina03311317"    
-#define WIFI_PASSWORD   "Hmayed@03311317#" 
+#define WIFI_SSID       ""    
+#define WIFI_PASSWORD   "" 
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883
