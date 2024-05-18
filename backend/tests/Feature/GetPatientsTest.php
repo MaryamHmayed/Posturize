@@ -1,44 +1,42 @@
 <?php
+
 namespace Tests\Feature;
 
-use App\Http\Controllers\PhysiotherapistController;
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Http\JsonResponse;
-use Mockery;
 use Tests\TestCase;
-
 
 class GetPatientsTest extends TestCase
 {
-    use WithoutMiddleware;
+    use WithoutMiddleware, DatabaseTransactions;
 
     public function test_get_patients()
     {
-        $userMock = Mockery::mock('overload:' . User::class);
-        $userMock->shouldReceive('where->get')
-            ->once()
-            ->andReturn(collect([
-                (object) ['id' => 1, 'username' => 'patient1', 'email' => 'patient1@example.com', 'role_id' => 2],
-                (object) ['id' => 2, 'username' => 'patient2', 'email' => 'patient2@example.com', 'role_id' => 2],
-            ]));
 
-        $controller = new PhysiotherapistController();
+        $patient1 = User::factory()->create([
+            'role_id' => 2,
+            'username' => 'patient1',
+            'email' => 'patient1_test@example.com'
+        ]);
 
-        $response = $controller->getPatients();
+        $patient2 = User::factory()->create([
+            'role_id' => 2,
+            'username' => 'patient2',
+            'email' => 'patient2_test@example.com'
+        ]);
 
-        $this->assertInstanceOf(JsonResponse::class, $response);
-        $responseData = $response->getData(true);
-        $this->assertArrayHasKey('data', $responseData);
-        $this->assertCount(2, $responseData['data']);
-        $this->assertEquals('patient1', $responseData['data'][0]['username']);
-        $this->assertEquals('patient2', $responseData['data'][1]['username']);
-    }
+   
+        $response = $this->actingAs($patient1, 'api')->getJson('/api/pt/patients');
 
-    protected function tearDown(): void
-    {
-        Mockery::close();
-        parent::tearDown();
+        $response->assertStatus(200);
+        $response->assertJsonStructure(['data' => [['id', 'username', 'email', 'role_id']]]);
+        
+        $data = collect($response->json('data'))->whereIn('email', ['patient1_test@example.com', 'patient2_test@example.com']);
+
+        $this->assertCount(2, $data);
+        $this->assertEquals('patient1', $data->firstWhere('email', 'patient1_test@example.com')['username']);
+        $this->assertEquals('patient2', $data->firstWhere('email', 'patient2_test@example.com')['username']);
     }
 }
-
