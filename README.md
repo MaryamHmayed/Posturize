@@ -24,7 +24,7 @@ Physiotherapist Stories
 ###  Posturize is built using the following technologies:
 
 - This project uses the [React Native app development framework](https://reactnative.dev/) with [Expo](https://expo.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- The backend of the app is built using the [Laravelframework](https://laravel.com/). Laravel is a popular PHP framework known for its elegant syntax, extensive feature set, and developer-friendly tools, making it ideal for building robust backends for mobile applications.
+- The backend of the app is built using the [Laravel framework](https://laravel.com/). Laravel is a popular PHP framework known for its elegant syntax, extensive feature set, and developer-friendly tools, making it ideal for building robust backends for mobile applications.
 - To send local push notifications, the app uses the [Expo Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/) package which supports Android, iOS, and macOS.
 - For the live chat feature, the app uses [Firebase](https://firebase.google.com/) and [Firestore](https://firebase.google.com/docs/firestore), which provide real-time data synchronization and reliable cloud storage.
 
@@ -41,7 +41,7 @@ Physiotherapist Stories
 ### Mockups
 | Home screen  | Physiotherapists Screen | Profile Screen |
 | ---| ---| ---|
-| <img src="./readme/demo/Home.png" height="600"/>  | <img src="./readme/demo/user-physio.png.png" height="600"/>  | <img src="./readme/demo/Profile.png.png" height="600"/>  |
+| <img src="./readme/demo/Home.png" height="600"/>  | <img src="./readme/demo/user-physio.png" height="600"/>  | <img src="./readme/demo/Profile.png" height="600"/>  |
 
 <br><br>
 
@@ -50,7 +50,7 @@ Physiotherapist Stories
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
 
-- <img src="./readme/Posturize_db (1).png" height="600" />
+<img src="./readme/Posturize_db (1).png" height="500" />
 
 
 
