@@ -39,9 +39,9 @@ Physiotherapist Stories
 
 
 ### Mockups
-| Home screen  | Menu Screen | Order Screen |
+| Home screen  | Physiotherapists Screen | Profile Screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Home](./readme/demo/Home.png) | ![Physiotherapists](./readme/demo/user-physio.png) | ![Profile](./readme/demo/Profile.png) |
 
 <br><br>
 
@@ -50,7 +50,7 @@ Physiotherapist Stories
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+- [database diagram]
 
 
 <br><br>
