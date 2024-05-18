@@ -41,7 +41,7 @@ Physiotherapist Stories
 ### Mockups
 | Home screen  | Physiotherapists Screen | Profile Screen |
 | ---| ---| ---|
-| <img src="./readme/demo/Home.png" height="600"/>  | <img src="./readme/demo/user-physio.png" height="600"/>  | <img src="./readme/demo/Profile.png" height="600"/>  |
+| <img src="./readme/demo/Home.png" />  | <img src="./readme/demo/user-physio.png" />  | <img src="./readme/demo/Profile.png" />  |
 
 <br><br>
 
@@ -79,13 +79,13 @@ Physiotherapist Stories
 
 
 <!-- Prompt Engineering -->
-<img src="./readme/title7.svg"/>
+<!-- <img src="./readme/title7.svg"/>
 
 ###  Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
 - This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
 
-<br><br>
+<br><br> -->
 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
