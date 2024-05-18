@@ -41,7 +41,7 @@ Physiotherapist Stories
 ### Mockups
 | Home screen  | Physiotherapists Screen | Profile Screen |
 | ---| ---| ---|
-| <img src="./readme/demo/Home.png" />  | <img src="./readme/demo/user-physio.png" />  | <img src="./readme/demo/Profile.png" />  |
+| <img src="./readme/demo/Home.png" height="600" />  | <img src="./readme/demo/user-physio.png" height="600"/>  | <img src="./readme/demo/Profile.png" height="600" />  |
 
 <br><br>
 
@@ -69,10 +69,9 @@ Physiotherapist Stories
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
 ### Arduino
-| ---| ---| 
-| ![Landing](./readme/arduino.jpeg) | ![fsdaf](./readme/arduino1.jpeg) | 
 
-<img src="./readme/WhatsApp Video 2024-05-18 at 2.42.44 PM (1).gif"  />
+| ----------------------------------| --------------------------------------|
+| ![Landing](./readme/arduino.jpeg) | ![fsdaf](./readme/arduino1.jpeg)  | 
 
 <br><br>
 
