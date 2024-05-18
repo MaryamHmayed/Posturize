@@ -80,7 +80,7 @@ const SetupScreen = () => {
               keyboardType="numeric"
             />
             <TouchableOpacity style={styles.verifybutton} onPress={verifyCode}>
-              <Text style={styles.buttonText}>Verify</Text>
+              <Text style={styles.verifybuttonText}>Verify</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -140,7 +140,10 @@ const styles = StyleSheet.create({
   verifybutton:{
     backgroundColor: '#FFA500',
     padding: 10,
-    borderRadius:25
+    borderRadius:25,
+    width: 140,
+    height:37,
+    alignItems:"center"
   },
   modalView: {
     margin: 20,
@@ -157,13 +160,18 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
+  verifybuttonText:{
+    color: 'white',
+    fontSize: 13,
+    fontWeight: "bold"
+  },
   modalText: {
     marginBottom: 15,
     textAlign: "center"
   },
   modalInput: {
     height: 40,
-    width: '80%',
+    width: 140,
     marginBottom: 20,
     borderColor: 'gray',
     borderWidth: 1,
