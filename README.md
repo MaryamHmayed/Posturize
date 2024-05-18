@@ -40,8 +40,8 @@ Physiotherapist Stories
 
 ### Mockups
 | Home screen  | Physiotherapists Screen | Profile Screen |
-| --------------------------------| ---------------------------------------------------| ----------------------------|
-| ![Home](./readme/demo/Home.png) | ![Physiotherapists](./readme/demo/user-physio.png) | ![Profile](./readme/demo/Profile.png) |
+| ---| ---| ---|
+| ![Home](./readme/demo/Home.png height="600") | ![Physiotherapists](./readme/demo/user-physio.png) | ![Profile](./readme/demo/Profile.png) |
 
 <br><br>
 
@@ -50,7 +50,8 @@ Physiotherapist Stories
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
 
-- [database diagram]
+- <img src="./readme/Posturize_db (1).png" height="800" />
+
 
 
 <br><br>
