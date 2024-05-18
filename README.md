@@ -40,7 +40,7 @@ Physiotherapist Stories
 
 ### Mockups
 | Home screen  | Physiotherapists Screen | Profile Screen |
-| ---| ---| ---|
+| --------------------------------| ---------------------------------------------------| ----------------------------|
 | ![Home](./readme/demo/Home.png) | ![Physiotherapists](./readme/demo/user-physio.png) | ![Profile](./readme/demo/Profile.png) |
 
 <br><br>
