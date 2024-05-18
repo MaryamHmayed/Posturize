@@ -21,22 +21,21 @@ Physiotherapist Stories
 <!-- Tech stack -->
 <img src="./readme/title3.svg"/>
 
-###  Coffee Express is built using the following technologies:
+###  Posturize is built using the following technologies:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+- This project uses the [React Native app development framework](https://reactnative.dev/) with [Expo](https://expo.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+- The backend of the app is built using the [Laravelframework](https://laravel.com/). Laravel is a popular PHP framework known for its elegant syntax, extensive feature set, and developer-friendly tools, making it ideal for building robust backends for mobile applications.
+- To send local push notifications, the app uses the [Expo Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/) package which supports Android, iOS, and macOS.
+- For the live chat feature, the app uses [Firebase](https://firebase.google.com/) and [Firestore](https://firebase.google.com/docs/firestore), which provide real-time data synchronization and reliable cloud storage.
 
 <br><br>
 <!-- UI UX -->
 <img src="./readme/title4.svg"/>
 
 
-> We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed Posturize using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
-- Project Figma design [figma](https://www.figma.com/file/LsuOx5Wnh5YTGSEtrgvz4l/Purrfect-Pals?type=design&node-id=257%3A79&mode=design&t=adzbABt5hbb91ucZ-1)
+- Project Figma design [figma](https://www.figma.com/design/1KkHNvv5MPKDxcgSjpcrfX/Posturize?node-id=625-1031&t=8l71yW8tLkKQNfq3-0)
 
 
 ### Mockups
