@@ -68,24 +68,13 @@ Physiotherapist Stories
 | Home screen  | Menu Screen | Order Screen | Checkout Screen |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
-### Admin Screens (Web)
-| Login screen  | Register screen |  Landing screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen  | Menu Screen | Order Screen |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+### Arduino
+| ---| ---| 
+| ![Landing](./readme/arduino.jpeg) | ![fsdaf](./readme/arduino1.jpeg) | 
+
+<img src="./readme/WhatsApp Video 2024-05-18 at 2.42.44 PM (1).gif"  />
 
 <br><br>
-
-
-<!-- Prompt Engineering -->
-<!-- <img src="./readme/title7.svg"/>
-
-###  Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
-
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
-
-<br><br> -->
 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
@@ -113,26 +102,68 @@ Physiotherapist Stories
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+1. Install [Node & NPM](https://nodejs.org/en/download).
+
+2. Install [Composer](https://getcomposer.org/download/)
+
+3. Database server: Any Apache HTTP Server, MariaDB database server, recommended [XAMPP](https://www.apachefriends.org/download.html).
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+### Frontend (React Native)
 
-1. Get a free API Key at [example](https://example.com)
-2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+```sh
+git clone https://github.com/MaryamHmayed/Posturize
+```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+1. Navigate to the frontend directory
+
+```sh
+cd frontend
+```
+
+2. Install NPM packages
+
+```sh
+ npm install npm@latest -g
+```
+
+3. Enter your API key in config.js
+
+```sh
+ const API_KEY = 'ENTER YOUR API';
+```
+
+### Backend (Laravel)
+
+1. Navigate to the backend directory
+
+```sh
+cd backend
+```
+
+2. Install Composer dependencies
+
+```sh
+composer install
+```
+
+3. Install Composer dependencies
+
+```sh
+composer install
+```
+
+4. Generate the application key
+
+```sh
+php artisan key:generate
+```
+
+5. Download Laravel dependencies
+
+```sh
+php artisan migrate
+```
+
+Now, you should be able to run Posturize locally and explore its features.
