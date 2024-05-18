@@ -69,12 +69,14 @@ Physiotherapist Stories
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
 ### Arduino
-
+| Demo | Real Image |
 | ---| ---|
 | <img src="./readme/arduino.jpeg" height="500" />  | <img src="./readme/arduino1.jpeg" height="500"/> |
 
-<br><br>
+<img src="./readme/WhatsApp Video 2024-05-18 at 2.42.44 PM (1).gif"/>
 
+<br><br>
+ 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
 

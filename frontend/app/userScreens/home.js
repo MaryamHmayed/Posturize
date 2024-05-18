@@ -147,12 +147,12 @@ const HomeScreen = () => {
     const postureAttributes = {
         good: {
             colors: ['#05A37E', '#04765B', '#04765B'],
-            imageUri: require('../../assets/home-imgs/sitting-posture-at-desk 1.png'),
+            imageUri: require('../../assets/home-imgs/sitting-posture-at-desk_1__2_-removebg-preview.png'),
             title: 'Your current posture is flawless, keep it up!',
         },
         bad: {
             colors: ['#FE9120', '#985713'],
-            imageUri: require('../../assets/home-imgs/sitting-posture-at-desk-cropped-removebg-preview (1) 1.png'),
+            imageUri: require('../../assets/home-imgs/Untitled_design-removebg-preview.png'),
             title: 'Your back is not liking this :(',
         },
         break: {
