@@ -133,11 +133,12 @@ cd frontend
  npm install npm@latest -g
 ```
 
-3. Enter your API key in config.js
+3. Start the project
 
 ```sh
- const API_KEY = 'ENTER YOUR API';
+  npm start
 ```
+4. After running the command above, you will see a QR code in your terminal. Scan this QR code to open the app on your device (if you're using an Android Emulator or iOS Simulator, you can press a or i respectively to open the ).
 
 ### Backend (Laravel)
 
@@ -169,6 +170,11 @@ php artisan key:generate
 
 ```sh
 php artisan migrate
+```
+6. Run the server on computer's local IP address
+
+```sh
+php artisan serve --host local_IP_address
 ```
 
 ### Hardware
