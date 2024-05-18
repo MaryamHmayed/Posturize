@@ -70,8 +70,8 @@ Physiotherapist Stories
 
 ### Arduino
 
-| ----------------------------------| --------------------------------------|
-| ![Landing](./readme/arduino.jpeg) | ![fsdaf](./readme/arduino1.jpeg)  | 
+| ---| ---|
+| <img src="./readme/arduino.jpeg" height="500" />  | <img src="./readme/arduino1.jpeg" height="500"/> |
 
 <br><br>
 
@@ -106,6 +106,8 @@ Physiotherapist Stories
 2. Install [Composer](https://getcomposer.org/download/)
 
 3. Database server: Any Apache HTTP Server, MariaDB database server, recommended [XAMPP](https://www.apachefriends.org/download.html).
+
+4. Install [Arduino IDE](https://www.arduino.cc/en/software)  and create an account on [Adafruit website](https://io.adafruit.com/)
 
 ### Installation
 
