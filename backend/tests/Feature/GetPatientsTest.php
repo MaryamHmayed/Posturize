@@ -15,7 +15,6 @@ class GetPatientsTest extends TestCase
 
     public function test_get_patients()
     {
-        // Arrange: Mock the User model
         $userMock = Mockery::mock('overload:' . User::class);
         $userMock->shouldReceive('where->get')
             ->once()
@@ -26,10 +25,8 @@ class GetPatientsTest extends TestCase
 
         $controller = new PhysiotherapistController();
 
-        // Act: Call the getPatients method
         $response = $controller->getPatients();
 
-        // Assert: Check the response
         $this->assertInstanceOf(JsonResponse::class, $response);
         $responseData = $response->getData(true);
         $this->assertArrayHasKey('data', $responseData);
