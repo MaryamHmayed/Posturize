@@ -111,6 +111,8 @@ Physiotherapist Stories
 
 4. Install [Arduino IDE](https://www.arduino.cc/en/software)  and create an account on [Adafruit website](https://io.adafruit.com/)
 
+5. For hardware: ESP8266, 3 Strain Gauge Bending sensors, and a Multiplexer.
+
 ### Installation
 
 ### Frontend (React Native)
@@ -169,4 +171,24 @@ php artisan key:generate
 php artisan migrate
 ```
 
+### Hardware
+
+1. Connect the arduino to the sensors.
+
+2. Connect the arduino to the computer.
+
+3. Upload the code in arduino/sensorData file.
+
+4. Start a new feed in your Adafruit account and get the AIO_KEY.
+
+5. Add your Wifi credentials to the code.
+
+6. Add your AIO credentials 
+
+```sh
+#define AIO_USERNAME    "strain_project" //cloud username
+#define AIO_KEY         "" //auth key
+#define FEED_NAME       "data"
+
+```
 Now, you should be able to run Posturize locally and explore its features.

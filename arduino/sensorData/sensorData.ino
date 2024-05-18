@@ -8,7 +8,7 @@
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883
 #define AIO_USERNAME    "strain_project" //cloud username
-#define AIO_KEY         "aio_lBVi28TCPXAyKsfxCFVdfow8EXlc" //auth key
+#define AIO_KEY         "" //auth key
 #define FEED_NAME       "data"
 
 WiFiClient client;
