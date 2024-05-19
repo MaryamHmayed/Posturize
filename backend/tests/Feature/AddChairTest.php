@@ -72,7 +72,6 @@ class AddChairTest extends TestCase
 
     public function test_add_chair_already_assigned_different_name()
     {
-        
         $user = User::factory()->create([
             'username' => 'testuser',
             'email' => 'test@example.com',
@@ -83,9 +82,14 @@ class AddChairTest extends TestCase
             'chair_name' => 'OldChair',
             'user_id' => $user->id,
         ]);
-
         $token = auth('api')->login($user);
 
-     
-}
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->postJson('/api/add_chair', [
+            'chair_name' => 'NewChair',
+        ]);
+
+    
+    }
 }
