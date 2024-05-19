@@ -47,5 +47,24 @@ class GetPostureDataTest extends TestCase
         ]);
     }
 
-   
+    public function test_get_posture_data_no_chair_assigned()
+    {
+     
+        $user = User::factory()->create([
+            'username' => 'testuser',
+            'email' => 'test@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+
+        $token = auth('api')->login($user);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->getJson('/api/get_data');
+
+        $response->assertStatus(404);
+        $response->assertJson([
+            'message' => 'Chair record not found',
+        ]);
+    }
 }
