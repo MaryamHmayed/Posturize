@@ -62,14 +62,14 @@ Physiotherapist Stories
 
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Setup Screen
-| ---| ---| ---|
+| Login screen                               | Register screen                       | Setup Screen                              |
+| ------------------------------------------ | ------------------------------------- | ----------------------------------------- |
 | ![Login](./readme/demo/splashLoginGIF.gif) | ![SignUn](/readme/demo/signupGIF.gif) | ![SetupScreen](/readme/demo/SetupGIF.gif) |
-| Physiotherapists screen | Progress screen | Home Screen
-| ---| ---| ---|
-| ![physiotherapistsScreen](./readme/demo/PTsGIF.gif)  | ![ProgressScreen](./readme/demo/ProgressGIF.gif) |![HomeScreen](./readme/demo/Profile.png) |
-| Patients screen  | RecentChat screen | Profile Screen
-| ---| ---| ---|
+| Physiotherapists screen                             | Progress screen                                  | Home Screen                             |
+| --------------------------------------------------- | ------------------------------------------------ | --------------------------------------- |
+| ![physiotherapistsScreen](./readme/demo/PTsGIF.gif) | ![ProgressScreen](./readme/demo/ProgressGIF.gif) |![HomeScreen](./readme/demo/Profile.png) |
+| Patients screen                                  | RecentChat screen                                    | Profile Screen                                 |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------- |
 | ![PatientsScreen](./readme/demo/PatientsGIF.gif) | ![RecentChatScreen](./readme/demo/RecentChatGIF.gif) | ![ProfileScreen](./readme/demo/profileGIf.gif) |
 
 
