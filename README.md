@@ -68,7 +68,7 @@ Physiotherapist Stories
 
 | Home Screen | Physiotherapists Screen | Progress screen |
 |-------------------------|-----------------|-------------|
-| <img src="./readme/demo/homeGIF.gif"  width="300" height="600"> |  <img src="./readme/demo/PTsGIF.gif" width="300" height="600"> | <img src="./readme/demo/ProgressGIF.gif.png" width="300" height="600"> |
+| <img src="./readme/demo/homeGIF.gif"  width="300" height="600"> |  <img src="./readme/demo/PTsGIF.gif" width="300" height="600"> | <img src="./readme/demo/ProgressGIF.gif" width="300" height="600"> |
 
 | Patients screen | RecentChat screen | Profile Screen |
 |-----------------|-------------------|----------------|
