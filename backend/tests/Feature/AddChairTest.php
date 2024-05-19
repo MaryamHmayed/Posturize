@@ -54,7 +54,20 @@ class AddChairTest extends TestCase
         $token = auth('api')->login($user);
 
        
-      
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->postJson('/api/add_chair', [
+            'chair_name' => 'ErgoChair',
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'You already have this chair assigned.',
+            'chair' => [
+                'chair_name' => 'ErgoChair',
+                'user_id' => $user->id,
+            ],
+        ]);
     }
 
 
