@@ -51,6 +51,9 @@ public function addChair(Request $req){
     $chair = $user->chair;
 
     if ($chair) {
+            $chair->postureDurations = json_decode($chair->postureDurations, true);
+            $chair->posturePercentages = json_decode($chair->posturePercentages, true);
+
         return response()->json([
             'message' => 'Chair retrieved successfully',
             'chair' => $chair
