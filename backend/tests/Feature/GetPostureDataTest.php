@@ -36,7 +36,15 @@ class GetPostureDataTest extends TestCase
             'Authorization' => 'Bearer ' . $token,
         ])->getJson('/api/get_data');
 
-      
+        $response->assertStatus(200);
+        $response->assertJson([
+            'id' => $chair->id,
+            'chair_name' => 'ErgoChair',
+            'totalTimeTracked' => 5000,
+            'postureDurations' => ['good' => 3000, 'bad' => 2000],
+            'posturePercentages' => ['good' => 0.6, 'bad' => 0.4],
+            'user_id' => $user->id,
+        ]);
     }
 
    
