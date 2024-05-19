@@ -64,7 +64,7 @@ Physiotherapist Stories
 ### User Screens (Mobile)
 | Login screen | Register screen | Setup Screen |
 |--------------|-----------------|--------------|
-| <img src="./readme/demo/splashLoginGIF.gif" width="300" height="600"> | <img src="./readme/demo/signupGIF.gif" width="300" height="600"> | <img src="./readme/demo/SetupGIF.gif" width="300" height="600"> |
+| <img src="./readme/demo/splashLoginGIF.gif" width="250" height="445"> | <img src="./readme/demo/signupGIF.gif" width="250" height="445"> | <img src="./readme/demo/SetupGIF.gif" width="250" height="445"> |
 
 | Home Screen | Physiotherapists Screen | Progress screen |
 |-------------------------|-----------------|-------------|
