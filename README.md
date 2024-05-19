@@ -64,13 +64,13 @@ Physiotherapist Stories
 ### User Screens (Mobile)
 | Login screen  | Register screen | Setup Screen
 | ---| ---| ---|
-| <img src="./readme/demo/splashLoginGIF.gif"  /> | <img src="./readme/demo/signupGIF.gif"  /> | <img src="./readme/demo/SetupGIF.gif" /> |
-| Physiotherapists screen  | Progress screen | Home Screen
+| ![Login](./readme/demo/splashLoginGIF.gif) | ![SignUn](/readme/demo/signupGIF.gif) | ![SetupScreen](/readme/demo/SetupGIF.gif) |
+| Physiotherapists screen | Progress screen | Home Screen
 | ---| ---| ---|
-| <img src="./readme/demo/PTsGIF.gif"  /> | <img src="./readme/demo/ProgressGIF.gif"  /> | <img src="./readme/demo/"  /> |
+| ![physiotherapistsScreen](./readme/demo/PTsGIF.gif)  | ![ProgressScreen](./readme/demo/ProgressGIF.gif) |![HomeScreen](./readme/demo/Profile.png) |
 | Patients screen  | RecentChat screen | Profile Screen
 | ---| ---| ---|
-| <img src="./readme/demo/PatientsGIF.gif"  /> | <img src="./readme/demo/RecentChatGIF.gif"  /> | <img src="./readme/demo/profileGIf.gif"  /> |
+| ![PatientsScreen](./readme/demo/PatientsGIF.gif) | ![RecentChatScreen](./readme/demo/RecentChatGIF.gif) | ![ProfileScreen](./readme/demo/profileGIf.gif) |
 
 
 
