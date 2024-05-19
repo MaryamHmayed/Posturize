@@ -32,6 +32,10 @@ class GetPostureDataTest extends TestCase
 
         $token = auth('api')->login($user);
 
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->getJson('/api/get_data');
+
       
     }
 
