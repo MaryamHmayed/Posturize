@@ -62,9 +62,18 @@ Physiotherapist Stories
 
 
 ### User Screens (Mobile)
-| Login screen  | Register screen |
-| ---| ---| 
-| <img src="./readme/demo/splashLoginGIF.gif" height="600" /> | <img src="./readme/demo/signupGIF.gif" height="600" /> |
+| Login screen  | Register screen | Setup Screen
+| ---| ---| ---|
+| <img src="./readme/demo/splashLoginGIF.gif" height="600" /> | <img src="./readme/demo/signupGIF.gif" height="600" /> | <img src="./readme/demo/SetupGIF.gif" height="600" /> |
+| Login screen  | Register screen | Setup Screen
+| Physiotherapists screen  | Progress screen | Home Screen
+| ---| ---| ---|
+| <img src="./readme/demo/PTsGIF.gif" height="600" /> | <img src="./readme/demo/ProgressGIF.gif" height="600" /> | <img src="./readme/demo/" height="600" /> |
+| Patients screen  | RecentChat screen | Profile Screen
+| ---| ---| ---|
+| <img src="./readme/demo/PatientsGIF.gif" height="600" /> | <img src="./readme/demo/RecentChatGIF.gif" height="600" /> | <img src="./readme/demo/Profile.png" height="600" /> |
+
+
 
 
 ### Arduino
