@@ -70,5 +70,22 @@ class AddChairTest extends TestCase
         ]);
     }
 
+    public function test_add_chair_already_assigned_different_name()
+    {
+        
+        $user = User::factory()->create([
+            'username' => 'testuser',
+            'email' => 'test@example.com',
+            'password' => bcrypt('password123'),
+        ]);
 
+        $chair = Chair::factory()->create([
+            'chair_name' => 'OldChair',
+            'user_id' => $user->id,
+        ]);
+
+        $token = auth('api')->login($user);
+
+     
+}
 }
