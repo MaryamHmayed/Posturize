@@ -80,9 +80,8 @@ Physiotherapist Stories
 | Demo | Real Image |
 | ---| ---|
 | <img src="./readme/arduino.jpeg" height="500" />  | <img src="./readme/arduino1.jpeg" height="500"/> |
-| Sensors Dashboard |
-| ---|
-| <img src="./readme/WhatsApp Video 2024-05-18 at 2.42.44 PM (1).gif"/>|
+| Sensors Dashboard                                                                                    |
+| <img src="./readme/WhatsApp Video 2024-05-18 at 2.42.44 PM (1).gif"/>                                |
 
 <br><br>
  
