@@ -23,6 +23,7 @@ Route::middleware(['auth:api'])
         Route::post('add_chair', [UserController::class, 'addChair']);
         Route::post('store_data',[SensorsController::class,'store']);
         Route::get('get_data',[SensorsController::class,'getPostureData']);
+        Route::get('get_chair',[UserController::class,'getChair']);
 
 
 });
