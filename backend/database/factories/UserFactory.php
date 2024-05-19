@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'role_id' => null,
             'profile_image' => null,
             'location' => $this->faker->address,
-            'bio' => $this->faker->paragraph,
+            'bio' => $this->faker->sentence(6),
             'phone_number' => $this->faker->phoneNumber,
             'remember_token' => Str::random(10),
         ];
