@@ -62,16 +62,17 @@ Physiotherapist Stories
 
 
 ### User Screens (Mobile)
-| Login screen                               | Register screen                       | Setup Screen                              |
-| ------------------------------------------ | ------------------------------------- | ----------------------------------------- |
-| ![Login](./readme/demo/splashLoginGIF.gif) | ![SignUn](/readme/demo/signupGIF.gif) | ![SetupScreen](/readme/demo/SetupGIF.gif) |
-| Physiotherapists screen                             | Progress screen                                  | Home Screen                             |
-| --------------------------------------------------- | ------------------------------------------------ | --------------------------------------- |
-| ![physiotherapistsScreen](./readme/demo/PTsGIF.gif) | ![ProgressScreen](./readme/demo/ProgressGIF.gif) |![HomeScreen](./readme/demo/Profile.png) |
-| Patients screen                                  | RecentChat screen                                    | Profile Screen                                 |
-| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------- |
-| ![PatientsScreen](./readme/demo/PatientsGIF.gif) | ![RecentChatScreen](./readme/demo/RecentChatGIF.gif) | ![ProfileScreen](./readme/demo/profileGIf.gif) |
+| Login screen | Register screen | Setup Screen |
+|--------------|-----------------|--------------|
+| <img src="./readme/demo/splashLoginGIF.gif" width="400" height="600"> | <img src="./readme/demo/signupGIF.gif" width="400" height="600"> | <img src="./readme/demo/SetupGIF.gif" width="400" height="600"> |
 
+| Physiotherapists screen | Progress screen | Home Screen |
+|-------------------------|-----------------|-------------|
+| <img src="./readme/demo/PTsGIF.gif" width="400" height="600"> | <img src="./readme/demo/ProgressGIF.gif" width="400" height="600"> | <img src="./readme/demo/Profile.png" width="400" height="600"> |
+
+| Patients screen | RecentChat screen | Profile Screen |
+|-----------------|-------------------|----------------|
+| <img src="./readme/demo/PatientsGIF.gif" width="400" height="600"> | <img src="./readme/demo/RecentChatGIF.gif" width="400" height="600"> | <img src="./readme/demo/profileGIf.gif" width="400" height="600"> |
 
 
 
