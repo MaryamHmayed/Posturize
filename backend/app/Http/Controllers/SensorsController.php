@@ -43,6 +43,9 @@ public function getPostureData(Request $request)
     $chair = Chair::where('user_id', $user->id)->first();
 
     if ($chair) {
+        $chair->postureDurations = json_decode($chair->postureDurations, true);
+        $chair->posturePercentages = json_decode($chair->posturePercentages, true);
+
         return response()->json($chair, 200);
     } else {
         return response()->json(['message' => 'Chair record not found'], 404);
