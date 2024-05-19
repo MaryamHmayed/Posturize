@@ -30,7 +30,10 @@ class GetPostureDataTest extends TestCase
             'posturePercentages' => json_encode(['good' => 0.6, 'bad' => 0.4]),
         ]);
 
+        $token = auth('api')->login($user);
+
       
+    }
 
    
 }
