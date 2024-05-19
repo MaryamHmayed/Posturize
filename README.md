@@ -71,7 +71,7 @@ Physiotherapist Stories
 | <img src="./readme/demo/PTsGIF.gif" height="600" /> | <img src="./readme/demo/ProgressGIF.gif" height="600" /> | <img src="./readme/demo/" height="600" /> |
 | Patients screen  | RecentChat screen | Profile Screen
 | ---| ---| ---|
-| <img src="./readme/demo/PatientsGIF.gif" height="600" /> | <img src="./readme/demo/RecentChatGIF.gif" height="600" /> | <img src="./readme/demo/Profile.png" height="600" /> |
+| <img src="./readme/demo/PatientsGIF.gif" height="600" /> | <img src="./readme/demo/RecentChatGIF.gif" height="600" /> | <img src="./readme/demo/profileGIf.gif" height="600" /> |
 
 
 
