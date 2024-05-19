@@ -90,6 +90,9 @@ class AddChairTest extends TestCase
             'chair_name' => 'NewChair',
         ]);
 
-    
+        $response->assertStatus(409);
+        $response->assertJson([
+            'message' => 'You already have a chair assigned with a different name.',
+        ]);
     }
 }
