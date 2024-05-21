@@ -21,7 +21,6 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         $token = Auth::attempt($credentials);
-        dd($token);
         if (!$token) {
             return response()->json([
                 'status' => 'error',

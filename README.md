@@ -91,6 +91,67 @@ Physiotherapist Stories
 ###  Optimized Deployment: Maximizing Potential with AWS Integration:
 
 - This project utilizes AWS deployment strategies to seamlessly integrate and deploy advanced solutions. By focusing on scalability, reliability, and performance, we ensure that our applications provide robust and responsive solutions across various use cases.
+To deploy Posturize Laravel backend to AWS, after [connecting to the AWS EC2 instance through PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html). 
+
+- **Step 1**: Update Packages
+  ```sh
+  sudo apt update
+  sudo apt upgrade -y
+  ```
+- **Step 2**: Install Composer, Apache and PHP
+  ```sh
+  sudo apt install composer -y
+  sudo apt-get install apache2
+  sudo apt-get install php-mysql
+  ```
+- **Step 3**: Create Virtual Hosts File
+  ```sh
+  sudo nano /etc/apache2/sites-available/laravel.conf
+  ```
+- **Step 4**: Copy and paste the following snippet into `laravel.conf`:
+
+  ```
+  <VirtualHost *:80>
+      ServerName <YOUR_IPv4_ADDRESS_HERE>
+      DocumentRoot /var/www/html/posturize/backend/public
+
+      <Directory /var/www/html/posturize/backend/public>
+         AllowOverride All
+         Require all granted
+     </Directory>
+     ProxyRequests Off
+     ProxyPass / http://127.0.0.1:8000/
+     ProxyPassReverse / http://127.0.0.1:8000/
+
+     <Proxy *>
+         Order allow,deny
+         Allow from all
+     </Proxy>
+
+     ErrorLog ${APACHE_LOG_DIR}/error.log
+     CustomLog ${APACHE_LOG_DIR}/access.log combined
+  </VirtualHost>
+  ```
+
+  Replace `YOUR_IPv4_ADDRESS_HERE` with your AWS EC2 instance's IPv4 Public Address.
+
+- **Step 5**: Activate your virtual host setup, then reload Apache:
+  ```sh
+  sudo a2ensite laravel
+  sudo systemctl reload apache2
+  ```
+- **Step 6**: Clone this repository, then set permissions
+  ```sh
+  cd /var/www/html
+  sudo git clone https://github.com/MaryamHmayed/Posturize /var/www/html/posturize
+  sudo chown -R ubuntu:ubuntu /var/www/html/posturize
+  ```
+  Replace `ubuntu:ubuntu` with your instance username.
+- **Step 7**: Install MySQL on your instance. A good guide can be found here: [How To Install MySQL on Ubuntu 20.04 (DigitalOcean)](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
+
+- **Step 8**: Once MySQL is installed, follow the steps in the "How To Run?" section below (Backend Setup).
+
+<img src="./readme/2024-05-21 (4).png">
 
 <br><br>
 
